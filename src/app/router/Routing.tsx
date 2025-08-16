@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
-import MainPage from "../pages/MainPage";
-import ActivitiesPage from "../pages/ActivitiesPage/ui/ActivitiesPage";
-import { MovementPages } from "../pages/Movement/ui/MovementPages";
+import MainPage from "../../pages/MainPage";
+import ActivitiesPage from "../../pages/ActivitiesPage/ui/ActivitiesPage";
+import { MovementPages } from "../../pages/Movement/ui/MovementPages";
 import { BranchNamePages } from "@/pages/BranchName/ui/BranchNamePages";
 import { Project } from "@/pages/Project/ui/Project";
 import { ProjectNamePages } from "@/pages/ProjectName/ui/ProjectNamePages";
