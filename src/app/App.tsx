@@ -1,6 +1,6 @@
 import "./App.scss";
-import Routing from "../routing/Routing";
 import { Footer } from "../widgets/Footer/ui/Footer";
+import { Routing } from "./router";
 // import { Footer } from "@/widgets/Footer";
 // import { Footer } from "@/widgets/Footer";
 
