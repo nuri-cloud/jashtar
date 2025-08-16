@@ -1,0 +1,108 @@
+.footer {
+  margin-top: 5rem;
+  background-color: #111111;
+  color: #fff;
+  padding: 40px 40px;
+  height: 474px;
+  .footerContent {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+  }
+  .logo {
+    width: 152px;
+    height: auto;
+  }
+
+  .copyright {
+    margin-top: 21rem;
+    font-size: 14px;
+    opacity: 0.8;
+    @media (max-width: 780px) {
+      display: none;
+    }
+  }
+
+  .policyLinks {
+    font-size: 12px;
+    opacity: 0.7;
+    @media (max-width: 780px) {
+      display: none;
+    }
+    a {
+      color: white;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  .footerNav {
+    display: flex;
+    margin-top: 90px;
+    gap: 40px;
+    justify-content: flex-end;
+    @media (max-width: 980px) {
+      flex-wrap: wrap;
+      justify-content: left;
+    }
+  }
+  .navSection {
+    .navList {
+      list-style: none;
+
+      margin: 0;
+      li {
+        padding: 8px 0;
+        margin-bottom: 8px;
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+    .navLink {
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.2s ease-in-out;
+      &:hover {
+        color: #ddd;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+@media (max-width: 780px) {
+  .footer {
+    margin: 0 auto;
+    height: auto;
+    .footerContent {
+      flex-direction: column;
+    }
+  }
+}
+.brandInfo1 {
+  margin-top: -300px;
+  .copyright1 {
+    margin-top: 21rem;
+    font-size: 14px;
+    opacity: 0.8;
+  }
+
+  .policyLinks1 {
+    font-size: 12px;
+    opacity: 0.7;
+
+    a {
+      color: white;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+@media (min-width: 780px) {
+  .brandInfo1 {
+    display: none;
+  }
+}
