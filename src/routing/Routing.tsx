@@ -5,6 +5,11 @@ import { MovementPages } from "../pages/Movement/ui/MovementPages";
 import { BranchNamePages } from "@/pages/BranchName/ui/BranchNamePages";
 import { Project } from "@/pages/Project/ui/Project";
 import { ProjectNamePages } from "@/pages/ProjectName/ui/ProjectNamePages";
+import { link } from "fs";
+import { MediaPage } from "@/pages/Media/MediaPage";
+import { PhotoGallry } from "@/pages/Photo/PhotoGallry";
+import { Video } from "@/pages/Video/Video";
+import { Allbom } from "@/pages/Allbom/Allbom";
 
 export default function Routing() {
   //   const accessToken = localStorage.getItem("accessToken");
@@ -16,6 +21,10 @@ export default function Routing() {
     { link: "/branchnamepages", page: <BranchNamePages />, id: 4 },
     { link: "/project", page: <Project />, id: 5 },
     { link: "/project/projectnamepages", page: <ProjectNamePages />, id: 6 }, // ✅ Ушундай
+    { link: "/media", page: <MediaPage />, id: 7 },
+    { link: "/photoGallery", page: <PhotoGallry />, id: 8 },
+    {link: "/videoGallery", page: <Video/>, id: 9},
+    { link: "/allbom", page: <Allbom/>, id: 10 },
 
     // { link: "/about-motion", page: <AboutUsPage />, id: 2 },
 
