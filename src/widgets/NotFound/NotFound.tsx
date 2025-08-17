@@ -6,7 +6,6 @@ function NotFound() {
     <div className={styles.notfound} >
       <h2>Ошибка 404</h2>
       <p>Произошла ошибка. Страница не найдена.</p>
-      
       <button>
         <p>Вернуться на главную</p>
       </button>
