@@ -12,6 +12,7 @@ import { Video } from "@/pages/Video/Video";
 import { Allbom } from "@/pages/Allbom/Allbom";
 import { Register } from "@/pages/Register/Register";
 import { SignIn } from "@/pages/SigneIn/SigneIn";
+import { Profile } from "@/pages/PersonalInformation/Profile";
 
 export default function Routing() {
   //   const accessToken = localStorage.getItem("accessToken");
@@ -28,7 +29,8 @@ export default function Routing() {
     {link: "/videoGallery", page: <Video/>, id: 9},
     { link: "/allbom", page: <Allbom/>, id: 10 },
     { link: "/register", page: <Register/>, id: 11 },
-    { link: "/signin", page: <SignIn/>, id: 12 },
+    { link: "/login", page: <SignIn/>, id: 12 },
+    {link: "/profile", page: <Profile/>, id: 13 },
 
     // { link: "/about-motion", page: <AboutUsPage />, id: 2 },
 
