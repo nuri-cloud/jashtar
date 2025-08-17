@@ -1,18 +1,10 @@
 import { Route, Routes } from "react-router-dom";
-
+import MainPage from "../pages/MainPage";
+import ActivitiesPage from "../pages/ActivitiesPage/ui/ActivitiesPage";
+import { MovementPages } from "../pages/Movement/ui/MovementPages";
 import { BranchNamePages } from "@/pages/BranchName/ui/BranchNamePages";
 import { Project } from "@/pages/Project/ui/Project";
 import { ProjectNamePages } from "@/pages/ProjectName/ui/ProjectNamePages";
-import MainPage from "@/pages/MainPage";
-import ActivitiesPage from "@/pages/ActivitiesPage/ui/ActivitiesPage";
-import { MovementPages } from "@/pages/Movement/ui/MovementPages";
-import { link } from "fs";
-import { MediaPage } from "@/pages/Media/MediaPage";
-import { PhotoGallry } from "@/pages/Photo/PhotoGallry";
-import { Video } from "@/pages/Video/Video";
-import { Allbom } from "@/pages/Allbom/Allbom";
-import { Register } from "@/pages/Register/Register";
-import { SignIn } from "@/pages/SigneIn/SigneIn";
 import Main from "@/pages/BrandsMaterials/ui/Main/Main"
 import DetailView from "@/pages/BrandsMaterials/ui/DetailView/DetailView";
 import NotFound from "@/widgets/NotFound/NotFound";
@@ -27,16 +19,13 @@ export default function Routing() {
     { link: "/branchnamepages", page: <BranchNamePages />, id: 4 },
     { link: "/project", page: <Project />, id: 5 },
     { link: "/project/projectnamepages", page: <ProjectNamePages />, id: 6 }, // ✅ Ушундай
-
-    { link: "/media", page: <MediaPage />, id: 7 },
-    { link: "/photoGallery", page: <PhotoGallry />, id: 8 },
-    {link: "/videoGallery", page: <Video/>, id: 9},
-    { link: "/allbom", page: <Allbom/>, id: 10 },
-    { link: "/register", page: <Register/>, id: 11 },
-    { link: "/signin", page: <SignIn/>, id: 12 },
     { link: "/main", page: <Main/>, id:7},
     { link: "/detailview", page: <DetailView />, id:8},
     { link: "/notfound", page: <NotFound />, id:9},
+    
+    
+
+
     // { link: "/about-motion", page: <AboutUsPage />, id: 2 },
 
     // { link: "/directions", page: <NewsPage />, id: 3 },
@@ -59,6 +48,8 @@ export default function Routing() {
           key={page.id}
         />
       ))}
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
+  
 }
