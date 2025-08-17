@@ -5,6 +5,9 @@ import { MovementPages } from "../../pages/Movement/ui/MovementPages";
 import { BranchNamePages } from "@/pages/BranchName/ui/BranchNamePages";
 import { Project } from "@/pages/Project/ui/Project";
 import { ProjectNamePages } from "@/pages/ProjectName/ui/ProjectNamePages";
+import Main from "@/pages/BrandsMaterials/ui/Main/Main"
+import DetailView from "@/pages/BrandsMaterials/ui/DetailView/DetailView";
+import NotFound from "@/app/NotFound";
 
 export default function Routing() {
   //   const accessToken = localStorage.getItem("accessToken");
@@ -16,6 +19,12 @@ export default function Routing() {
     { link: "/branchnamepages", page: <BranchNamePages />, id: 4 },
     { link: "/project", page: <Project />, id: 5 },
     { link: "/project/projectnamepages", page: <ProjectNamePages />, id: 6 }, // ✅ Ушундай
+    { link: "/main", page: <Main/>, id:7},
+    { link: "/detailview", page: <DetailView />, id:8},
+    { link: "/notfound", page: <NotFound />, id:9},
+    
+    
+
 
     // { link: "/about-motion", page: <AboutUsPage />, id: 2 },
 
@@ -39,6 +48,7 @@ export default function Routing() {
           key={page.id}
         />
       ))}
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }
