@@ -1,10 +1,11 @@
 import { Route, Routes } from "react-router-dom";
-import MainPage from "../../pages/MainPage";
-import ActivitiesPage from "../../pages/ActivitiesPage/ui/ActivitiesPage";
-import { MovementPages } from "../../pages/Movement/ui/MovementPages";
+
 import { BranchNamePages } from "@/pages/BranchName/ui/BranchNamePages";
 import { Project } from "@/pages/Project/ui/Project";
 import { ProjectNamePages } from "@/pages/ProjectName/ui/ProjectNamePages";
+import MainPage from "@/pages/MainPage";
+import ActivitiesPage from "@/pages/ActivitiesPage/ui/ActivitiesPage";
+import { MovementPages } from "@/pages/Movement/ui/MovementPages";
 import { link } from "fs";
 import { MediaPage } from "@/pages/Media/MediaPage";
 import { PhotoGallry } from "@/pages/Photo/PhotoGallry";
@@ -26,6 +27,7 @@ export default function Routing() {
     { link: "/branchnamepages", page: <BranchNamePages />, id: 4 },
     { link: "/project", page: <Project />, id: 5 },
     { link: "/project/projectnamepages", page: <ProjectNamePages />, id: 6 }, // ✅ Ушундай
+
     { link: "/media", page: <MediaPage />, id: 7 },
     { link: "/photoGallery", page: <PhotoGallry />, id: 8 },
     {link: "/videoGallery", page: <Video/>, id: 9},
@@ -57,7 +59,6 @@ export default function Routing() {
           key={page.id}
         />
       ))}
-      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }
