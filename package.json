@@ -15,8 +15,8 @@
     "axios": "^1.11.0",
     "clsx": "^2.1.1",
     "craco-alias": "^3.0.1",
-    "lucide-react": "^0.539.0",
     "i": "^0.3.7",
+    "lucide-react": "^0.539.0",
     "npm": "^11.5.2",
     "path": "^0.12.7",
     "plyr": "^3.7.8",
@@ -31,7 +31,8 @@
     "slick-carousel": "^1.8.1",
     "swiper": "^11.2.10",
     "typescript": "^4.9.5",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "zustand": "^5.0.7"
   },
   "scripts": {
     "start": "craco start",
