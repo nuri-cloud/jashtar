@@ -9,6 +9,8 @@ import FirstSlide from "./Slides/FirstSlide";
 
 export default function BannerSlider() {
   const sliders = [FirstSlide, FirstSlide];
+
+  
   return (
     <div className={styles.bannerWrapper}>
       <Swiper
