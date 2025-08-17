@@ -1,10 +1,11 @@
 import { Route, Routes } from "react-router-dom";
-import MainPage from "../pages/MainPage";
-import ActivitiesPage from "../pages/ActivitiesPage/ui/ActivitiesPage";
-import { MovementPages } from "../pages/Movement/ui/MovementPages";
+
 import { BranchNamePages } from "@/pages/BranchName/ui/BranchNamePages";
 import { Project } from "@/pages/Project/ui/Project";
 import { ProjectNamePages } from "@/pages/ProjectName/ui/ProjectNamePages";
+import MainPage from "@/pages/MainPage";
+import ActivitiesPage from "@/pages/ActivitiesPage/ui/ActivitiesPage";
+import { MovementPages } from "@/pages/Movement/ui/MovementPages";
 
 export default function Routing() {
   //   const accessToken = localStorage.getItem("accessToken");
@@ -15,7 +16,7 @@ export default function Routing() {
     { link: "/movementpages", page: <MovementPages />, id: 3 },
     { link: "/branchnamepages", page: <BranchNamePages />, id: 4 },
     { link: "/project", page: <Project />, id: 5 },
-    { link: "/projectnamepages", page: <ProjectNamePages />, id: 6 },
+    { link: "/project/projectnamepages", page: <ProjectNamePages />, id: 6 }, // ✅ Ушундай
 
     // { link: "/about-motion", page: <AboutUsPage />, id: 2 },
 
