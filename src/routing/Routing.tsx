@@ -15,7 +15,7 @@ export default function Routing() {
     { link: "/movementpages", page: <MovementPages />, id: 3 },
     { link: "/branchnamepages", page: <BranchNamePages />, id: 4 },
     { link: "/project", page: <Project />, id: 5 },
-    { link: "/project/projectnamepages", page: <ProjectNamePages />, id: 6 }, // ✅ Ушундай
+    { link: "/projectnamepages", page: <ProjectNamePages />, id: 6 },
 
     // { link: "/about-motion", page: <AboutUsPage />, id: 2 },
 
