@@ -5,6 +5,10 @@ import { MovementPages } from "../pages/Movement/ui/MovementPages";
 import { BranchNamePages } from "@/pages/BranchName/ui/BranchNamePages";
 import { Project } from "@/pages/Project/ui/Project";
 import { ProjectNamePages } from "@/pages/ProjectName/ui/ProjectNamePages";
+import Events from "@/pages/EventsPage/Events";
+import EventsArchivePage from "@/pages/EventsArchivePage/EventsArchivePage";
+import News from "@/pages/News/News";
+import NewsPage from "@/pages/NewsPage/NewsPage";
 
 export default function Routing() {
   //   const accessToken = localStorage.getItem("accessToken");
@@ -16,7 +20,11 @@ export default function Routing() {
     { link: "/branchnamepages", page: <BranchNamePages />, id: 4 },
     { link: "/project", page: <Project />, id: 5 },
     { link: "/project/projectnamepages", page: <ProjectNamePages />, id: 6 }, // ✅ Ушундай
-
+    { link: "/events", page: <Events />, id: 7 }, 
+    { link: "/eventsArchivePage", page: <EventsArchivePage />, id: 8 }, 
+    { link: "/news", page: <News />, id: 9 }, 
+    { link: "/newsheadline", page: <NewsPage />, id: 10 }, 
+  
     // { link: "/about-motion", page: <AboutUsPage />, id: 2 },
 
     // { link: "/directions", page: <NewsPage />, id: 3 },
