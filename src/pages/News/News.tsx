@@ -1,0 +1,101 @@
+// News.tsx
+import React, { useState } from 'react'
+import styles from './style.module.scss'
+import img from '../../shared/assets/images/photo.png'
+import Card from '@/widgets/Card/Card'
+import NewsCard from '@/widgets/NewsCard/NewsCard'
+import Navpanel from '@/widgets/Navpanel/Navpanel'
+import { ChevronRight } from 'lucide-react';
+import { ChevronLeft } from 'lucide-react';
+interface New {
+  id: number
+  img: string
+  title: string
+  description: string
+}
+
+function News() {
+  const Data: New[] = Array.from({ length: 95 }, (_, i) => ({
+    id: i + 1,
+    img: img,
+    title: `Событие номер ${i + 1}`,
+    description: 'Описание Описание Описание Описание Описание Описание Описание',
+  }))
+
+  const pageSize = 12
+  const [currentPage, setCurrentPage] = useState(1)
+  const totalPages = Math.ceil(Data.length / pageSize)
+
+  const startIndex = (currentPage - 1) * pageSize
+  const currentEvents = Data.slice(startIndex, startIndex + pageSize)
+
+  const getPaginationRange = () => {
+    let range: (number | string)[] = []
+
+    if (totalPages <= 4) {
+      range = Array.from({ length: totalPages }, (_, i) => i + 1)
+    } else {
+      if (currentPage <= 2) {
+        range = [1,2, '...', totalPages]
+      } else if (currentPage >= totalPages - 1) {
+        range = [1, '...', totalPages - 2, totalPages - 1, totalPages]
+      } else {
+        range = [1, '...', currentPage, '...', totalPages]
+      }
+    }
+
+    return range
+  }
+
+  return (
+    <div className={`${styles.NewsPage} container`}>
+      <Navpanel link='/' text='Главная' text2='Новости'/>
+      <h1>Новости</h1>
+
+      <div className={styles.eventsArchive2}>
+        {currentEvents.map((event) => (
+          <NewsCard key={event.id} item={event} />
+        ))}
+      </div>
+
+      {/* 👉 Пагинация */}
+      {totalPages > 1 && (
+        <div className={styles.pagination}>
+          <button
+            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+            disabled={currentPage === 1}
+          >
+             <ChevronLeft size={14}/>
+          </button>
+
+          {getPaginationRange().map((page, index) =>
+            page === '...' ? (
+              <span key={index} className={styles.ellipsis}>
+                ...
+              </span>
+            ) : (
+              <button
+                key={index}
+                onClick={() => setCurrentPage(Number(page))}
+                className={currentPage === page ? styles.activePage : ''}
+              >
+                {page}
+              </button>
+            )
+          )}
+
+          <button
+            onClick={() =>
+              setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+            }
+            disabled={currentPage === totalPages}
+          >
+              <ChevronRight size={14}/>
+          </button>
+        </div>
+      )}
+    </div>
+  )
+}
+
+export default News

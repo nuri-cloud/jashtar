@@ -1,0 +1,88 @@
+.UpcomingEvents{
+        margin-bottom: 24px;
+        .title{
+            font-weight: 600;
+            font-size: 40px;
+            line-height: 100%;
+            text-align: center;
+            @media (max-width:1024px) {
+                font-size: 36px;
+            }
+            @media (max-width:768px) {
+                font-size: 25px;
+            }
+            @media (max-width:480px) {
+                font-size: 12px;
+            }
+        }
+    .grid{
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        @media (max-width: 768px) {
+            row-gap: 10px;
+            column-gap: 18px;
+           grid-template-columns: repeat(2, 1fr); 
+        }
+        @media (max-width: 480px) {
+            row-gap: 6px;
+            column-gap: 14px;
+        }
+    }
+}
+.UpcomingEvents {
+  padding: 50px 0px;
+
+  .title {
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .carousel {
+    max-width: 100% !important;
+    gap: 10px;
+   position: relative;
+    .arrow {
+        position: absolute;
+      font-size: 24px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 15px 20px;
+      border-radius: 50%;
+      color: #2E6CF4;
+      border: 1px solid #2E6CF4;
+      z-index: 2;
+      &:nth-child(1){
+        top: 120px;
+        left: -30px;
+      }
+      &:nth-child(3){
+        top: 120px;
+        right: -30px;
+      }
+      &:disabled {
+        cursor: not-allowed;
+        color: white;
+        opacity: 0.3; 
+      }
+    }
+
+    .carouselViewport {
+      overflow: hidden;
+      width: calc(3 * 420px + 2 * 20px + 150px); // 3 карточки + gap + половина 4-й
+    }
+
+    .carouselTrack {
+      display: flex;
+      position: relative;
+      gap: 24px;
+    }
+
+    .carouselTrack > * {
+      flex: 0 0 424px; // ширина одной карточки
+    }
+  }
+}
