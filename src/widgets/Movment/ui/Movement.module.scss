@@ -1,0 +1,42 @@
+.title { 
+    font-size: 34px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.bodyText {
+    font-size: 18px;
+    line-height: 1.5;
+    text-align: center;
+margin-bottom: 50px;
+}
+.cards {
+    display: flex;
+    justify-content: center;
+}
+.card {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.cardItem {
+    background-color: #ABC4FB;
+    padding: 40px 60px; 
+    border-radius: 20px;
+}
+
+.cardTitle {
+    font-size: 20px;
+    color: #000000;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.cardDescription {
+    font-size: 16px;
+    text-align: center;
+    font-weight: 400;
+    color: #333333;
+    margin-top: 10px;
+    width: 300px;
+}
