@@ -16,7 +16,7 @@ const Navpanel: React.FC<NavpanelProps> = ({ text, text2, text3, link, link2 }) 
   const navigate = useNavigate()
 
   return (
-    <div className='navpanel'>
+    <div className='navpanel container'>
       {text && <p onClick={() => link && navigate(link)}>{text}</p>}
       <img src={img} alt="arrow" />
       {text2 && <p onClick={() => link2 && navigate(link2)}>{text2}</p>}
