@@ -7,7 +7,7 @@ import { Project } from "@/pages/Project/ui/Project";
 import { ProjectNamePages } from "@/pages/ProjectName/ui/ProjectNamePages";
 import Main from "@/pages/BrandsMaterials/ui/Main/Main"
 import DetailView from "@/pages/BrandsMaterials/ui/DetailView/DetailView";
-import NotFound from "@/widgets/NotFound/NotFound";
+import NotFound from "@/pages/NotFound/NotFound";
 
 export default function Routing() {
   //   const accessToken = localStorage.getItem("accessToken");
