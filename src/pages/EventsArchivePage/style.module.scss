@@ -1,0 +1,77 @@
+.eventsArchivePage{
+        h1{
+            margin-bottom: 24px;
+            font-weight: 600;
+            font-size: 40px;
+            text-align: center;
+            line-height: 100%;
+            @media (max-width:1024px) {
+                font-size: 36px;
+            }
+            @media (max-width:768px) {
+                font-size: 25px;
+            }
+            @media (max-width:480px) {
+                font-size: 12px;
+            }
+        }
+    .eventsArchive2{
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        @media (max-width: 768px) {
+            row-gap: 10px;
+            column-gap: 18px;
+           grid-template-columns: repeat(2, 1fr); 
+        }
+        @media (max-width: 480px) {
+            row-gap: 6px;
+            column-gap: 14px;
+        }
+    }
+    .pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  gap: 10px;
+  .ellipsis{
+    color: #2E6CF4;
+    border: 1px solid #2E6CF4;
+     padding: 10px 13px;
+       border-radius: 10px;
+  }
+  button {
+    background: transparent;
+    color: #2E6CF4;
+    border: 1px solid #2E6CF4;
+    padding: 10px 13px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: background 0.2s;
+   &:first-child{
+   margin-right: 60px;
+   }
+   &:last-child{
+   margin-left: 60px;
+   }
+    &:hover {
+      background: #2E6CF4;
+      color: white;
+    }
+
+    &:disabled {
+      opacity: 1;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.activePage {
+    color: white !important;
+  background: #2E6CF4 !important;
+}
+
+}
