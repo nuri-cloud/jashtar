@@ -1,34 +1,40 @@
 import location from "@/shared/assets/images/locastion.svg";
 import styles from "./BranchName.module.scss";
-import Slider from "react-slick";
+import Slider, { CustomArrowProps } from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import right from "@/shared/assets/icons/arrow-right.svg";
 import left from "@/shared/assets/icons/arrow-left.svg";
 
-function SampleNextArrow(props: any) {
-  const { onClick } = props;
+// Стрелка "вперёд"
+function SampleNextArrow({ onClick }: CustomArrowProps) {
   return (
     <button
       className={`${styles["custom-arrow"]} ${styles["next"]}`}
       onClick={onClick}
     >
-          <img src={left} alt="Previous" />
+      <img src={left} alt="Previous" />
     </button>
   );
 }
 
-function SamplePrevArrow(props: any) {
-  const { onClick } = props;
+// Стрелка "назад"
+function SamplePrevArrow({ onClick }: CustomArrowProps) {
   return (
     <button
       className={`${styles["custom-arrow"]} ${styles["prev"]}`}
       onClick={onClick}
     >
-         <img src={right} alt="Next" />
- 
+      <img src={right} alt="Next" />
     </button>
   );
+}
+
+// Тип для участника
+interface Person {
+  name: string;
+  role: string;
+  img: string;
 }
 
 export function BranchName() {
@@ -72,6 +78,7 @@ export function BranchName() {
           <span>Город, Улица, Дом</span>
         </div>
       </div>
+
       <Slider {...sliderSettings} className={styles.slider}>
         {people.map((person, i) => (
           <div key={i} className={styles.cardWrapper}>
@@ -93,7 +100,8 @@ export function BranchName() {
   );
 }
 
-const people = [
+// Массив участников
+const people: Person[] = [
   {
     name: "Фамилия Имя Отчество",
     role: "Должность",
