@@ -17,6 +17,10 @@ import { Profile } from "@/pages/PersonalInformation/Profile";
 import Main from "@/pages/BrandsMaterials/ui/Main/Main"
 import DetailView from "@/pages/BrandsMaterials/ui/DetailView/DetailView";
 import NotFound from "@/pages/NotFound/NotFound";
+import Events from "@/pages/EventsPage/Events";
+import EventsArchivePage from "@/pages/EventsArchivePage/EventsArchivePage";
+import News from "@/pages/News/News";
+import NewsPage from "@/pages/NewsPage/NewsPage";
 
 export default function Routing() {
   //   const accessToken = localStorage.getItem("accessToken");
@@ -38,7 +42,11 @@ export default function Routing() {
     { link: "/profile", page: <Profile />, id: 13 },
     { link: "/main", page: <Main />, id: 14 },
     { link: "/detailview", page: <DetailView />, id: 15 },
-    { link: "/notfound", page: <NotFound />, id: 16 },
+    { link: "*", page: <NotFound />, id: 16 },
+     { link: "/events", page: <Events />, id: 17 }, 
+    { link: "/eventsArchivePage", page: <EventsArchivePage />, id: 18 }, 
+    { link: "/news", page: <News />, id: 19 }, 
+    { link: "/newsheadline", page: <NewsPage />, id: 20 }, 
     // { link: "/about-motion", page: <AboutUsPage />, id: 2 },
 
     // { link: "/directions", page: <NewsPage />, id: 3 },
