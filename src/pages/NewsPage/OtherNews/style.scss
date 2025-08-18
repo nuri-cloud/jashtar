@@ -1,5 +1,13 @@
 .othernews{
     margin-top: 50px;
+    margin-bottom: 50px;
+    padding: 0px 20px;
+    @media (max-width: 768px) {
+        padding: 0px 20px;
+    }
+    @media (max-width: 480px) {
+        padding: 0px 10px;
+    }
     .other-text{
         display: flex;
         justify-content: space-between;
@@ -55,6 +63,9 @@
            grid-template-columns: repeat(2, 1fr); 
            .style_card__japXb:last-child{
          display: none;
+            }
+            .style_card__utYy0:last-child{
+                display: none;
             }
         }
         @media (max-width: 480px) {

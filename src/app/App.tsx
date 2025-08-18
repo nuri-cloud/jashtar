@@ -1,14 +1,13 @@
 import "./App.scss";
 import { Footer } from "../widgets/Footer/ui/Footer";
 import { Routing } from "./router";
-// import { Footer } from "@/widgets/Footer";
-// import { Footer } from "@/widgets/Footer";
+import Header from "@/widgets/Header/Header";
 
 function App() {
   return (
     <>
-      <div className="app">
-        {/* <Header /> */}
+      <div>
+        <Header/>
         <main className="routing">
           <Routing />
         </main>
