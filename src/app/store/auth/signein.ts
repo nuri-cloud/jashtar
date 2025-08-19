@@ -14,6 +14,7 @@ interface RegisterData {
 
 interface RegisterState {
   formData: RegisterData;
+
   user: User | null;
   setField: (field: keyof RegisterData, value: string) => void;
   submit: () => Promise<void>;
@@ -28,6 +29,7 @@ export const useLogeinStore = create<RegisterState>((set, get) => ({
     email: "",
     password: "",
   },
+  data: null,
   user: JSON.parse(localStorage.getItem("user") || "null"),
   loading: false,
   error: null,
@@ -46,6 +48,8 @@ export const useLogeinStore = create<RegisterState>((set, get) => ({
 
     try {
       const { formData } = get();
+        await axiosInstance.post("account/login/", formData);
+      set({ success: true });
       const response = await axiosInstance.post("account/login/", formData);
 
       const userData: User = response.data.user;
@@ -58,7 +62,8 @@ export const useLogeinStore = create<RegisterState>((set, get) => ({
     }
   },
 
-  logout: () => {
+  logout:
+ () => {
     set({ user: null, success: false });
     localStorage.removeItem("user");
   },
