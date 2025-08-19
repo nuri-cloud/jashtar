@@ -4,6 +4,7 @@ import styles from "./Footer.module.scss";
 import logo from "@/shared/assets/images/logo.png";
 import { MultiContainer, Typography } from "@/shared/ui";
 import { FOOTER_SECTIONS } from "@/shared/config/footer-nav";
+import { Link } from "react-router-dom";
 
 
 export const Footer: FC = () => {
@@ -37,11 +38,11 @@ export const Footer: FC = () => {
                 <ul className={styles.navList}>
                   {section.links.map((link, j) => (
                     <li key={j}>
-                      <a href={link.url} className={styles.navLink}>
+                      <Link to={link.url} className={styles.navLink}>
                         <Typography variant="bodyText" color="white">
                           {link.title}
                         </Typography>
-                      </a>
+                      </Link>
                     </li>
                   ))}
                 </ul>

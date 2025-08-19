@@ -85,7 +85,7 @@ export const Register = () => {
         });
 
         if (success) {
-            navigate("/profile"); // или /profile
+            navigate("/profile");
         }
     };
 
@@ -108,6 +108,9 @@ export const Register = () => {
                                 placeholder="Введите фамилию"
                                 className={styles.input}
                             />
+                        </div>
+                        <div className={styles.helpText}>
+                            Минимум 3 символа, только кириллица.
                         </div>
                     </div>
 
@@ -189,6 +192,9 @@ export const Register = () => {
                                 )}
                             </button>
                         </div>
+                        <div className={styles.helpText}>
+                            Пароль должен содержать минимум 8 символов, хотя бы одну цифру и одну заглавную букву.
+                        </div>
                     </div>
 
                     {/* Повтор пароля */}
@@ -244,3 +250,4 @@ export const Register = () => {
         </div>
     );
 };
+

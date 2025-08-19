@@ -4,6 +4,7 @@ import { OpenProject } from "./ui/OpenProject/OpenProject";
 import { FinishedProject } from "./ui/FinishedProject/FinishedProject";
 import { Education } from "./ui/Education/Education";
 import logo from "@/shared/assets/icons/logo.svg"
+import { useNavigate } from "react-router-dom";
 
 export const Profile = () => {
   const navigationItems = [
@@ -17,7 +18,7 @@ export const Profile = () => {
   const data = localStorage.getItem("user");
 
   const userData = data ? JSON.parse(data) : null;
-
+const navigate = useNavigate();
   // Функция для рендера контента
   const renderContent = () => {
     switch (activeItem) {
@@ -42,7 +43,7 @@ export const Profile = () => {
 
         <h1 className={styles.title}>Личный кабинет</h1>
 
-        <button className={styles.logoutButton}>
+        <button onClick={() => navigate("/")} className={styles.logoutButton}>
           <span>Выйти</span>
           <svg
             className={styles.logoutIcon}

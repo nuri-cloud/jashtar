@@ -40,7 +40,7 @@ export function NewsPages() {
     <div className='othernews container'>
         <div className='other-text'>
         <h1>Новости</h1>
-         <button onClick={() => usenavigate('/')}>Подробнее</button>
+         <button onClick={() => usenavigate('/news')}>Подробнее</button>
         </div>
     <div className='Other-news'>
       {Events.map((event) => (

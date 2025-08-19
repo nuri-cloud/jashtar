@@ -54,6 +54,8 @@ function ActivitiesSection() {
     return <div className={styles.error}>Ошибка при загрузке: {error}</div>;
   }
 
+  const [isShown, setIsShown] = React.useState<number>(-1);
+
   return (
     <section className={styles.activitiesSection}>
       <h2 className={styles.sectionTitle}>Направление деятельности</h2>
@@ -66,6 +68,35 @@ function ActivitiesSection() {
             imageSrc={activity.image}
             bgColor={activity.color}
           />
+        {activitiesData.map((activity, index) => (
+          <React.Fragment key={index}>
+            <ActivityCard
+              title={activity.title}
+              description={activity.description}
+              imageSrc={activity.imageSrc}
+              bgColor={activity.bgColor}
+              onClick={() => setIsShown(index)}
+            />
+
+            <AnimatePresence>
+              {isShown === index && (
+                <motion.div
+                  key={`downcard-${index}`}
+                  initial={{ opacity: 0, y: -30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -30 }}
+                  transition={{ duration: 0.5, ease: "easeInOut" }}
+                >
+                  <DownCard
+                    onClick={() => setIsShown(-1)}
+                    bgColor={activity.bgColor}
+                    index={index}
+                    show={isShown}
+                  />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </React.Fragment>
         ))}
       </div>
     </section>
