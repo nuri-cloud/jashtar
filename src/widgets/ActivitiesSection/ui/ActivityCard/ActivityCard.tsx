@@ -9,9 +9,10 @@ interface ActivityCardProps {
   description: string;
   imageSrc: string; 
   bgColor: string;
+  onClick?: () => void;
 }
 
-const ActivityCard: React.FC<ActivityCardProps> = ({ title, description, imageSrc, bgColor }) => {
+const ActivityCard: React.FC<ActivityCardProps> = ({ title, description, imageSrc, bgColor, onClick }) => {
   const cardStyle = {
     '--background-image-url': `url(${imageSrc})`,
     boxSizing: 'border-box',
@@ -26,7 +27,7 @@ const ActivityCard: React.FC<ActivityCardProps> = ({ title, description, imageSr
         <div className={styles.buttons}>
           <span><img src={img2} alt="" /></span>
           <span><img src={img1} alt="" /></span>
-        <button className={styles.button}>Подробнее <img src={img} alt="" /></button>
+        <button onClick={onClick} className={styles.button}>Подробнее <img src={img} alt="" /></button>
         </div>
       </div>
     </div>

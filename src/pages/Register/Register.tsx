@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { EyeIcon, EyeOffIcon, MailIcon, UserIcon } from "lucide-react";
 import styles from "./Register.module.scss";
 import authimage from "@/shared/assets/images/authImage.png";
+import { useNavigate } from "react-router-dom";
+import { useAuthStore } from "@/app/store/auth/register";
 
 interface FormData {
     lastName: string;
@@ -22,6 +24,9 @@ export const Register = () => {
         confirmPassword: "",
     });
 
+    const navigate = useNavigate();
+    const { register, loading, error, success } = useAuthStore();
+
     const [visiblePasswords, setVisiblePasswords] = useState({
         password: false,
         confirmPassword: false,
@@ -32,11 +37,16 @@ export const Register = () => {
     };
 
     const togglePasswordVisibility = (field: keyof FormData) => {
-        if(field === "password") setVisiblePasswords((prev) => ({ ...prev, password: !prev.password }));
-        if(field === "confirmPassword") setVisiblePasswords((prev) => ({ ...prev, confirmPassword: !prev.confirmPassword }));
+        if (field === "password")
+            setVisiblePasswords((prev) => ({ ...prev, password: !prev.password }));
+        if (field === "confirmPassword")
+            setVisiblePasswords((prev) => ({
+                ...prev,
+                confirmPassword: !prev.confirmPassword,
+            }));
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         const errors: string[] = [];
 
@@ -64,8 +74,19 @@ export const Register = () => {
             return;
         }
 
-        alert("Форма успешно отправлена! Смотри консоль.");
-        console.log("Отправленные данные:", formData);
+        // подготовка full_name для API
+        const full_name = `${formData.lastName} ${formData.firstName} ${formData.middleName}`;
+
+        await register({
+            full_name,
+            email: formData.email,
+            password: formData.password,
+            password_confirmation: formData.confirmPassword,
+        });
+
+        if (success) {
+            navigate("/profile");
+        }
     };
 
     return (
@@ -73,7 +94,6 @@ export const Register = () => {
             <form onSubmit={handleSubmit} className={styles.formContainer}>
                 <h1 className={styles.title}>Добро пожаловать!</h1>
                 <div className={styles.fieldsContainer}>
-
                     {/* Фамилия */}
                     <div className={`${styles.fieldContainer} ${styles.small}`}>
                         <label className={styles.label}>
@@ -145,8 +165,8 @@ export const Register = () => {
                         />
                     </div>
                 </div>
-                <div className={styles.fieldsContainer}>
 
+                <div className={styles.fieldsContainer}>
                     {/* Пароль */}
                     <div className={`${styles.fieldContainer} ${styles.small}`}>
                         <label className={styles.label}>
@@ -173,8 +193,7 @@ export const Register = () => {
                             </button>
                         </div>
                         <div className={styles.helpText}>
-                            Пароль должен содержать минимум 8 символов, хотя бы одну цифру и одну
-                            заглавную букву.
+                            Пароль должен содержать минимум 8 символов, хотя бы одну цифру и одну заглавную букву.
                         </div>
                     </div>
 
@@ -187,9 +206,7 @@ export const Register = () => {
                             <input
                                 type={visiblePasswords.confirmPassword ? "text" : "password"}
                                 value={formData.confirmPassword}
-                                onChange={(e) =>
-                                    handleChange("confirmPassword", e.target.value)
-                                }
+                                onChange={(e) => handleChange("confirmPassword", e.target.value)}
                                 placeholder="Повторите пароль"
                                 className={styles.input}
                             />
@@ -209,9 +226,12 @@ export const Register = () => {
                 </div>
 
                 {/* Кнопка */}
-                <button type="submit" className={styles.submitButton}>
-                    <span className={styles.buttonText}>Продолжить</span>
+                <button type="submit" className={styles.submitButton} disabled={loading}>
+                    {loading ? "Загрузка..." : "Продолжить"}
                 </button>
+
+                {/* Ошибки */}
+                {error && <div className={styles.errorText}>{error}</div>}
 
                 {/* Секция входа */}
                 <div className={styles.loginSection}>
@@ -219,18 +239,15 @@ export const Register = () => {
                     <button
                         type="button"
                         className={styles.loginLink}
-                        onClick={() => alert("Переход на страницу входа")}
+                        onClick={() => navigate("/login")}
                     >
                         Войти
                     </button>
                 </div>
             </form>
 
-            <img
-                className={styles.backgroundImage}
-                alt="Background"
-                src={authimage}
-            />
+            <img className={styles.backgroundImage} alt="Background" src={authimage} />
         </div>
     );
 };
+

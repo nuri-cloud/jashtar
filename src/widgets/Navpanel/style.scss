@@ -1,0 +1,18 @@
+.navpanel{
+    display: flex;
+    justify-content: start;
+    padding: 36px 0px 71px 0px;
+    align-items: center;
+    gap: 4px;
+    @media (max-width: 480px) {
+        display: none;
+    }
+    p{
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 400;
+        &:last-child{
+            color: #2E6CF4;
+        }
+    }
+}
