@@ -1,18 +1,14 @@
 import React from 'react'
 import styles from "./DetailView.module.scss"
 import Materials from '../Materials1/Materials'
+import Navpanel from '@/widgets/Navpanel/Navpanel'
 
 function DetailView() {
     return (
         <div className={styles.detailview}>
             <div className={styles.text}>
-                <h2>Главная</h2>
-                <img src="https://cdn-icons-png.flaticon.com/512/32/32213.png" alt="" />
-                <p>Бренд материалы </p>
-                <img src="https://cdn-icons-png.flaticon.com/512/32/32213.png" alt="" />
-                <h4>Название мерча </h4>
+     <Navpanel text='Главная' link='/' text2='Бренд материалы' link2='/main' text3='Название мерча'/>
             </div>
-
             <div className={styles.view}>
                 <div className={styles.div}>
                     <div className={styles.gallery}>

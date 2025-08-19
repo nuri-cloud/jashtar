@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './style.module.scss'
 import defaultImg from '../../shared/assets/images/photo.png'
+import { useNavigate } from 'react-router-dom'
 
 interface Data {
   id: number
@@ -11,13 +12,15 @@ interface Data {
 
 interface CardProps {
   item: Data
+  link?: string 
 }
 
-function NewsCard({ item }: CardProps) {
+function NewsCard({ item , link}: CardProps) {
+  const navigate = useNavigate()
   return (
     <div className={styles.card}>
       <div className={styles.itemCard}>
-        <img src={item.img || defaultImg} alt={item.title} />
+        <img src={item.img || defaultImg} alt={item.title} onClick={() => navigate(`${link}`)} />
       </div>
       <div className={styles.Footercard}>
         <div>

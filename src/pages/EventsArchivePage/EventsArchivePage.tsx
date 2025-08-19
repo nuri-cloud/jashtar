@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styles from './style.module.scss'
 import img from '../../shared/assets/images/photo.png'
 import Card from '@/widgets/Card/Card'
+import Navpanel from '@/widgets/Navpanel/Navpanel'
 
 interface Event {
   id: number
@@ -57,6 +58,7 @@ function EventsArchivePage() {
 
   return (
     <div className={`${styles.eventsArchivePage} container`}>
+      <Navpanel text='Главная' link='/' text2='Мероприятия' link2='/events' text3='Архив мероприятий '/>
       <div className={styles.eventsText2}>
         <h1>Архив мероприятий</h1>
       </div>

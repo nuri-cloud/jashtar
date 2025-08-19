@@ -37,7 +37,7 @@ function BrandsPages() {
     <div className={`${styles.materialsContainer} container`}>
        <div className={styles.headMaterials}>
         <h1>Бренд материалы</h1>
-         <button onClick={() => usenavigate('/')}>Подробнее</button>
+         <button onClick={() => usenavigate('/main')}>Подробнее</button>
         </div>
       <div className={styles.itemMaterialCards}>
       {materials.slice(0, visibleCount).map((item) => (

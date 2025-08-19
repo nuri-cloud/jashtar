@@ -14,7 +14,7 @@ interface FooterLink {
       title: "",
       links: [
         { title: "О движении", url: "/about" },
-        { title: "Направления деятельности", url: "/news" },
+        { title: "Направления деятельности", url: "" },
         { title: "Проекты", url: "/contacts" },
         { title: "Мероприятия", url: "/events" },
         { title: "Региональные отделения", url: "" },
@@ -23,7 +23,7 @@ interface FooterLink {
     {
       title: "",
       links: [
-        { title: "Новости", url: "" },
+        { title: "Новости", url: "news" },
         { title: "Бренд материалы", url: "" },
         { title: "Медиа", url: "" },
        

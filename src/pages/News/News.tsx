@@ -54,7 +54,7 @@ function News() {
 
       <div className={styles.eventsArchive2}>
         {currentEvents.map((event) => (
-          <NewsCard key={event.id} item={event} />
+          <NewsCard link='/newsheadline' key={event.id} item={event} />
         ))}
       </div>
 
