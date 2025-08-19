@@ -1,6 +1,6 @@
+import funChildImage from "@/shared/assets/images/fun-child.jpg";
 import { SwiperSlide } from "swiper/react";
 import styles from "./../BannerSlider.module.scss";
-import funChildImage from "@/shared/assets/images/fun-child.jpg";
 
 const FirstSlide = () => {
   return (

@@ -1,10 +1,8 @@
 // EventsArchive.tsx
-import Card from '@/widgets/Card/Card'
-import React from 'react'
+import NewsCard from '@/widgets/NewsCard/NewsCard'
+import { useNavigate } from 'react-router-dom'
 import img from '../../../shared/assets/images/photo.png'
 import './style.scss'
-import { useNavigate } from 'react-router-dom'
-import NewsCard from '@/widgets/NewsCard/NewsCard'
 interface Event {
   id: number
   img: string
