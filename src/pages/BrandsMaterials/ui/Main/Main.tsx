@@ -3,14 +3,13 @@ import styles from "./Main.module.scss"
 import Materials from '../Materials1/Materials'
 import NameMerch from '../NameMerch/NameMerch'
 import Materials2 from '../Materials2/Materials2'
+import Navpanel from '@/widgets/Navpanel/Navpanel'
 
 function Main() {
     return (
         <div className={styles.main}>
             <div className={styles.text}>
-                <h2>Главная</h2>
-                <img src="https://cdn-icons-png.flaticon.com/512/32/32213.png" alt="" />
-                <p>Бренд материалы </p>
+                <Navpanel text='Главная' link='/' text2='Бренд материалы'/>
             </div>
 
             <div className={styles.herotext}>
