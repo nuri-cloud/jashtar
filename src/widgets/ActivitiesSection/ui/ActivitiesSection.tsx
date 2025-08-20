@@ -33,6 +33,29 @@
 
 // export default ActivitiesSection;
 
+import React, { useEffect, useState } from 'react';
+import ActivityCard from '../ui/ActivityCard/ActivityCard';
+import styles from './ActivitiesSection.module.scss';
+import { useActivityStore } from '@/app/store/activity/activity';
+import { AnimatePresence, motion } from 'framer-motion'; 
+import { DownCard } from './DownCard/DownCard';
+
+function ActivitiesSection() {
+  const { activities, loading, error, fetchActivities } = useActivityStore();
+
+  const [isShown, setIsShown] = useState<number>(-1); 
+
+  useEffect(() => {
+    fetchActivities();
+  }, [fetchActivities]);
+
+  if (loading) {
+    return <div className={styles.loading}>Загрузка данных...</div>;
+  }
+
+  if (error) {
+    return <div className={styles.error}>Ошибка при загрузке: {error}</div>;
+  }
 import React from "react";
 import ActivityCard from "../ui/ActivityCard/ActivityCard";
 import img from "../../../shared/assets/images/friends.png";
@@ -50,19 +73,19 @@ function ActivitiesSection() {
     { title: "Волонтерство", description: "Поможем друг другу и дари добро", imageSrc: img, bgColor: "#E7BC5E" },
   ];
 
-  const [isShown, setIsShown] = React.useState<number>(-1);
-
   return (
     <section className={styles.activitiesSection}>
       <h2 className={styles.sectionTitle}>Направление деятельности</h2>
       <div className={styles.cardsContainer}>
+        {activities.map((activity, index) => (
+          <React.Fragment key={activity.id}>
         {activitiesData.map((activity, index) => (
           <React.Fragment key={index}>
             <ActivityCard
               title={activity.title}
               description={activity.description}
-              imageSrc={activity.imageSrc}
-              bgColor={activity.bgColor}
+              imageSrc={activity.image}
+              bgColor={activity.color}
               onClick={() => setIsShown(index)}
             />
 
@@ -77,7 +100,7 @@ function ActivitiesSection() {
                 >
                   <DownCard
                     onClick={() => setIsShown(-1)}
-                    bgColor={activity.bgColor}
+                    bgColor={activity.color}
                     index={index}
                     show={isShown}
                   />
