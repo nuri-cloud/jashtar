@@ -1,24 +1,24 @@
-import { Route, Routes } from "react-router-dom";
-import { BranchNamePages } from "@/pages/BranchName/ui/BranchNamePages";
-import { Project } from "@/pages/Project/ui/Project";
-import { ProjectNamePages } from "@/pages/ProjectName/ui/ProjectNamePages";
-import MainPage from "@/pages/MainPage";
 import ActivitiesPage from "@/pages/ActivitiesPage/ui/ActivitiesPage";
-import { MovementPages } from "@/pages/Movement/ui/MovementPages";
-import { MediaPage } from "@/pages/Media/MediaPage";
-import { PhotoGallry } from "@/pages/Photo/PhotoGallry";
-import { Video } from "@/pages/Video/Video";
 import { Allbom } from "@/pages/Allbom/Allbom";
-import { Register } from "@/pages/Register/Register";
-import { SignIn } from "@/pages/SigneIn/SigneIn";
-import { Profile } from "@/pages/PersonalInformation/Profile";
-import Main from "@/pages/BrandsMaterials/ui/Main/Main";
+import { BranchNamePages } from "@/pages/BranchName/ui/BranchNamePages";
 import DetailView from "@/pages/BrandsMaterials/ui/DetailView/DetailView";
-import NotFound from "@/pages/NotFound/NotFound";
-import Events from "@/pages/EventsPage/Events";
+import Main from "@/pages/BrandsMaterials/ui/Main/Main";
 import EventsArchivePage from "@/pages/EventsArchivePage/EventsArchivePage";
+import Events from "@/pages/EventsPage/Events";
+import MainPage from "@/pages/MainPage";
+import { MediaPage } from "@/pages/Media/MediaPage";
+import { MovementPages } from "@/pages/Movement/ui/MovementPages";
 import News from "@/pages/News/News";
 import NewsPage from "@/pages/NewsPage/NewsPage";
+import NotFound from "@/pages/NotFound/NotFound";
+import { Profile } from "@/pages/PersonalInformation/Profile";
+import { PhotoGallry } from "@/pages/Photo/PhotoGallry";
+import { Project } from "@/pages/Project/ui/Project";
+import { ProjectNamePages } from "@/pages/ProjectName/ui/ProjectNamePages";
+import { Register } from "@/pages/Register/Register";
+import { SignIn } from "@/pages/SigneIn/SigneIn";
+import { Video } from "@/pages/Video/Video";
+import { Route, Routes } from "react-router-dom";
 
 export default function Routing() {
   const PUBLIC_PAGES = [

@@ -1,9 +1,9 @@
-import { ArrowRightIcon, ChevronRight } from "lucide-react";
-import { useState } from "react";
-import styles from "./PhotoGallry.module.scss";
 import { AlbumCard } from "@/shared/ui/Media/MediaCard";
-import { useNavigate } from "react-router-dom";
 import Navpanel from "@/widgets/Navpanel/Navpanel";
+import { ArrowRightIcon } from "lucide-react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import styles from "./PhotoGallry.module.scss";
 
 const albums = Array.from({ length: 42 }, (_, i) => ({
     id: i + 1,
