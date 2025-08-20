@@ -1,6 +1,6 @@
+import { MultiContainer, Typography } from "@/shared/ui";
 import type { FC } from "react";
 import styles from "./ProjectName.module.scss";
-import { MultiContainer, Typography } from "@/shared/ui";
 
 export const ProjectName: FC = () => {
   return (

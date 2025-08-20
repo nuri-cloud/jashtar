@@ -1,12 +1,10 @@
 // News.tsx
-import React, { useState } from 'react'
-import styles from './style.module.scss'
-import img from '../../shared/assets/images/photo.png'
-import Card from '@/widgets/Card/Card'
-import NewsCard from '@/widgets/NewsCard/NewsCard'
 import Navpanel from '@/widgets/Navpanel/Navpanel'
-import { ChevronRight } from 'lucide-react';
-import { ChevronLeft } from 'lucide-react';
+import NewsCard from '@/widgets/NewsCard/NewsCard'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { useState } from 'react'
+import img from '../../shared/assets/images/photo.png'
+import styles from './style.module.scss'
 interface New {
   id: number
   img: string

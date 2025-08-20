@@ -1,7 +1,6 @@
-import React from 'react'
+import Navpanel from '@/widgets/Navpanel/Navpanel'
 import NewsHeadline from './NewsHeadline/NewsHeadline'
 import { OtherNews } from './OtherNews/OtherNews'
-import Navpanel from '@/widgets/Navpanel/Navpanel'
 
 function NewsPage() {
   return (

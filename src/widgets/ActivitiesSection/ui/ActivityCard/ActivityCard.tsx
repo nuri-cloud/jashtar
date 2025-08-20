@@ -34,7 +34,6 @@
 // };
 
 // export default ActivityCard;
-
 import React from 'react';
 import clsx from 'clsx';
 import styles from './ActivityCard.module.scss';
@@ -65,9 +64,6 @@ const ActivityCard: React.FC<ActivityCardProps> = ({ title, description, imageSr
         <h3 className={styles.title}>{title}</h3>
         <p className={styles.description}>{description}</p>
         <div className={styles.buttons}>
-          <span><img src={telegramImg} alt="Telegram" /></span>
-          <span><img src={instagramImg} alt="Instagram" /></span>
-          <button className={styles.button}>Подробнее <img src={dropDownImg} alt="Подробнее" /></button>
           <span><img src={img2} alt="" /></span>
           <span><img src={img1} alt="" /></span>
         <button onClick={onClick} className={styles.button}>Подробнее <img src={img} alt="" /></button>

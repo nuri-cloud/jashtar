@@ -1,8 +1,6 @@
-import React from "react";
-import styles from "./Project.module.scss";
-import { Link } from "react-router-dom";
-import { ProjectNamePages } from "@/pages/ProjectName/ui/ProjectNamePages";
 import Navpanel from "@/widgets/Navpanel/Navpanel";
+import { Link } from "react-router-dom";
+import styles from "./Project.module.scss";
 
 const projects = [
   {
