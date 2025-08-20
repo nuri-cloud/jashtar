@@ -33,14 +33,17 @@
 
 // export default ActivitiesSection;
 
-
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import ActivityCard from '../ui/ActivityCard/ActivityCard';
 import styles from './ActivitiesSection.module.scss';
-import { useActivityStore } from '@/app/store/activity/activity'; // Импортируем наш стор
+import { useActivityStore } from '@/app/store/activity/activity';
+import { AnimatePresence, motion } from 'framer-motion'; 
+import { DownCard } from './DownCard/DownCard';
 
 function ActivitiesSection() {
   const { activities, loading, error, fetchActivities } = useActivityStore();
+
+  const [isShown, setIsShown] = useState<number>(-1); 
 
   useEffect(() => {
     fetchActivities();
@@ -54,27 +57,17 @@ function ActivitiesSection() {
     return <div className={styles.error}>Ошибка при загрузке: {error}</div>;
   }
 
-  const [isShown, setIsShown] = React.useState<number>(-1);
-
   return (
     <section className={styles.activitiesSection}>
       <h2 className={styles.sectionTitle}>Направление деятельности</h2>
       <div className={styles.cardsContainer}>
-        {activities.map((activity) => (
-          <ActivityCard
-            key={activity.id}
-            title={activity.title}
-            description={activity.description}
-            imageSrc={activity.image}
-            bgColor={activity.color}
-          />
-        {activitiesData.map((activity, index) => (
-          <React.Fragment key={index}>
+        {activities.map((activity, index) => (
+          <React.Fragment key={activity.id}>
             <ActivityCard
               title={activity.title}
               description={activity.description}
-              imageSrc={activity.imageSrc}
-              bgColor={activity.bgColor}
+              imageSrc={activity.image}
+              bgColor={activity.color}
               onClick={() => setIsShown(index)}
             />
 
@@ -89,7 +82,7 @@ function ActivitiesSection() {
                 >
                   <DownCard
                     onClick={() => setIsShown(-1)}
-                    bgColor={activity.bgColor}
+                    bgColor={activity.color}
                     index={index}
                     show={isShown}
                   />
