@@ -48,6 +48,7 @@ export default function Routing() {
     { link: "/eventsArchivePage", page: <EventsArchivePage />, id: 18 }, 
     { link: "/news", page: <News />, id: 19 }, 
     { link: "/newsheadline", page: <NewsPage />, id: 20 }, 
+    // { link: "/newsheadline", page: <ActivitiesPage />, id: 21 }, 
     // { link: "/brandmaterials", page: <Main />, id: 21 }, 
     // { link: "/about-motion", page: <AboutUsPage />, id: 2 },
 
