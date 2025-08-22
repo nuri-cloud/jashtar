@@ -42,7 +42,7 @@ export function NewsPages() {
         </div>
     <div className='Other-news'>
       {Events.map((event) => (
-        <NewsCard key={event.id} item={event} />
+        <NewsCard link='/newsheadline' key={event.id} item={event} />
       ))}
     </div>
     </div>
