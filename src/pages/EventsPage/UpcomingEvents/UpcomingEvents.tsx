@@ -7,12 +7,13 @@ import Card from '@/widgets/Card/Card'
 import img from '../../../shared/assets/images/photo.png'
 import { Navigation } from 'swiper/modules'
 import type { Swiper as SwiperClass } from 'swiper'
-
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 interface Event {
   id: number
   img: string
   title: string
   description: string
+  link: string
 }
 
 const UpcomingEvents: React.FC = () => {
@@ -21,12 +22,12 @@ const UpcomingEvents: React.FC = () => {
   const [swiperInstance, setSwiperInstance] = useState<SwiperClass | null>(null)
 
   const Events: Event[] = [
-    { id: 1, img, title: 'Событие 1', description: 'Описание 1' },
-    { id: 2, img, title: 'Событие 2', description: 'Описание 2' },
-    { id: 3, img, title: 'Событие 3', description: 'Описание 3' },
-    { id: 4, img, title: 'Событие 4', description: 'Описание 4' },
-    { id: 5, img, title: 'Событие 5', description: 'Описание 5' },
-    { id: 6, img, title: 'Событие 6', description: 'Описание 6' },
+    { id: 1, img, title: 'Событие 1', description: 'Описание 1', link: '/nameoftheevent' },
+    { id: 2, img, title: 'Событие 2', description: 'Описание 2', link: '/nameoftheevent'  },
+    { id: 3, img, title: 'Событие 3', description: 'Описание 3', link: '/nameoftheevent'  },
+    { id: 4, img, title: 'Событие 4', description: 'Описание 4', link: '/nameoftheevent'  },
+    { id: 5, img, title: 'Событие 5', description: 'Описание 5', link: '/nameoftheevent'  },
+    { id: 6, img, title: 'Событие 6', description: 'Описание 6', link: '/nameoftheevent'  },
   ]
 
   // Когда рефы появятся, подставляем их в Swiper
@@ -45,7 +46,7 @@ const UpcomingEvents: React.FC = () => {
 
       <div className={styles.swiperWrapper}>
         <button ref={prevRef} className={styles.customArrow}>
-          &lt;
+           <ChevronLeft />
         </button>
 
         <Swiper
@@ -53,19 +54,19 @@ const UpcomingEvents: React.FC = () => {
           onSwiper={setSwiperInstance}
           spaceBetween={20}
           breakpoints={{
-            0: { slidesPerView: 2.1 },
+            0: { slidesPerView: 2.12 },
             769: { slidesPerView: 3.1 },
           }}
         >
           {Events.map((event) => (
             <SwiperSlide key={event.id}>
-              <Card item={event} />
+              <Card item={event}/>
             </SwiperSlide>
           ))}
         </Swiper>
 
         <button ref={nextRef} className={styles.customArrow}>
-          &gt;
+          <ChevronRight />
         </button>
       </div>
     </div>

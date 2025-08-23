@@ -8,6 +8,7 @@ interface Event {
   img: string
   title: string
   description: string
+  link: string
 }
 
 export function EventsPages() {
@@ -18,18 +19,21 @@ export function EventsPages() {
       img: img,
       title: 'Событие Событие Событие Событие',
       description: 'Описание Описание Описание Описание Описание Описание Описание',
+      link: '/nameoftheevent' 
     },
     {
       id: 2,
       img: img,
       title: 'Событие Событие Событие Событие',
       description: 'Описание Описание Описание Описание Описание Описание Описание',
+      link: '/nameoftheevent' 
     },
     {
       id: 3,
       img: img,
       title: 'Событие Событие Событие Событие',
       description: 'Описание Описание Описание Описание Описание Описание Описание',
+      link: '/nameoftheevent' 
     },
 
   ]

@@ -6,7 +6,7 @@ import Navpanel from '@/widgets/Navpanel/Navpanel'
 function Events() {
   return (
     <>
-      <Navpanel text='Главная' text2='Мероприятия '/>
+      <Navpanel text='Главная' link='/' text2='Мероприятия'/>
       <UpcomingEvents/>
       <EventsArchive/>
     </>

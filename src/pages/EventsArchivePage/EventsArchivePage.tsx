@@ -3,12 +3,14 @@ import styles from './style.module.scss'
 import img from '../../shared/assets/images/photo.png'
 import Card from '@/widgets/Card/Card'
 import Navpanel from '@/widgets/Navpanel/Navpanel'
-
+import { ChevronRight } from 'lucide-react';
+import { ChevronLeft } from 'lucide-react';
 interface Event {
   id: number
   img: string
   title: string
   description: string
+  link: string
 }
 
 function EventsArchivePage() {
@@ -17,6 +19,7 @@ function EventsArchivePage() {
     img: img,
     title: `Событие номер ${i + 1}`,
     description: 'Описание Описание Описание Описание Описание Описание Описание',
+    link: '/nameoftheevent' 
   }))
 
   // 👉 Настройки пагинации
@@ -30,7 +33,7 @@ function EventsArchivePage() {
 
   // 👉 Функция для "умной" пагинации
   const getPaginationRange = () => {
-    const delta = 2 // сколько кнопок показывать вокруг текущей
+    const delta = 1 // сколько кнопок показывать вокруг текущей
     const range: (number | string)[] = []
     const left = Math.max(2, currentPage - delta)
     const right = Math.min(totalPages - 1, currentPage + delta)
@@ -76,7 +79,7 @@ function EventsArchivePage() {
             onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
             disabled={currentPage === 1}
           >
-            назад
+           <ChevronLeft />
           </button>
         
           {getPaginationRange().map((page, index) =>
@@ -99,7 +102,7 @@ function EventsArchivePage() {
             onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
             disabled={currentPage === totalPages}
           >
-            вперед
+           <ChevronRight />
           </button>
         </div>
       )}

@@ -9,6 +9,7 @@ interface Event {
   img: string
   title: string
   description: string
+  link: string
 }
 
 function EventsArchive() {
@@ -19,36 +20,42 @@ function EventsArchive() {
       img: img,
       title: 'Событие Событие Событие Событие',
       description: 'Описание Описание Описание Описание Описание Описание Описание',
+      link: '/nameoftheevent' 
     },
     {
       id: 2,
       img: img,
       title: 'Событие Событие Событие Событие',
       description: 'Описание Описание Описание Описание Описание Описание Описание',
+      link: '/nameoftheevent' 
     },
     {
       id: 3,
       img: img,
       title: 'Событие Событие Событие Событие',
       description: 'Описание Описание Описание Описание Описание Описание Описание',
+      link: '/nameoftheevent' 
     },
     {
       id: 4,
       img: img,
       title: 'Событие Событие Событие Событие',
       description: 'Описание Описание Описание Описание Описание Описание Описание',
+      link: '/nameoftheevent' 
     },
     {
       id: 5,
       img: img,
       title: 'Событие Событие Событие Событие',
       description: 'Описание Описание Описание Описание Описание Описание Описание',
+      link: '/nameoftheevent' 
     },
     {
       id: 6,
       img: img,
       title: 'Событие Событие Событие Событие',
       description: 'Описание Описание Описание Описание Описание Описание Описание',
+      link: '/nameoftheevent' 
     },
   ]
 

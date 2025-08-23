@@ -37,6 +37,9 @@
 import React from 'react';
 import clsx from 'clsx';
 import styles from './ActivityCard.module.scss';
+import dropDownImg from '../../../../shared/assets/images/drop down.svg';
+import instagramImg from '../../../../shared/assets/images/instagram-line.svg';
+import telegramImg from '../../../../shared/assets/images/telegram-2-fill.svg';
 import img from '../../../../shared/assets/images/drop down.svg'
 import img1 from '../../../../shared/assets/images/instagram-line.svg'
 import img2 from '../../../../shared/assets/images/telegram-2-fill.svg'
