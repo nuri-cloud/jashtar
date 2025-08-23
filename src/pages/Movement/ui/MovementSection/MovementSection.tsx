@@ -64,8 +64,7 @@ export const MovementSection: FC = () => {
             {data.description} {/* Используем описание из API */}
           </Typography>
           <div className={styles.imageWrapper}>
-            <img src={data.image} alt="Изображение 1" className={styles.image} /> {/* Используем изображение из API */}
-            <img src={data.image1} alt="Изображение 2" className={styles.image1} /> {/* Используем второе изображение из API */}
+            <img src={data.image} alt="Изображение" className={styles.image} /> {/* Используем изображение из API */}
           </div>
         </div>
       </MultiContainer>
