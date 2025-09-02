@@ -12,12 +12,12 @@ function Header() {
   const toggleMenu = () => setMenuOpen(prev => !prev)
   const links = [
     { name: 'Главная', path: '/' },
-    { name: 'О движении', path: '/about' },
-    { name: 'Направления', path: '/directions' },
+    { name: 'О движении', path: '/movementpages' },
+    { name: 'Направления', path: '/activitiesPage' },
     { name: 'Мероприятия', path: '/events' },
-    { name: 'Проекты', path: '/projects' },
+    { name: 'Проекты', path: '/project' },
     { name: 'Медиа', path: '/media' },
-    { name: 'Рег.отделения', path: '/regions' },
+    { name: 'Рег.отделения', path: '/branchnamepages' },
   ]
   return (
     <header className={`${styles.header} container`}>

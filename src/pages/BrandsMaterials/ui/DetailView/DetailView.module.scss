@@ -2,39 +2,14 @@
         width: 100%;
         max-width: 1320px;
         height: auto;
+        width: 1320px;
+        height: 1800px;
         margin: 0 auto;
-        padding: 40px 60px;
+        padding: 0px 20px;
         display: flex;
         flex-direction: column;
         gap: 56px;
 
-        .text {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-
-            h2 {
-                font-size: 16px;
-                font-weight: 400;
-                color: rgba(17, 17, 17, 1);
-            }
-
-            p {
-                font-size: 16px;
-                font-weight: 400;
-                color: rgba(17, 17, 17, 1);
-            }
-
-            img {
-                width: 13px;
-                height: 13px;
-            }
-
-            h4 {
-                font-size: 16px;
-                color: rgba(46, 108, 244, 1);
-            }
-        }
 
         .view {
             display: flex;

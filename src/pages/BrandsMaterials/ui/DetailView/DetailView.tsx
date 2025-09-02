@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import styles from "./DetailView.module.scss";
 import Materials from "../Materials1/Materials";
 import { useDetailStore } from "@/app/store/detail/detailStore";
+import Navpanel from "@/widgets/Navpanel/Navpanel";
 
 function DetailView() {
   const { id } = useParams<{ id: string }>();
@@ -10,7 +11,7 @@ function DetailView() {
 
   useEffect(() => {
     if (id) fetchMaterialById(Number(id));
-  }, [id]);
+  }, [id, fetchMaterialById]);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p style={{ color: "red" }}>{error}</p>;
@@ -19,19 +20,21 @@ function DetailView() {
   return (
     <div className={styles.detailview}>
       <div className={styles.text}>
-        <h2>Главная</h2>
-        <img src="https://cdn-icons-png.flaticon.com/512/32/32213.png" alt="" />
-        <p>Бренд материалы</p>
-        <img src="https://cdn-icons-png.flaticon.com/512/32/32213.png" alt="" />
-        <h4>{selectedMaterial.title}</h4>
+        <Navpanel
+          text="Главная"
+          link="/"
+          text2="Бренд материалы"
+          link2="/main"
+          text3={selectedMaterial.title}
+        />
       </div>
 
       <div className={styles.view}>
         <div className={styles.div}>
           <div className={styles.gallery}>
             <img src={selectedMaterial.image} alt={selectedMaterial.title} />
+
             <div className={styles.imgs}>
-              {/* Мисалы, окшош сүрөттөрдү ушул жерге коюуга болот */}
               <img src={selectedMaterial.image} alt={selectedMaterial.title} />
               <img src={selectedMaterial.image} alt={selectedMaterial.title} />
               <img src={selectedMaterial.image} alt={selectedMaterial.title} />

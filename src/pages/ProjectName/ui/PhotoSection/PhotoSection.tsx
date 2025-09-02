@@ -1,6 +1,5 @@
-import type { FC } from "react";
-import styles from "./PhotoSection.module.scss";
 import { MultiContainer } from "@/shared/ui";
+import styles from "./PhotoSection.module.scss";
 
 export function PhotoSection() {
   return (

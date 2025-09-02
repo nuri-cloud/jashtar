@@ -4,7 +4,11 @@ import styles from "./Footer.module.scss";
 import logo from "@/shared/assets/images/logo.png";
 import { MultiContainer, Typography } from "@/shared/ui";
 import { FOOTER_SECTIONS } from "@/shared/config/footer-nav";
-
+import { Link } from "react-router-dom";
+import { Instagram } from 'lucide-react';
+import { Phone } from 'lucide-react';
+import { MailCheck } from 'lucide-react';
+import { MapPinHouse } from 'lucide-react';
 
 export const Footer: FC = () => {
   return (
@@ -37,17 +41,26 @@ export const Footer: FC = () => {
                 <ul className={styles.navList}>
                   {section.links.map((link, j) => (
                     <li key={j}>
-                      <a href={link.url} className={styles.navLink}>
-                        <Typography variant="bodyText" color="white">
+                      <Link to={link.url} className={styles.navLink}>
+                        <Typography variant="bodyText" className={styles.text} color="white">
                           {link.title}
                         </Typography>
-                      </a>
+                      </Link>
                     </li>
                   ))}
                 </ul>
               </div>
             ))}
           </nav>
+          <div className={styles.nav4}>
+          <div>
+            <button> <Instagram /></button>
+            <button> <Phone /></button>
+            <button><MailCheck /></button>
+            <button><MapPinHouse /></button>
+          </div>
+          </div>
+          <img src={logo} alt="Логотип" className={styles.logo1} />
           <div className={styles.brandInfo1}>
             <Typography
               variant="bodyText"

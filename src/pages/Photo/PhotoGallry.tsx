@@ -1,8 +1,9 @@
-import { ArrowRightIcon, ChevronRight } from "lucide-react";
-import { useState } from "react";
-import styles from "./PhotoGallry.module.scss";
 import { AlbumCard } from "@/shared/ui/Media/MediaCard";
+import Navpanel from "@/widgets/Navpanel/Navpanel";
+import { ArrowRightIcon } from "lucide-react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import styles from "./PhotoGallry.module.scss";
 
 const albums = Array.from({ length: 42 }, (_, i) => ({
     id: i + 1,
@@ -24,11 +25,7 @@ export function PhotoGallry() {
         <div className={styles.container}>
             {/* Навигация */}
             <div className={styles.breadcrumbs}>
-                Главная
-                <ChevronRight />
-                Медиа
-                <ChevronRight />
-                <span>Фотогалерея</span>
+              <Navpanel text="Главная" text2="Медиа" text3="Фотогалерея" link="/" link2="/media"/>
             </div>
 
             {/* Заголовок */}

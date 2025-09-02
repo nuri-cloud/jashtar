@@ -1,7 +1,6 @@
-import React from "react";
-import styles from "./Project.module.scss";
+import Navpanel from "@/widgets/Navpanel/Navpanel";
 import { Link } from "react-router-dom";
-import { ProjectNamePages } from "@/pages/ProjectName/ui/ProjectNamePages";
+import styles from "./Project.module.scss";
 
 const projects = [
   {
@@ -44,6 +43,7 @@ const projects = [
 export const Project = () => {
   return (
     <div className={styles.projectSection}>
+      <Navpanel text="Главная" text2="Проекты"/>
       <h2 className={styles.sectionTitle}>Проекты</h2>
       <div className={styles.projectGrid}>
         {projects.map((project, index) => (

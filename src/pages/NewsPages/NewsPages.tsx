@@ -1,10 +1,8 @@
 // EventsArchive.tsx
-import Card from '@/widgets/Card/Card'
-import React from 'react'
 import img from '../../shared/assets/images/photo.png'
 // import './style.scss'
-import { useNavigate } from 'react-router-dom'
 import NewsCard from '@/widgets/NewsCard/NewsCard'
+import { useNavigate } from 'react-router-dom'
 interface Event {
   id: number
   img: string
@@ -40,11 +38,11 @@ export function NewsPages() {
     <div className='othernews container'>
         <div className='other-text'>
         <h1>Новости</h1>
-         <button onClick={() => usenavigate('/')}>Подробнее</button>
+         <button onClick={() => usenavigate('/news')}>Подробнее</button>
         </div>
     <div className='Other-news'>
       {Events.map((event) => (
-        <NewsCard key={event.id} item={event} />
+        <NewsCard link='/newsheadline' key={event.id} item={event} />
       ))}
     </div>
     </div>

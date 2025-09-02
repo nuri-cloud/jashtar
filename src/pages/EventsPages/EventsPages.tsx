@@ -1,14 +1,14 @@
 // EventsArchive.tsx
-import React from 'react'
 import img from '../../shared/assets/images/photo.png'
 // import './style.scss'
-import { useNavigate } from 'react-router-dom'
 import Card from '@/widgets/Card/Card'
+import { useNavigate } from 'react-router-dom'
 interface Event {
   id: number
   img: string
   title: string
   description: string
+  link: string
 }
 
 export function EventsPages() {
@@ -19,18 +19,21 @@ export function EventsPages() {
       img: img,
       title: 'Событие Событие Событие Событие',
       description: 'Описание Описание Описание Описание Описание Описание Описание',
+      link: '/nameoftheevent' 
     },
     {
       id: 2,
       img: img,
       title: 'Событие Событие Событие Событие',
       description: 'Описание Описание Описание Описание Описание Описание Описание',
+      link: '/nameoftheevent' 
     },
     {
       id: 3,
       img: img,
       title: 'Событие Событие Событие Событие',
       description: 'Описание Описание Описание Описание Описание Описание Описание',
+      link: '/nameoftheevent' 
     },
 
   ]

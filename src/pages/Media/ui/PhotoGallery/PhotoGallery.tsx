@@ -1,8 +1,8 @@
-import React from 'react';
 import { ArrowRightIcon } from 'lucide-react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { PhotoCard } from '../PhotoCard/PhotoCard';
 import styles from './PhotoGallery.module.scss';
-import { useNavigate } from 'react-router-dom';
 
 const photoData = [
   {

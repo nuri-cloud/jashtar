@@ -1,24 +1,25 @@
-import { Route, Routes } from "react-router-dom";
-import { BranchNamePages } from "@/pages/BranchName/ui/BranchNamePages";
-import { Project } from "@/pages/Project/ui/Project";
-import { ProjectNamePages } from "@/pages/ProjectName/ui/ProjectNamePages";
-import MainPage from "@/pages/MainPage";
 import ActivitiesPage from "@/pages/ActivitiesPage/ui/ActivitiesPage";
-import { MovementPages } from "@/pages/Movement/ui/MovementPages";
-import { MediaPage } from "@/pages/Media/MediaPage";
-import { PhotoGallry } from "@/pages/Photo/PhotoGallry";
-import { Video } from "@/pages/Video/Video";
 import { Allbom } from "@/pages/Allbom/Allbom";
-import { Register } from "@/pages/Register/Register";
-import { SignIn } from "@/pages/SigneIn/SigneIn";
-import { Profile } from "@/pages/PersonalInformation/Profile";
-import Main from "@/pages/BrandsMaterials/ui/Main/Main";
+import { BranchNamePages } from "@/pages/BranchName/ui/BranchNamePages";
 import DetailView from "@/pages/BrandsMaterials/ui/DetailView/DetailView";
-import NotFound from "@/pages/NotFound/NotFound";
-import Events from "@/pages/EventsPage/Events";
+import Main from "@/pages/BrandsMaterials/ui/Main/Main";
 import EventsArchivePage from "@/pages/EventsArchivePage/EventsArchivePage";
+import Events from "@/pages/EventsPage/Events";
+import MainPage from "@/pages/MainPage";
+import { MediaPage } from "@/pages/Media/MediaPage";
+import { MovementPages } from "@/pages/Movement/ui/MovementPages";
+import NameOfTheEvent from "@/pages/NameOfTheEvent/NameOfTheEvent";
 import News from "@/pages/News/News";
 import NewsPage from "@/pages/NewsPage/NewsPage";
+import NotFound from "@/pages/NotFound/NotFound";
+import { Profile } from "@/pages/PersonalInformation/Profile";
+import { PhotoGallry } from "@/pages/Photo/PhotoGallry";
+import { Project } from "@/pages/Project/ui/Project";
+import { ProjectNamePages } from "@/pages/ProjectName/ui/ProjectNamePages";
+import { Register } from "@/pages/Register/Register";
+import { SignIn } from "@/pages/SigneIn/SigneIn";
+import { Video } from "@/pages/Video/Video";
+import { Route, Routes } from "react-router-dom";
 
 export default function Routing() {
   const PUBLIC_PAGES = [
@@ -38,11 +39,28 @@ export default function Routing() {
     { link: "/main", page: <Main />, id: 14 },
     { link: "/detailview/:id", page: <DetailView />, id: 15 },
     { link: "/events", page: <Events />, id: 16 },
+    { link: "/detailview", page: <DetailView />, id: 15 },
     { link: "/eventsArchivePage", page: <EventsArchivePage />, id: 17 },
     { link: "/news", page: <News />, id: 18 },
     { link: "/newsheadline", page: <NewsPage />, id: 19 },
     { link: "*", page: <NotFound />, id: 20 },
+    { link: "/events", page: <Events />, id: 17 },
+    { link: "/eventsArchivePage", page: <EventsArchivePage />, id: 18 },
+    { link: "/news", page: <News />, id: 19 },
+    { link: "nameoftheevent", page: <NameOfTheEvent />, id: 20 },
+    // { link: "/newsheadline", page: <ActivitiesPage />, id: 21 }, 
+    // { link: "/brandmaterials", page: <Main />, id: 21 }, 
+    // { link: "/about-motion", page: <AboutUsPage />, id: 2 },
 
+    // { link: "/directions", page: <NewsPage />, id: 3 },
+    // { link: "/events", page: <NewsDetailPage />, id: 12 },
+
+    // { link: "/projects", page: <ProductsPage />, id: 4 },
+    // { link: "/media", page: <ProductDetailPage />, id: 8 },
+
+    // { link: "/reg-departments", page: <FAQPage />, id: 5 },
+    // { link: "/signup", page: <SignUpPage />, id: 6 },
+    // { link: "/login", page: <LoginPage />, id: 7 },
   ];
 
   return (
