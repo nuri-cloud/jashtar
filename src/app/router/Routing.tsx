@@ -28,7 +28,6 @@ export default function Routing() {
     { link: "/branchnamepages", page: <BranchNamePages />, id: 4 },
     { link: "/project", page: <Project />, id: 5 },
     { link: "/project/projectnamepages", page: <ProjectNamePages />, id: 6 },
-
     { link: "/media", page: <MediaPage />, id: 7 },
     { link: "/photoGallery", page: <PhotoGallry />, id: 8 },
     { link: "/videoGallery", page: <Video />, id: 9 },
@@ -37,12 +36,13 @@ export default function Routing() {
     { link: "/login", page: <SignIn />, id: 12 },
     { link: "/profile", page: <Profile />, id: 13 },
     { link: "/main", page: <Main />, id: 14 },
-    { link: "/detailview", page: <DetailView />, id: 15 },
+    { link: "/detailview/:id", page: <DetailView />, id: 15 },
     { link: "/events", page: <Events />, id: 16 },
     { link: "/eventsArchivePage", page: <EventsArchivePage />, id: 17 },
     { link: "/news", page: <News />, id: 18 },
     { link: "/newsheadline", page: <NewsPage />, id: 19 },
     { link: "*", page: <NotFound />, id: 20 },
+
   ];
 
   return (
