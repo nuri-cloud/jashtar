@@ -9,9 +9,9 @@ export function MovementPages() {
     <div>
       <Navpanel text="Главная" text2="О движении"/>
       <MovementSection />
-      {/* <OurMissionSection />
+      <OurMissionSection />
       <LegalFrameworkSection />
-      <Management /> */}
+      <Management />
     </div>
   );
 }

@@ -25,17 +25,21 @@ export const useAboutMovementStore = create<AboutMovementState>((set) => ({
     try {
       const response = await axiosInstance.get('/about_direction/history/');
       
-      const apiData = response.data;
+      // Берём первый элемент массива
+      const apiData = response.data[0];
 
       const transformedData = {
-        id: apiData.id,
+        id: apiData.id ?? 1, // Если ID нет, можно задать 1
         title: apiData.title,
-        description: apiData.description, 
-        image: `http://38.180.136.75/${apiData.image}`,
+        description: apiData.description,
+        image: apiData.image, // Полный URL уже есть в API
       };
-      
+
+      console.log("Данные о движении:", transformedData);
+
       set({ data: transformedData, loading: false });
     } catch (err: any) {
+      console.error("Ошибка при загрузке данных:", err.message);
       set({ data: null, loading: false, error: err.message });
     }
   },
