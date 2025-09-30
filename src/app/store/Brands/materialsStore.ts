@@ -10,7 +10,7 @@ export interface Material {
     image:string;
 }
 
-interface MaterialsState {
+interface MaterialsState { 
     materials: Material[];
     loading: boolean;
     error: string | null;
@@ -33,6 +33,9 @@ export const useMaterialsStore = create<MaterialsState>((set) => ({
         const error = err as AxiosError<{ message: string }>;
         set({ error: error.response?.data?.message || "Something went wrong" });
     } finally {
+        set({ loading: false });
+        set({ loading: false });
+        set({ loading: false });
         set({ loading: false });
     }
 },
