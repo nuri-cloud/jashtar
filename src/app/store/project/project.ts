@@ -15,6 +15,7 @@ interface ProjectState {
   fetchProjects: () => Promise<void>;
 }
 
+
 export const useProjectStore = create<ProjectState>((set) => ({
   data: [],
   loading: false,
