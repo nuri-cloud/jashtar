@@ -118,6 +118,9 @@ export const Register = () => {
                                 className={styles.input}
                             />
                         </div>
+                        <div className={styles.helpText}>
+                            Минимум 3 символа, только кириллица.
+                        </div>
                     </div>
 
                     {/* Имя */}
@@ -198,6 +201,9 @@ export const Register = () => {
                                 )}
                             </button>
                         </div>
+                        <div className={styles.helpText}>
+                            Пароль должен содержать минимум 8 символов, хотя бы одну цифру и одну заглавную букву.
+                        </div>
                     </div>
 
                     {/* Повтор пароля */}
@@ -253,3 +259,4 @@ export const Register = () => {
         </div>
     );
 };
+

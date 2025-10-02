@@ -1,28 +1,36 @@
 import React from 'react'
 import styles from "./DetailView.module.scss"
 import Materials from '../Materials1/Materials'
+import Navpanel from '@/widgets/Navpanel/Navpanel'
+import { useTranslation } from 'react-i18next'
 
 function DetailView() {
+    const {t , i18n} = useTranslation()
     return (
         <div className={styles.detailview}>
             <div className={styles.text}>
-                <h2>Главная</h2>
-                <img src="https://cdn-icons-png.flaticon.com/512/32/32213.png" alt="" />
-                <p>Бренд материалы </p>
-                <img src="https://cdn-icons-png.flaticon.com/512/32/32213.png" alt="" />
-                <h4>Название мерча </h4>
+     <Navpanel text={t('brandMaterials.home')} link='/' text2={t('brandMaterials.brandMaterials')} link2='/main' text3='Название мерча'/>
             </div>
-
             <div className={styles.view}>
-                <div className={styles.gallery}>
-                    <img src="https://cdn-sh1.vigbo.com/shops/184868/products/22341008/images/2-e14428d4acf615f74cb36aaa67e09f87.jpg" alt="" />
+                <div className={styles.div}>
+                    <div className={styles.gallery}>
+                        <img src="https://cdn-sh1.vigbo.com/shops/184868/products/22341008/images/2-e14428d4acf615f74cb36aaa67e09f87.jpg" alt="" />
 
-                    <div className={styles.imgs}>
-                        <img src="https://cdn-sh1.vigbo.com/shops/184868/products/22341008/images/2-e14428d4acf615f74cb36aaa67e09f87.jpg" alt="" />
-                        <img src="https://cdn-sh1.vigbo.com/shops/184868/products/22341008/images/2-e14428d4acf615f74cb36aaa67e09f87.jpg" alt="" />
-                        <img src="https://cdn-sh1.vigbo.com/shops/184868/products/22341008/images/2-e14428d4acf615f74cb36aaa67e09f87.jpg" alt="" />
+                        <div className={styles.imgs}>
+                            <img src="https://cdn-sh1.vigbo.com/shops/184868/products/22341008/images/2-e14428d4acf615f74cb36aaa67e09f87.jpg" alt="" />
+                            <img src="https://cdn-sh1.vigbo.com/shops/184868/products/22341008/images/2-e14428d4acf615f74cb36aaa67e09f87.jpg" alt="" />
+                            <img src="https://cdn-sh1.vigbo.com/shops/184868/products/22341008/images/2-e14428d4acf615f74cb36aaa67e09f87.jpg" alt="" />
+                        </div>
+                    </div>
+                    <div className={styles.price2}>
+                        <h1>{t('brandMaterials.price')}:</h1>
+                        <button>
+                            <p> 1000 KGZ</p>
+                        </button>
                     </div>
                 </div>
+
+
 
                 <div className={styles.name}>
                     <div className={styles.hero}>
@@ -31,17 +39,18 @@ function DetailView() {
                     </div>
 
                     <div className={styles.price}>
-                        <h1>Цена:</h1>
+                        <h1>{t('brandMaterials.price')}:</h1>
                         <button>
                             <p> 1000 KGZ</p>
                         </button>
                     </div>
                 </div>
+
             </div>
 
-            <h2 className={styles.h2}>Похожие товары</h2>
+            <h2 className={styles.h2}>{t('brandMaterials.SimilarProducts')}</h2>
 
-            <Materials/>
+            <Materials />
 
         </div>
     )

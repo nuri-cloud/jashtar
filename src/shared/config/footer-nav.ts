@@ -1,63 +1,55 @@
-
 interface FooterLink {
-    title: string;
-    url: string;
-  }
-  
-  interface FooterSection {
-    title: string;
-    links: FooterLink[];
-  }
-  
-  export const FOOTER_SECTIONS: FooterSection[] = [
-    {
-      title: "",
-      links: [
-        { title: "О движении", url: "/about" },
-        { title: "Направления деятельности", url: "/news" },
-        { title: "Проекты", url: "/contacts" },
-        { title: "Мероприятия", url: "/events" },
-        { title: "Региональные отделения", url: "" },
-      ],
-    },
-    {
-      title: "",
-      links: [
-        { title: "Новости", url: "" },
-        { title: "Бренд материалы", url: "" },
-        { title: "Медиа", url: "" },
-       
-      ],
-    },
-    {
-      title: "",
-      links: [
-        { title: "Наши соцсети:", url: "" },
-        { title: "Instagram", url: "https://instagram.com/your_club" },
-        { title: "Facebook", url: "https://facebook.com/your_club" },
-        { title: "YouTube", url: "https://youtube.com/your_club" },
-      ],
-    },
-    {
-      title: "",
-      links: [
-        { title: "Контакты:", url: "#" }, 
-        { title: "WhatsApp", url: "#" }, 
-        { title: "Telegram", url: "tel:+996XXXXXXXXX" },
-      ],
-    },
-    {
-      title: "",
-      links: [
-        { title: "Электронная почта:", url: "" },
-        { title: "gmail.com", url: "#" },
-      ],
-    },
-    {
-      title: "",
-      links: [
-        { title: "Адрес:", url: "#" }, 
-        { title: "Улица, Дом", url: "" },
-      ],
-    },
-  ];
+  titleKey: string; // вместо title
+  url: string;
+}
+
+interface FooterSection {
+  titleKey?: string; // необязательный, если нужна заголовок секции
+  links: FooterLink[];
+}
+
+export const FOOTER_SECTIONS: FooterSection[] = [
+  {
+    links: [
+      { titleKey: "aboutTheMovement", url: "movementpages" },
+      { titleKey: "direction", url: "movementpages" },
+      { titleKey: "Projects", url: "project" },
+      { titleKey: "Events", url: "events" },
+      { titleKey: "regionalOffice", url: "branchnamepages" },
+    ],
+  },
+  {
+    links: [
+      { titleKey: "news", url: "news" },
+      { titleKey: "brandMaterials", url: "main" },
+      { titleKey: "Media", url: "media" },
+    ],
+  },
+  {
+    links: [
+      { titleKey: "ourSocialNetwork", url: "" },
+      { titleKey: "Instagram", url: "https://instagram.com/your_club" },
+      { titleKey: "Facebook", url: "https://facebook.com/your_club" },
+      { titleKey: "YouTube", url: "https://youtube.com/your_club" },
+    ],
+  },
+  {
+    links: [
+      { titleKey: "contact", url: "#" }, 
+      { titleKey: "WhatsApp", url: "#" }, 
+      { titleKey: "Telegram", url: "tel:+996XXXXXXXXX" },
+    ],
+  },
+  {
+    links: [
+      { titleKey: "gmail", url: "#" },
+      { titleKey: "gmailAddress", url: "#" },
+    ],
+  },
+  {
+    links: [
+      { titleKey: "address", url: "#" }, 
+      { titleKey: "streetAndHouse", url: "" },
+    ],
+  },
+];

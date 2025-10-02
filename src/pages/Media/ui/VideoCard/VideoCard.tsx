@@ -20,7 +20,7 @@ export const VideoCard: React.FC<VideoCardProps> = ({
   videoUrl,
 }) => {
   console.log(videoUrl);
-  
+
   return (
     <article className={styles.card}>
       <div className={styles.videoWrapper}>
@@ -30,7 +30,9 @@ export const VideoCard: React.FC<VideoCardProps> = ({
             sources: [
               {
                 src: videoUrl,
-                provider: "html5",
+                provider: videoUrl.includes("youtube.com") || videoUrl.includes("youtu.be")
+                  ? "youtube"
+                  : "html5",
               },
             ],
             poster: thumbnailUrl,

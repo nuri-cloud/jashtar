@@ -4,20 +4,22 @@ import defaultImg from '../../shared/assets/images/photo.png'
 
 interface Data {
   id: number
-  img: string
   title: string
   description: string
+  date: string
+  image: string
 }
 
 interface CardProps {
   item: Data
+   onClick?: () => void 
 }
 
-function NewsCard({ item }: CardProps) {
+function NewsCard({ item , onClick}: CardProps) {
   return (
     <div className={styles.card}>
       <div className={styles.itemCard}>
-        <img src={item.img || defaultImg} alt={item.title} />
+        <img src={item.image || defaultImg} alt={item.title} onClick={onClick} />
       </div>
       <div className={styles.Footercard}>
         <div>

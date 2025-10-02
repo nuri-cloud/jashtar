@@ -8,20 +8,23 @@ import { useNavigate } from "react-router-dom";
 interface FormData {
     email: string;
     password: string;
+    confirmPassword: string;
 }
 
 export const SignIn = () => {
     const [formData, setFormData] = useState<FormData>({
         email: "",
         password: "",
+        confirmPassword: "",
     });
+
     const navigate = useNavigate();
+    const { setField, submit, loading, error, success } = useLogeinStore();
+
     const [visiblePasswords, setVisiblePasswords] = useState({
         password: false,
         confirmPassword: false,
     });
-
-    const { setField, submit, loading, error, success } = useLogeinStore();
 
     const handleChange = (field: keyof FormData, value: string) => {
         setFormData((prev) => ({ ...prev, [field]: value }));
@@ -35,6 +38,9 @@ export const SignIn = () => {
         if (field === "password") {
             setVisiblePasswords((prev) => ({ ...prev, password: !prev.password }));
         }
+        if (field === "confirmPassword") {
+            setVisiblePasswords((prev) => ({ ...prev, confirmPassword: !prev.confirmPassword }));
+        }
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -47,7 +53,9 @@ export const SignIn = () => {
         if (formData.password.length < 8) {
             errors.push("Пароль должен содержать минимум 8 символов");
         }
-       
+        if (formData.password !== formData.confirmPassword) {
+            errors.push("Пароли не совпадают");
+        }
 
         if (errors.length > 0) {
             alert("Ошибки в форме:\n" + errors.join("\n"));
@@ -110,6 +118,35 @@ export const SignIn = () => {
                     </div>
                     <div className={styles.helpText} onClick={()=>navigate("/forgot-password")}>Забыли пароль?</div>
                 </div>
+
+                {/* Повтор пароля */}
+                {/* <div className={`${styles.fieldContainer} ${styles.large}`}>
+                    <label className={styles.label}>
+                        Повторите пароль<span className={styles.required}>*</span>
+                    </label>
+                    <div className={styles.inputWrapper}>
+                        <input
+                            type={visiblePasswords.confirmPassword ? "text" : "password"}
+                            value={formData.confirmPassword}
+                            onChange={(e) =>
+                                handleChange("confirmPassword", e.target.value)
+                            }
+                            placeholder="Повторите пароль"
+                            className={styles.input}
+                        />
+                        <button
+                            type="button"
+                            onClick={() => togglePasswordVisibility("confirmPassword")}
+                            className={styles.passwordToggle}
+                        >
+                            {visiblePasswords.confirmPassword ? (
+                                <EyeIcon className={styles.icon} />
+                            ) : (
+                                <EyeOffIcon className={styles.icon} />
+                            )}
+                        </button>
+                    </div>
+                </div> */}
 
                 {/* Кнопка */}
                 <button type="submit" className={styles.submitButton} disabled={loading}>

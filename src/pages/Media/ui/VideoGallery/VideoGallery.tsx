@@ -6,6 +6,7 @@ import vidioIMG from "@/shared/assets/images/vidioimg.png"
 import { useNavigate } from 'react-router-dom';
 import { useVideoStore } from '@/app/store/Media/video';
 import { log } from 'console';
+import { useTranslation } from 'react-i18next';
 
 const VideoData = [
   {
@@ -57,27 +58,28 @@ export const VideoGallery: React.FC = () => {
   useEffect(() => {
     fetchVideos();
   }, []);
-  console.log(videos);
+  // console.log(videos);
   
 
   const navigate = useNavigate();
+  const {t , i18n} = useTranslation()
   return (
     <div className={styles.container}>
       <header className={styles.header}>
-        <h1 className={styles.title}>Видеогалерея</h1>
+        <h1 className={styles.title}>{t('media.VideoLibrary')}</h1>
         
         <button 
           className={styles.button}
           onClick={()=>navigate("/videoGallery")}
           aria-label="Посмотреть все видео"
         >
-          <span className={styles.buttonText}>Все Видео</span>
+          <span className={styles.buttonText}>{t('media.allVideo')}</span>
           <ArrowRightIcon className={styles.buttonIcon} />
         </button>
       </header>
 
       <main className={styles.gallery}>
-        {/* {
+        {
           loading && <p>Загрузка...</p>
         }
         {
@@ -96,7 +98,7 @@ export const VideoGallery: React.FC = () => {
             // thumbnailUrl={video.thumbnailUrl}
           />
         ))
-        } */}
+        }
       </main>
     </div>
   );

@@ -1,13 +1,13 @@
 // store/useImagesStore.ts
 import { create } from "zustand";
-import axios from "axios";
 import { axiosInstance } from "@/app/api/apiclient";
-import { log } from "console";
 
-interface ImageItem {
+export interface ImageItem {
   id: number;
   gallery: number;
   image: string;
+  title: string | null;
+  date: string;
 }
 
 interface ImagesState {
@@ -25,19 +25,19 @@ export const useImagesStore = create<ImagesState>((set) => ({
   fetchImages: async () => {
     set({ loading: true, error: null });
     try {
-      const response = await axiosInstance.get("content/events/");
+      const response = await axiosInstance.get<ImageItem[]>("/content/images/");
 
-      // маппинг под твой интерфейс
-      const mappedData: ImageItem[] = response.data.map((item: any) => ({
+      // Теперь TS знает, что item имеет тип ImageItem
+      const transformedData = response.data.map((item) => ({
         id: item.id,
-        title: `Gallery ${item.gallery}`, // можно придумать лейбл
-        images: [item.image],             // делаем массив
-        date: new Date().toISOString(),   // временно подставляем текущую дату
+        gallery: item.gallery,
+        image: item.image,
+        title: item.title ?? null,
+        date: item.date,
       }));
-      console.log("Fetched images:", mappedData);
 
-      set({ imagesCards: mappedData, loading: false });
-    } catch (err) {
+      set({ imagesCards: transformedData, loading: false });
+    } catch (err: any) {
       set({ error: "Не удалось загрузить изображения", loading: false });
     }
   },

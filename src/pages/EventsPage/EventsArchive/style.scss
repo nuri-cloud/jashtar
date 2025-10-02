@@ -1,5 +1,5 @@
 .events{
-    padding: 0px 20px;
+    padding: 50px 30px;
     margin-bottom: 50px;
     .events-text{
         display: flex;
@@ -54,6 +54,9 @@
             row-gap: 10px;
             column-gap: 18px;
            grid-template-columns: repeat(2, 1fr); 
+           .style_card__utYy0:last-child{
+            display: none;
+           }
         }
         @media (max-width: 480px) {
             row-gap: 6px;

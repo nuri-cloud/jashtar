@@ -23,7 +23,12 @@ export const useVideoStore = create<VideoState>((set) => ({
     set({ loading: true, error: null });
     try {
       const response = await axiosInstance.get<VideoItem[]>("content/video-archives/");
-      set({ videos: response.data, loading: false });
+      const transformedData = response.data.map((item) => ({
+        id: item.id,
+        title: item.title,
+        video_url: item.video_url,
+      }));
+      set({ videos: transformedData, loading: false });
     } catch (err: any) {
       set({ error: err.message || "Ошибка при загрузке видео", loading: false });
     }

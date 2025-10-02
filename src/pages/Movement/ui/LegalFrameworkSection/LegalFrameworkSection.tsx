@@ -3,9 +3,11 @@ import { MultiContainer, Typography } from "@/shared/ui";
 import styles from "./LegalFrameworkSection.module.scss";
 import CalendarIcon from "@/shared/assets/images/Legalframeworksection1.svg";
 import { FC } from "react";
+import { useTranslation } from "react-i18next";
 
 
 export const LegalFrameworkSection: FC = () => {
+  const {t, i18n} = useTranslation()
   const laws = [
     {
       date: "04.06.2024",
@@ -32,7 +34,7 @@ export const LegalFrameworkSection: FC = () => {
       <MultiContainer>
         <div className={styles.content}>
           <Typography variant="h6" color="white" className={styles.title}>
-            Законодательная база
+          {t('aboutTheMovement.laws')}
           </Typography>
           <div className={styles.cardsWrapper}>
             {laws.map((law, idx) => (

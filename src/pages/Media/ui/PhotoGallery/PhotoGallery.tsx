@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
 import { ArrowRightIcon } from 'lucide-react';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { PhotoCard } from '../PhotoCard/PhotoCard';
 import styles from './PhotoGallery.module.scss';
-import { useNavigate } from 'react-router-dom';
 import { useImagesStore } from '@/app/store/Media/images';
 import { log } from 'console';
+import { useTranslation } from 'react-i18next';
 
 // Определение интерфейсов
 interface GalleryImage {
@@ -28,36 +29,24 @@ interface ImageItem {
 }
 
 export const PhotoGallery: React.FC = () => {
-  const navigate = useNavigate();
   const { imagesCards, loading, error, fetchImages } = useImagesStore();
-  
+
   useEffect(() => {
     fetchImages();
   }, [fetchImages]);
 
-  console.log(imagesCards);
-  
 
-  // Безопасное преобразование с проверкой типов
-  // const typedImages: ImageItem[] = imagesCards.map((item: any) => {
-  //   // Проверяем, что item имеет нужную структуру
-  //   const imagesArray = item.images && Array.isArray(item.images) ? item.images : [];
-  //   const firstImage = imagesArray.length > 0 ? imagesArray[0] : null;
-    
-  //   return {
-  //     id: item.id || 0,
-  //     title: item.title || 'Без названия',
-  //     date: item.date || 'default-date',
-  //     imageUrl: firstImage?.image || ''
-  //   };
-  // });
-    return (
+  const navigate = useNavigate();
+  const { t, i18n } = useTranslation()
+  console.log("Current language:", imagesCards);
+  
+  return (
     <div className={styles.container}>
       <header className={styles.header}>
-        <h1 className={styles.title}>Фотогалерея</h1>
+        <h1 className={styles.title}>{t('media.PhotoGallery')}</h1>
 
         <button onClick={() => navigate("/photoGallery")} className={styles.button}>
-          <span className={styles.buttonText}>Все фото</span>
+          <span className={styles.buttonText}>{t('media.allPhoto')}</span>
           <ArrowRightIcon className={styles.buttonIcon} />
         </button>
       </header>
@@ -74,9 +63,9 @@ export const PhotoGallery: React.FC = () => {
             <PhotoCard
               key={item.id}
               id={item.id}
-              // date={item.date}
-              // title={item.title}
-              // imageUrl={item.imageUrl}
+              date={item.date}
+              title={item.title}
+              imageUrl={item.image}
             />
           ))
         )}
