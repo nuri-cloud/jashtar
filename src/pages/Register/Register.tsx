@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { EyeIcon, EyeOffIcon, MailIcon, UserIcon } from "lucide-react";
 import styles from "./Register.module.scss";
 import authimage from "@/shared/assets/images/authImage.png";
@@ -25,7 +25,7 @@ export const Register = () => {
     });
 
     const navigate = useNavigate();
-    const { register, loading, error, success } = useAuthStore();
+    const { register, loading, error, success, user } = useAuthStore();
 
     const [visiblePasswords, setVisiblePasswords] = useState({
         password: false,
@@ -78,16 +78,25 @@ export const Register = () => {
         const full_name = `${formData.lastName} ${formData.firstName} ${formData.middleName}`;
 
         await register({
+            surname: formData.lastName,
+            second_name: formData.lastName,
+            name: formData.firstName,
             full_name,
             email: formData.email,
             password: formData.password,
             password_confirmation: formData.confirmPassword,
         });
-
-        if (success) {
-            navigate("/profile"); // или /profile
-        }
+        // localStorage.setItem("user", JSON.stringify(user));
+        console.log(user);
     };
+
+
+    useEffect(() => {
+        if (success) {
+            navigate("/verify-email");
+            // logout()
+        }
+    }, [success, navigate])
 
     return (
         <div className={styles.container}>

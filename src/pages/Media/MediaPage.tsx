@@ -4,7 +4,7 @@ export function MediaPage() {
     return (
         <div>
             <PhotoGallery />
-            <VideoGallery />
+            {/* <VideoGallery /> */}
         </div>
     );
 }

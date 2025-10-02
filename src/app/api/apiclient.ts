@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const axiosInstance = axios.create({
-  baseURL: "http://38.180.136.75/api/",
+  baseURL: "https://grubworm-calm-vaguely.ngrok-free.app/",
   headers: {
     "Content-Type": "application/json",
     Accept: "*/*",

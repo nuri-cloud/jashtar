@@ -4,9 +4,9 @@ import styles from './PhotoCard.module.scss';
 
 interface PhotoCardProps {
   id: number;
-  date: string;
-  title: string;
-  imageUrl: string;
+  date?: string;
+  title?: string;
+  imageUrl?: string;
 }
 
 export const PhotoCard: React.FC<PhotoCardProps> = ({ date, title, imageUrl }) => {

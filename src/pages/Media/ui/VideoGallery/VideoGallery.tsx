@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ArrowRightIcon } from 'lucide-react';
 import { VideoCard } from '../VideoCard/VideoCard';
 import styles from './VideoGallery.module.scss';
 import vidioIMG from "@/shared/assets/images/vidioimg.png"
 import { useNavigate } from 'react-router-dom';
+import { useVideoStore } from '@/app/store/Media/video';
+import { log } from 'console';
 
 const VideoData = [
   {
@@ -51,6 +53,13 @@ const VideoData = [
 ];
 
 export const VideoGallery: React.FC = () => {
+  const { videos, loading, error, fetchVideos } = useVideoStore();
+  useEffect(() => {
+    fetchVideos();
+  }, []);
+  console.log(videos);
+  
+
   const navigate = useNavigate();
   return (
     <div className={styles.container}>
@@ -68,16 +77,26 @@ export const VideoGallery: React.FC = () => {
       </header>
 
       <main className={styles.gallery}>
-        {VideoData.map((video) => (
+        {/* {
+          loading && <p>Загрузка...</p>
+        }
+        {
+          error && <p>Произошла ошибка</p>
+        }
+        {videos.length < 0 ? <p>
+          {videos.length} видео
+        </p>:
+        videos.map((video) => (
           <VideoCard
             key={video.id}
             id={video.id}
-            date={video.date}
+            // date={video.date}
             title={video.title}
-            videoUrl={video.videoUrl}
-            thumbnailUrl={video.thumbnailUrl}
+            videoUrl={video.video_url}
+            // thumbnailUrl={video.thumbnailUrl}
           />
-        ))}
+        ))
+        } */}
       </main>
     </div>
   );

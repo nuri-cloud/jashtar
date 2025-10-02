@@ -21,6 +21,10 @@ import Events from "@/pages/EventsPage/Events";
 import EventsArchivePage from "@/pages/EventsArchivePage/EventsArchivePage";
 import News from "@/pages/News/News";
 import NewsPage from "@/pages/NewsPage/NewsPage";
+import { VerifyToken } from "@/pages/VerifyToken/VerifyToken";
+import { ForgotPassword } from "@/pages/ForgotPassword/ForgotPassword";
+import { VerifyCode } from "@/pages/VerifyCode/VerifyCode";
+import { NewPassword } from "@/pages/NewPassword/NewPaasord";
 
 export default function Routing() {
   //   const accessToken = localStorage.getItem("accessToken");
@@ -32,7 +36,6 @@ export default function Routing() {
     { link: "/branchnamepages", page: <BranchNamePages />, id: 4 },
     { link: "/project", page: <Project />, id: 5 },
     { link: "/project/projectnamepages", page: <ProjectNamePages />, id: 6 }, // ✅ Ушундай
-
     { link: "/media", page: <MediaPage />, id: 7 },
     { link: "/photoGallery", page: <PhotoGallry />, id: 8 },
     { link: "/videoGallery", page: <Video />, id: 9 },
@@ -43,10 +46,14 @@ export default function Routing() {
     { link: "/main", page: <Main />, id: 14 },
     { link: "/detailview", page: <DetailView />, id: 15 },
     { link: "*", page: <NotFound />, id: 16 },
-     { link: "/events", page: <Events />, id: 17 }, 
-    { link: "/eventsArchivePage", page: <EventsArchivePage />, id: 18 }, 
-    { link: "/news", page: <News />, id: 19 }, 
-    { link: "/newsheadline", page: <NewsPage />, id: 20 }, 
+    { link: "/events", page: <Events />, id: 17 },
+    { link: "/eventsArchivePage", page: <EventsArchivePage />, id: 18 },
+    { link: "/news", page: <News />, id: 19 },
+    { link: "/newsheadline", page: <NewsPage />, id: 20 },
+    { link: "/verify-email", page: <VerifyToken />, id: 21 },
+    { link: "/forgot-password", page: <ForgotPassword />, id: 22 },
+    { link: "/verify-code", page: <VerifyCode />, id: 23 },
+    { link: "/new-password/:code", page: <NewPassword />, id: 24 }
     // { link: "/about-motion", page: <AboutUsPage />, id: 2 },
 
     // { link: "/directions", page: <NewsPage />, id: 3 },
