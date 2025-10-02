@@ -28,7 +28,6 @@ export const NewsDetailStore = create<NewsDetailState>((set) => ({
     try {
       const response = await axiosInstance.get<NewsDetail>(`content/news/${id}/`);
 
-      // оставляем apiData и transformedData, но без [0]
       const apiData = response.data; 
       const transformedData = {
         id: apiData.id,
@@ -39,7 +38,6 @@ export const NewsDetailStore = create<NewsDetailState>((set) => ({
       };
 
       set({ newsdetail: transformedData });
-      console.log("Детали новости:", transformedData);
     } catch (err) {
       const error = err as AxiosError<{ message: string }>;
       set({ error: error.response?.data?.message || "Что-то пошло не так" });

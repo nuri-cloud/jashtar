@@ -9,19 +9,20 @@ import img5 from '../../shared/assets/icons/map-pin-line.svg'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 import { EventDetailStore } from '@/app/store/events/eventsDetail'
+import { useLanguageStore } from '@/app/store/languageStore'
 
 function NameOfTheEvent() {
     const {t, i18n} = useTranslation()
-    const { id } = useParams(); // <-- id из URL
+    const { id } = useParams();
   const { eventDetail, fetchEventDetail, loading, error } = EventDetailStore();
-
+    const { currentLang } = useLanguageStore();
   useEffect(() => {
     if (id) {
       fetchEventDetail(Number(id));
     }
-  }, [id]);
+  }, [id, currentLang]);
 
-  if (loading) return <p>Загрузка...</p>;
+  if (loading) return <div className='loader'></div>;
   if (error) return <p>Ошибка: {error}</p>;
   if (!eventDetail) return <p>Нет данных</p>;
 
@@ -64,7 +65,7 @@ function NameOfTheEvent() {
           <h1 className={styles.detailsTitle}>{t('events.detailevent')}</h1>
           <span className={styles.detail}><img src={img3} alt="" /> {eventDetail.time}</span>
           <span className={styles.detail}><img src={img4} alt="" /> {eventDetail.date} </span>
-          <span className={styles.detail}><img src={img5} alt="" /> {t('events.street')}, {t('events.house')}  </span>
+          <span className={styles.detail}><img src={img5} alt="" />{eventDetail.place}</span>
         </div>
       </div>
     </div>

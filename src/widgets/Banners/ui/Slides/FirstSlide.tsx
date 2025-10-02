@@ -1,21 +1,30 @@
 import funChildImage from "@/shared/assets/images/fun-child.jpg";
 import { SwiperSlide } from "swiper/react";
 import styles from "./../BannerSlider.module.scss";
+import { useNavigate } from "react-router-dom";
 
-const FirstSlide = () => {
+interface FirstSlideProps {
+  image: string;
+  title: string;
+  description: string;
+  cta_text: string
+  cta_link: string
+}
+
+const FirstSlide = ({ image, title, description, cta_text, cta_link }: FirstSlideProps) => {
+  const navigate = useNavigate()
   return (
     <SwiperSlide>
       <div className={styles.banner}>
-        <img src={funChildImage} alt="banner" className={styles.bannerBg} />
+        <img src={image ? image : funChildImage} alt="banner" className={styles.bannerBg} />
         <div className={styles.bannerOverlay}></div>
 
         <div className={styles.bannerContent}>
-          <h2>Banner</h2>
+          <h2>{title}</h2>
           <p>
-            Предварительные выводы неутешительны: высококачественный прототип
-            будущего проекта создаёт необходимость включения
+           {description}
           </p>
-          <button>Вступить в движение →</button>
+          <button>{cta_text} →</button>
         </div>
       </div>
     </SwiperSlide>
