@@ -2,8 +2,10 @@ import React from 'react';
 import ActivityCard from '../ui/ActivityCard/ActivityCard';
 import img from '../../../shared/assets/images/friends.png';
 import styles from './ActivitiesSection.module.scss'; 
+import { useTranslation } from 'react-i18next';
 
 function ActivitiesSection() {
+  const {t, i18n} = useTranslation()
   const activitiesData = [
     { title: "Волонтерство", description: "Поможем друг другу и дари добро", imageSrc: img, bgColor: "#5889F6" },
     { title: "Волонтерство", description: "Поможем друг другу и дари добро", imageSrc: img, bgColor: "#57D175" },
@@ -15,7 +17,7 @@ function ActivitiesSection() {
 
   return (
     <section className={styles.activitiesSection}>
-      <h2 className={styles.sectionTitle}>Направление деятельности</h2>
+      <h2 className={styles.sectionTitle}>{t('areaOfActivity.direction')}</h2>
       <div className={styles.cardsContainer}>
         {activitiesData.map((activity, index) => (
           <ActivityCard

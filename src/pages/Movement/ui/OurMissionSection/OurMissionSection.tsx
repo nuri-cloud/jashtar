@@ -2,10 +2,14 @@ import type { FC } from 'react';
 import { useEffect } from 'react';
 import styles from './OurMissionSection.module.scss';
 import { MultiContainer, Typography } from '@/shared/ui';
+import { useTranslation } from 'react-i18next';
 import { useAboutGoalStore } from '@/app/store/about-movement/ourmissionsection';
 import { useLanguageStore } from '@/app/store/languageStore';
 
-export const OurMissionSection: FC = () => {
+
+  
+  export const OurMissionSection: FC = () => {
+  const {t, i18n} = useTranslation()
   const { data, loading, error, fetchAboutGoal } = useAboutGoalStore();
   const { currentLang } = useLanguageStore();
 
@@ -23,6 +27,7 @@ export const OurMissionSection: FC = () => {
       <MultiContainer>
         <div className={styles.content}>
           <Typography variant="h6" color="black" className={styles.title}>
+            {t('aboutTheMovement.goals')}
             {data.title}
           </Typography>
           <Typography variant="bodyText" color="black" className={styles.paragraph}>

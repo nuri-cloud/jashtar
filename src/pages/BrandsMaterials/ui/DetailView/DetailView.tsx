@@ -28,8 +28,6 @@ function DetailView() {
           link2="/main"
           text3={selectedMaterial.title}
         />
-      </div>
-
       <div className={styles.view}>
         <div className={styles.div}>
           <div className={styles.gallery}>
@@ -41,7 +39,6 @@ function DetailView() {
               <img src={selectedMaterial.image} alt={selectedMaterial.title} />
             </div>
           </div>
-
           <div className={styles.price2}>
             <h1>Цена:</h1>
             <button>
@@ -49,7 +46,7 @@ function DetailView() {
             </button>
           </div>
         </div>
-
+            <h2 className={styles.h2}>{t('brandMaterials.SimilarProducts')}</h2>
         <div className={styles.name}>
           <div className={styles.hero}>
             <h1>{selectedMaterial.title}</h1>

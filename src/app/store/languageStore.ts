@@ -1,6 +1,8 @@
 import { create } from "zustand";
 import { setLanguage } from "../api/apiclient";
 import { useAboutMovementStore } from "./about-movement/aboutMovementStore"; // пример стора с запросами
+import { NewsStore } from "./news/news";
+import { NewsDetailStore } from "./news/newsDetail";
 
 interface LanguageState {
   currentLang: "ky" | "ru" | "en";
@@ -16,5 +18,6 @@ export const useLanguageStore = create<LanguageState>((set) => ({
 
     // сразу дергаем стор, чтобы обновить данные
     useAboutMovementStore.getState().fetchAboutMovement();
+    NewsStore.getState().fetchnews();
   },
 }));
