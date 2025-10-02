@@ -38,10 +38,10 @@ function Card({ item , onClick}: CardProps) {
         }
       </div>
       <div className={styles.Footercard}>
-        <span>{item.date}</span>
+        <div className={styles.date}>{item.date.slice(5,15)}</div>
         <div>
           <h3>{item.title.slice(0, 22)}...</h3>
-          <p>{item.description.slice(0, 56)}...</p>
+          <p>{item.description.slice(0, 50)}...</p>
         </div>
       </div>
     </div>

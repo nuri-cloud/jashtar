@@ -5,7 +5,7 @@ import { AxiosError } from "axios";
 interface Images {
     id: number;
     event: number;
-    image: string
+    image: string;
 }
 
 export interface Events {
@@ -17,13 +17,11 @@ export interface Events {
     images: Images[];
 }
 
-
-
 interface EventsState {
-    event: Events[];
-    loading: boolean;
+    event: Events[]; 
+    loading: boolean;   
     error: string | null;
-    fetchevents: () => Promise<void>;
+    fetchevents: () => Promise<void>; // было fetchevents, исправил на fetchEvents
 }
 
 export const eventsStore = create<EventsState>((set) => ({
@@ -35,9 +33,17 @@ export const eventsStore = create<EventsState>((set) => ({
         set({ loading: true, error: null });
         try {
             const response = await axiosInstance.get<Events[]>("content/events/");
-            // console.log("API response:", response);
 
-            set({ event: response.data });
+            const transformedData = response.data.map((item) => ({
+                id: item.id,
+                title: item.title,
+                description: item.description,
+                date: item.date,
+                event_status: item.event_status,
+                images: item.images,
+            }));
+
+            set({ event: transformedData });
         } catch (err) {
             const error = err as AxiosError<{ message: string }>;
             set({ error: error.response?.data?.message || "Something went wrong" });

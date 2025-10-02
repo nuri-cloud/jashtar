@@ -19,7 +19,7 @@ export function EventsPages() {
     fetchevents();
   }, []);
  if (loading) {
-  return <p>Загрузка...</p>;
+  return <div className='loader'></div>;
 }
 if (error) {
   return <p style={{ color: "red" }}>{error}</p>;
@@ -31,7 +31,7 @@ if (error) {
          <button onClick={() => usenavigate('/')}>{t('landing.button')}</button>
         </div>
     <div className='Other-news'>
-      {event.slice(0, 3).map((event) => (
+      {event.slice(3, 6).map((event) => (
         <Card onClick={() => usenavigate(`/events/${event.id}/`)} key={event.id} item={event} />
       ))}
     </div>
