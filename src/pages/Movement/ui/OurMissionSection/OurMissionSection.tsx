@@ -7,15 +7,17 @@ import movementsection5 from '../../../../shared/assets/images/movementsection5.
 import movementsection6 from '../../../../shared/assets/images/movementsection6.svg'
 import { FC } from 'react';
 import { MultiContainer, Typography } from '@/shared/ui';
+import { useTranslation } from 'react-i18next';
 
 
 export const OurMissionSection: FC = () => {
+  const {t, i18n} = useTranslation()
   return (
     <section className={styles.ourMissionSection}>
       <MultiContainer>
         <div className={styles.content}>
           <Typography variant="h6" color="black" className={styles.title}>
-            Цели и миссии
+            {t('aboutTheMovement.goals')}
           </Typography>
           <Typography variant="bodyText" color="black" className={styles.paragraph}>
             Принимая во внимание показатели успешности, консультация с широким активом говорит о возможностях системы обучения кадров, соответствующей насущным потребностям. Но существующая теория предполагает независимые способы реализации форм воздействия. Высокий уровень вовлечения представителей целевой аудитории является четким доказательством простого факта: социально-экономическое развитие предопределяет высокую востребованность модели развития! Идейные соображения высшего порядка, а также повышение уровня гражданского сознания не даёт нам иного выбора, кроме определения экспериментов, поражающих по своей масштабности и грандиозности.

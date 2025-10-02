@@ -2,30 +2,40 @@
 import Navpanel from '@/widgets/Navpanel/Navpanel'
 import NewsCard from '@/widgets/NewsCard/NewsCard'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import img from '../../shared/assets/images/photo.png'
 import styles from './style.module.scss'
-interface New {
-  id: number
-  img: string
-  title: string
-  description: string
-}
+import { useTranslation } from 'react-i18next'
+import { NewsStore } from '@/app/store/news/news'
+import { NewsDetailStore } from '@/app/store/news/newsDetail'
+import { useNavigate } from 'react-router-dom'
+// interface New {
+//   id: number
+//   img: string
+//   title: string
+//   description: string
+// }
 
 function News() {
-  const Data: New[] = Array.from({ length: 95 }, (_, i) => ({
-    id: i + 1,
-    img: img,
-    title: `Событие номер ${i + 1}`,
-    description: 'Описание Описание Описание Описание Описание Описание Описание',
-  }))
-
-  const pageSize = 12
+  const {t, i18n} = useTranslation()
+  const navigate = useNavigate()
+  // const Data: New[] = Array.from({ length: 95 }, (_, i) => ({
+  //   id: i + 1,
+  //   img: img,
+  //   title: `Событие номер ${i + 1}`,
+  //   description: 'Описание Описание Описание Описание Описание Описание Описание',
+  // }))
+  const {news, loading, error, fetchnews} = NewsStore()
+  useEffect(() => {
+fetchnews()
+  }, [fetchnews])
+  const {fetchNewsDetail} = NewsDetailStore()
+  const pageSize = 12 
   const [currentPage, setCurrentPage] = useState(1)
-  const totalPages = Math.ceil(Data.length / pageSize)
+  const totalPages = Math.ceil(news.length / pageSize)
 
   const startIndex = (currentPage - 1) * pageSize
-  const currentEvents = Data.slice(startIndex, startIndex + pageSize)
+  const currentEvents = news.slice(startIndex, startIndex + pageSize)
 
   const getPaginationRange = () => {
     let range: (number | string)[] = []
@@ -47,12 +57,12 @@ function News() {
 
   return (
     <div className={`${styles.NewsPage} container`}>
-      <Navpanel link='/' text='Главная' text2='Новости'/>
-      <h1>Новости</h1>
+      <Navpanel link='/' text={t('news.home')} text2={t('news.news')}/>
+      <h1>{t('news.news')}</h1>
 
       <div className={styles.eventsArchive2}>
         {currentEvents.map((event) => (
-          <NewsCard link='/newsheadline' key={event.id} item={event} />
+          <NewsCard  onClick={() => navigate(`/news/${event.id}/`)} key={event.id} item={event} />
         ))}
       </div>
 

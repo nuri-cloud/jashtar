@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Materials.module.scss";
 import { Link, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 type Material = {
   id: number;
@@ -19,6 +20,7 @@ const materials: Material[] = [
 function BrandsPages() {
   const [visibleCount, setVisibleCount] = useState<number>(4);
   const usenavigate = useNavigate()
+    const { t, i18n } = useTranslation();
   const updateVisibleCount = () => {
     const width = window.innerWidth;
     if (width <= 480) setVisibleCount(3);
@@ -36,8 +38,8 @@ function BrandsPages() {
   return (
     <div className={`${styles.materialsContainer} container`}>
        <div className={styles.headMaterials}>
-        <h1>Бренд материалы</h1>
-         <button onClick={() => usenavigate('/main')}>Подробнее</button>
+        <h1>{t('landing.brandMaterials')}</h1>
+         <button onClick={() => usenavigate('/main')}>{t('landing.button')}</button>
         </div>
       <div className={styles.itemMaterialCards}>
       {materials.slice(0, visibleCount).map((item) => (

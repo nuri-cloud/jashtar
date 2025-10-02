@@ -1,6 +1,7 @@
 import type { FC } from 'react';
 import styles from './Management.module.scss';
 import { MultiContainer, Typography } from '@/shared/ui';
+import { useTranslation } from 'react-i18next';
 
 const person1 = 'https://picsum.photos/400/500';
 const person2 = 'https://picsum.photos/400/501';
@@ -31,12 +32,13 @@ const managementData = [
 ];
 
 export const Management: FC = () => {
+  const {t, i18n} = useTranslation()
   return (
     <section className={styles.management}>
       <MultiContainer>
         <div className={styles.content}>
           <Typography variant="h6" color="black" className={styles.title}>
-            Руководство
+            {t('aboutTheMovement.management')}
           </Typography>
 
           <div className={styles.cardWrapper}>

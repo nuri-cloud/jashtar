@@ -1,6 +1,7 @@
 import Navpanel from "@/widgets/Navpanel/Navpanel";
 import { Link } from "react-router-dom";
 import styles from "./Project.module.scss";
+import { useTranslation } from "react-i18next";
 
 const projects = [
   {
@@ -41,10 +42,11 @@ const projects = [
 ];
 
 export const Project = () => {
+  const {t, i18n} = useTranslation()
   return (
     <div className={styles.projectSection}>
-      <Navpanel text="Главная" text2="Проекты"/>
-      <h2 className={styles.sectionTitle}>Проекты</h2>
+      <Navpanel text={t('projects.home')} link="/" text2={t('projects.projects')}/>
+      <h2 className={styles.sectionTitle}>{t('projects.projects')}</h2>
       <div className={styles.projectGrid}>
         {projects.map((project, index) => (
           <div key={index} className={styles.projectCard}>
