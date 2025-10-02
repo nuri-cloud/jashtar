@@ -28,7 +28,7 @@ export default function Routing() {
     { link: "/movementpages", page: <MovementPages />, id: 3 },
     { link: "/branchnamepages", page: <BranchNamePages />, id: 4 },
     { link: "/project", page: <Project />, id: 5 },
-    { link: "/project/projectnamepages", page: <ProjectNamePages />, id: 6 },
+    { link: "/project/:id", page: <ProjectNamePages />, id: 6 },
     { link: "/media", page: <MediaPage />, id: 7 },
     { link: "/photoGallery", page: <PhotoGallry />, id: 8 },
     { link: "/videoGallery", page: <Video />, id: 9 },
@@ -46,19 +46,7 @@ export default function Routing() {
     { link: "/eventsArchivePage", page: <EventsArchivePage />, id: 18 }, 
     { link: "/news", page: <News />, id: 19 }, 
     { link: "nameoftheevent",page: <NameOfTheEvent />, id: 20 }, 
-    // { link: "/newsheadline", page: <ActivitiesPage />, id: 21 }, 
-    // { link: "/brandmaterials", page: <Main />, id: 21 }, 
-    // { link: "/about-motion", page: <AboutUsPage />, id: 2 },
-
-    // { link: "/directions", page: <NewsPage />, id: 3 },
-    // { link: "/events", page: <NewsDetailPage />, id: 12 },
-
-    // { link: "/projects", page: <ProductsPage />, id: 4 },
-    // { link: "/media", page: <ProductDetailPage />, id: 8 },
-
-    // { link: "/reg-departments", page: <FAQPage />, id: 5 },
-    // { link: "/signup", page: <SignUpPage />, id: 6 },
-    // { link: "/login", page: <LoginPage />, id: 7 },
+    
   ];
 
   return (
