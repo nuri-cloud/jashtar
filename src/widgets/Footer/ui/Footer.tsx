@@ -1,40 +1,34 @@
 import type { FC } from "react";
 import styles from "./Footer.module.scss";
-// import logo from "shared/assets/images/logo.png";
 import logo from "@/shared/assets/images/logo.png";
 import { MultiContainer, Typography } from "@/shared/ui";
 import { FOOTER_SECTIONS } from "@/shared/config/footer-nav";
 import { Link } from "react-router-dom";
-import { Instagram } from 'lucide-react';
-import { Phone } from 'lucide-react';
-import { MailCheck } from 'lucide-react';
-import { MapPinHouse } from 'lucide-react';
+import { Instagram, Phone, MailCheck, MapPinHouse } from 'lucide-react';
+import { useTranslation } from "react-i18next";
 
 export const Footer: FC = () => {
+  const { t, i18n } = useTranslation();
+  const changeLanguage = (lng: string) => i18n.changeLanguage(lng);
+
   return (
     <footer className={styles.footer}>
       <MultiContainer>
         <div className={styles.footerContent}>
+          {/* Brand Info */}
           <div className={styles.brandInfo}>
-            <img src={logo} alt="Логотип" className={styles.logo} />
-            <Typography
-              variant="bodyText"
-              color="white"
-              className={styles.copyright}
-            >
-              © 2025 All rights reserved.
+            <img src={logo} alt={t('footer.logo')} className={styles.logo} />
+            <Typography variant="bodyText" color="white" className={styles.copyright}>
+              © 2025 {t('footer.allRights')}
             </Typography>
-            <Typography
-              variant="caption"
-              color="white"
-              className={styles.policyLinks}
-            >
-              <a href="/privacy-policy">Privacy Policy</a> |{" "}
-              <a href="/terms-of-service">Terms of Service</a> |{" "}
-              <a href="/cookies">Cookies Settings</a>
+            <Typography variant="caption" color="white" className={styles.policyLinks}>
+              <a href="/privacy-policy">{t('footer.privacyPolicy')}</a> |{" "}
+              <a href="/terms-of-service">{t('footer.termsOfService')}</a> |{" "}
+              <a href="/cookies">{t('footer.cookiesSettings')}</a>
             </Typography>
           </div>
 
+          {/* Footer Navigation */}
           <nav className={styles.footerNav}>
             {FOOTER_SECTIONS.map((section, i) => (
               <div key={i} className={styles.navSection}>
@@ -43,7 +37,7 @@ export const Footer: FC = () => {
                     <li key={j}>
                       <Link to={link.url} className={styles.navLink}>
                         <Typography variant="bodyText" className={styles.text} color="white">
-                          {link.title}
+                          {t(`footer.${link.titleKey}`)}
                         </Typography>
                       </Link>
                     </li>
@@ -52,33 +46,30 @@ export const Footer: FC = () => {
               </div>
             ))}
           </nav>
+
+          {/* Social & Contacts */}
           <div className={styles.nav4}>
-          <div>
-            <button> <Instagram /></button>
-            <button> <Phone /></button>
-            <button><MailCheck /></button>
-            <button><MapPinHouse /></button>
+            <div>
+              <button><Instagram /></button>
+              <button><Phone /></button>
+              <button><MailCheck /></button>
+              <button><MapPinHouse /></button>
+            </div>
           </div>
-          </div>
-          <img src={logo} alt="Логотип" className={styles.logo1} />
+
+          {/* Duplicate Brand Info for Mobile / Layout */}
+          <img src={logo} alt={t('footer.logo')} className={styles.logo1} />
           <div className={styles.brandInfo1}>
-            <Typography
-              variant="bodyText"
-              color="white"
-              className={styles.copyright1}
-            >
-              © 2025 All rights reserved.
+            <Typography variant="bodyText" color="white" className={styles.copyright1}>
+              © 2025 {t('footer.allRights')}
             </Typography>
-            <Typography
-              variant="caption"
-              color="white"
-              className={styles.policyLinks1}
-            >
-              <a href="/privacy-policy">Privacy Policy</a> |{" "}
-              <a href="/terms-of-service">Terms of Service</a> |{" "}
-              <a href="/cookies">Cookies Settings</a>
+            <Typography variant="caption" color="white" className={styles.policyLinks1}>
+              <a href="/privacy-policy">{t('footer.privacyPolicy')}</a> |{" "}
+              <a href="/terms-of-service">{t('footer.termsOfService')}</a> |{" "}
+              <a href="/cookies">{t('footer.cookiesSettings')}</a>
             </Typography>
           </div>
+
         </div>
       </MultiContainer>
     </footer>

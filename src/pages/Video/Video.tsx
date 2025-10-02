@@ -3,6 +3,8 @@ import { useState } from "react";
 import styles from "./VideoGallry.module.scss";
 import { AlbumCard } from "@/shared/ui/Media/MediaCard";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import Navpanel from "@/widgets/Navpanel/Navpanel";
 
 const albums = Array.from({ length: 42 }, (_, i) => ({
     id: i + 1,
@@ -19,28 +21,24 @@ export function Video() {
     const totalPages = Math.ceil(albums.length / itemsPerPage);
     const startIndex = (currentPage - 1) * itemsPerPage;
     const currentAlbums = albums.slice(startIndex, startIndex + itemsPerPage);
-
+    const {t , i18n} = useTranslation()
     return (
         <div className={styles.container}>
             {/* Навигация */}
             <div className={styles.breadcrumbs}>
-                Главная
-                <ChevronRight />
-                Медиа
-                <ChevronRight />
-                <span>Видеогалерея</span>
+                <Navpanel text={t('VideoLibrary.home')} link="/" text2={'VideoLibrary.media'} link2="/media" text3={t('VideoLibrary.VideoLibrary')}/>
             </div>
 
             {/* Заголовок */}
             <header className={styles.header}>
-                <h1 className={styles.title}>Видеогалерея</h1>
+                <h1 className={styles.title}>{t('VideoLibrary.VideoLibrary')}</h1>
                 <div className={styles.buttons}>
                     <button className={styles.button} aria-label="Посмотреть все фото">
-                        <span className={styles.buttonText}>Выбрать дату</span>
+                        <span className={styles.buttonText}>{t('VideoLibrary.selectDate')}</span>
                         <ArrowRightIcon className={styles.buttonIcon} />
                     </button>
                     <button  className={styles.button} onClick={()=>navigate("/media")}>
-                        <span className={styles.buttonText}>Вернуться назад</span>
+                        <span className={styles.buttonText}>{t('VideoLibrary.goBack')}</span>
                         <ArrowRightIcon className={styles.buttonIcon} />
                     </button>
                 </div>

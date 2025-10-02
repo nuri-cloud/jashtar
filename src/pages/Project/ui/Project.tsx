@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Navpanel from "@/widgets/Navpanel/Navpanel";
 import styles from "./Project.module.scss";
+import { useTranslation } from "react-i18next";
 import { useProjectStore } from "@/app/store/project/project";
 
 export const Project: FC = () => {
@@ -16,6 +17,12 @@ export const Project: FC = () => {
   if (error) return <div className={styles.error}>Ошибка при загрузке данных: {error}</div>;
   if (!data.length) return <div className={styles.empty}>Проекты не найдены</div>;
 
+export const Project = () => {
+  const {t, i18n} = useTranslation()
+  return (
+    <div className={styles.projectSection}>
+      <Navpanel text={t('projects.home')} link="/" text2={t('projects.projects')}/>
+      <h2 className={styles.sectionTitle}>{t('projects.projects')}</h2>
   return (
     <div className={styles.projectSection}>
       <Navpanel text="Главная" text2="Проекты" />

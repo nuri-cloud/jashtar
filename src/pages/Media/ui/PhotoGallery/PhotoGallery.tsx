@@ -3,6 +3,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PhotoCard } from '../PhotoCard/PhotoCard';
 import styles from './PhotoGallery.module.scss';
+import { useTranslation } from 'react-i18next';
 
 const photoData = [
   {
@@ -45,13 +46,14 @@ const photoData = [
 
 export const PhotoGallery: React.FC = () => {
     const navigate = useNavigate();
+    const {t , i18n} = useTranslation()
   return (
     <div className={styles.container}>
       <header className={styles.header}>
-        <h1 className={styles.title}>Фотогалерея</h1>
+        <h1 className={styles.title}>{t('media.PhotoGallery')}</h1>
         
         <button onClick={() => navigate("/photoGallery")} className={styles.button}>
-          <span className={styles.buttonText}>Все фото</span>
+          <span className={styles.buttonText}>{t('media.allPhoto')}</span>
           <ArrowRightIcon className={styles.buttonIcon} />
         </button>
       </header>

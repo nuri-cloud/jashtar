@@ -1,6 +1,8 @@
+import type { FC } from 'react';
+import styles from './Management.module.scss';
+import { useTranslation } from 'react-i18next';
 import type { FC } from "react";
 import { useEffect } from "react";
-import styles from "./Management.module.scss";
 import { MultiContainer, Typography } from "@/shared/ui";
 import { useManagementStore } from "@/app/store/about-movement/managementPerson";
 import { useLanguageStore } from "@/app/store/languageStore";
@@ -17,12 +19,14 @@ export const Management: FC = () => {
   if (error) return <div className={styles.error}>Ошибка при загрузке данных: {error}</div>;
   if (!data.length) return <div className={styles.empty}>Нет данных о руководстве</div>;
 
+export const Management: FC = () => {
+  const {t, i18n} = useTranslation()
   return (
     <section className={styles.management}>
       <MultiContainer>
         <div className={styles.content}>
           <Typography variant="h6" color="black" className={styles.title}>
-            Руководство
+            {t('aboutTheMovement.management')}
           </Typography>
 
           <div className={styles.cardWrapper}>
