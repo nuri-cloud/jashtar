@@ -18,7 +18,8 @@ function DetailView() {
   if (!selectedMaterial) return <p>No material found</p>;
 
   return (
-    <div className={styles.detailview}>
+    <div className="container">
+       <div className={styles.detailview}>
       <div className={styles.text}>
         <Navpanel
           text="Главная"
@@ -44,7 +45,7 @@ function DetailView() {
           <div className={styles.price2}>
             <h1>Цена:</h1>
             <button>
-              <p>1200 KGZ</p>
+              <p>{selectedMaterial.price}</p>
             </button>
           </div>
         </div>
@@ -58,7 +59,7 @@ function DetailView() {
           <div className={styles.price}>
             <h1>Цена:</h1>
             <button>
-              <p>1200 KGZ</p>
+              <p>{selectedMaterial.price}</p>
             </button>
           </div>
         </div>
@@ -67,6 +68,8 @@ function DetailView() {
       <h2 className={styles.h2}>Похожие товары</h2>
       <Materials />
     </div>
+    </div>
+   
   );
 }
 

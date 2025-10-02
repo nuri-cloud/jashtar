@@ -1,4 +1,3 @@
-// detailStore.ts
 import { create } from "zustand";
 import { axiosInstance } from "@/app/api/apiclient";
 import { AxiosError } from "axios";
@@ -9,6 +8,7 @@ export interface Material {
   description: string;
   slug: string;
   image: string;
+  price: number;
 }
 
 interface DetailState {
@@ -26,7 +26,7 @@ export const useDetailStore = create<DetailState>((set) => ({
   fetchMaterialById: async (id: number) => {
     set({ loading: true, error: null });
     try {
-      const response = await axiosInstance.get<Material>(`content/brand-materials/${id}/`);
+      const response = await axiosInstance.get<Material>(`home/brand-materials/${id}/`);
       set({ selectedMaterial: response.data, loading: false });
     } catch (err) {
       const error = err as AxiosError<{ message: string }>;
