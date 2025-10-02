@@ -2,12 +2,14 @@ import React from 'react'
 import styles from "./DetailView.module.scss"
 import Materials from '../Materials1/Materials'
 import Navpanel from '@/widgets/Navpanel/Navpanel'
+import { useTranslation } from 'react-i18next'
 
 function DetailView() {
+    const {t , i18n} = useTranslation()
     return (
         <div className={styles.detailview}>
             <div className={styles.text}>
-     <Navpanel text='Главная' link='/' text2='Бренд материалы' link2='/main' text3='Название мерча'/>
+     <Navpanel text={t('brandMaterials.home')} link='/' text2={t('brandMaterials.brandMaterials')} link2='/main' text3='Название мерча'/>
             </div>
             <div className={styles.view}>
                 <div className={styles.div}>
@@ -21,7 +23,7 @@ function DetailView() {
                         </div>
                     </div>
                     <div className={styles.price2}>
-                        <h1>Цена:</h1>
+                        <h1>{t('brandMaterials.price')}:</h1>
                         <button>
                             <p> 1000 KGZ</p>
                         </button>
@@ -37,7 +39,7 @@ function DetailView() {
                     </div>
 
                     <div className={styles.price}>
-                        <h1>Цена:</h1>
+                        <h1>{t('brandMaterials.price')}:</h1>
                         <button>
                             <p> 1000 KGZ</p>
                         </button>
@@ -46,7 +48,7 @@ function DetailView() {
 
             </div>
 
-            <h2 className={styles.h2}>Похожие товары</h2>
+            <h2 className={styles.h2}>{t('brandMaterials.SimilarProducts')}</h2>
 
             <Materials />
 

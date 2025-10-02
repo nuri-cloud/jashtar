@@ -3,11 +3,12 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Navpanel from "@/widgets/Navpanel/Navpanel";
 import styles from "./Project.module.scss";
+import { useTranslation } from "react-i18next";
 import { useProjectStore } from "@/app/store/project/project";
 
 export const Project: FC = () => {
   const { data, loading, error, fetchProjects } = useProjectStore();
-
+  const {t, i18n} = useTranslation()
   useEffect(() => {
     fetchProjects();
   }, [fetchProjects]);
@@ -18,8 +19,8 @@ export const Project: FC = () => {
 
   return (
     <div className={styles.projectSection}>
-      <Navpanel text="Главная" text2="Проекты" />
-      <h2 className={styles.sectionTitle}>Проекты</h2>
+      <Navpanel text={t('projects.home')} link="/" text2={t('projects.projects')}/>
+      <h2 className={styles.sectionTitle}>{t('projects.projects')}</h2>
       <div className={styles.projectGrid}>
         {data.map((project) => (
           <div key={project.id} className={styles.projectCard}>

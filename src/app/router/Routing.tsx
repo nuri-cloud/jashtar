@@ -40,13 +40,27 @@ export default function Routing() {
     { link: "/detailview", page: <DetailView />, id: 15 },
     { link: "/eventsArchivePage", page: <EventsArchivePage />, id: 17 },
     { link: "/news", page: <News />, id: 18 },
-    { link: "/newsheadline", page: <NewsPage />, id: 19 },
+    { link: "/news/:id", page: <NewsPage />, id: 19 },
     { link: "*", page: <NotFound />, id: 20 },
      { link: "/events", page: <Events />, id: 17 }, 
     { link: "/eventsArchivePage", page: <EventsArchivePage />, id: 18 }, 
     { link: "/news", page: <News />, id: 19 }, 
     { link: "nameoftheevent",page: <NameOfTheEvent />, id: 20 }, 
     
+    { link: "/events/:id",page: <NameOfTheEvent />, id: 20 }, 
+    // { link: "/newsheadline", page: <ActivitiesPage />, id: 21 }, 
+    // { link: "/brandmaterials", page: <Main />, id: 21 }, 
+    // { link: "/about-motion", page: <AboutUsPage />, id: 2 },
+
+    // { link: "/directions", page: <NewsPage />, id: 3 },
+    // { link: "/events", page: <NewsDetailPage />, id: 12 },
+
+    // { link: "/projects", page: <ProductsPage />, id: 4 },
+    // { link: "/media", page: <ProductDetailPage />, id: 8 },
+
+    // { link: "/reg-departments", page: <FAQPage />, id: 5 },
+    // { link: "/signup", page: <SignUpPage />, id: 6 },
+    // { link: "/login", page: <LoginPage />, id: 7 },
   ];
 
   return (
