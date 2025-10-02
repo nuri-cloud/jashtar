@@ -1,7 +1,16 @@
 import { MultiContainer, Typography } from "@/shared/ui";
 import style from "./Movement.module.scss";
+import { useTranslation } from "react-i18next";
+import { useAboutMovementStore } from "@/app/store/aboutMovement/aboutMovement";
+import { useEffect } from "react";
 
 const Movement = () => {
+    const { t, i18n } = useTranslation();
+    const changeLanguage = (lng: string) => i18n.changeLanguage(lng);
+    const {data, loading , error, fetchAboutMovement} = useAboutMovementStore()
+    useEffect(() => {
+      fetchAboutMovement()
+    }, [])
   const cards = [
     {
       title: "Преимущество",
@@ -27,18 +36,11 @@ const Movement = () => {
   return (
     <MultiContainer>
       <Typography className={style.title} variant="h6" color="black">
-        О движении
+        {t('landing.aboutTheMovement')}
       </Typography>
 
       <Typography className={style.bodyText} variant="bodyText" color="black">
-        Безусловно, высокотехнологичная концепция общественного уклада
-        предопределяет высокую востребованность системы массового участия.
-        Значимость этих проблем настолько очевидна, что синтетическое
-        тестирование предопределяет высокую востребованность экспериментов,
-        поражающих по своей масштабности и грандиозности. В своём стремлении
-        повысить качество жизни, они забывают, что сложившаяся структура
-        организации выявляет срочную потребность прогресса профессионального
-        сообщества.
+      {data?.description}
       </Typography>
 
       <div className={style.cards}>

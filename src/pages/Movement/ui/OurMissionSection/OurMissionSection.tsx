@@ -1,39 +1,52 @@
-
+import type { FC } from 'react';
+import { useEffect } from 'react';
 import styles from './OurMissionSection.module.scss';
-import movementsection2 from '../../../../shared/assets/images/movementsection2.svg'
-import movementsection3 from '../../../../shared/assets/images/movementsection3.svg'
-import movementsection4 from '../../../../shared/assets/images/movementsection4.svg'
-import movementsection5 from '../../../../shared/assets/images/movementsection5.svg'
-import movementsection6 from '../../../../shared/assets/images/movementsection6.svg'
-import { FC } from 'react';
 import { MultiContainer, Typography } from '@/shared/ui';
+import { useTranslation } from 'react-i18next';
+import { useAboutGoalStore } from '@/app/store/about-movement/ourmissionsection';
+import { useLanguageStore } from '@/app/store/languageStore';
 
 
-export const OurMissionSection: FC = () => {
+  
+  export const OurMissionSection: FC = () => {
+  const {t, i18n} = useTranslation()
+  const { data, loading, error, fetchAboutGoal } = useAboutGoalStore();
+  const { currentLang } = useLanguageStore();
+
+  // Обновляем данные при смене языка
+  useEffect(() => {
+    fetchAboutGoal();
+  }, [fetchAboutGoal, currentLang]);
+
+  if (loading) return <div className={styles.loading}>Загрузка целей и миссий...</div>;
+  if (error) return <div className={styles.error}>Ошибка при загрузке данных: {error}</div>;
+  if (!data) return <div className={styles.empty}>Нет данных о целях</div>;
+
   return (
     <section className={styles.ourMissionSection}>
       <MultiContainer>
         <div className={styles.content}>
           <Typography variant="h6" color="black" className={styles.title}>
-            Цели и миссии
+            {t('aboutTheMovement.goals')}
+            {data.title}
           </Typography>
           <Typography variant="bodyText" color="black" className={styles.paragraph}>
-            Принимая во внимание показатели успешности, консультация с широким активом говорит о возможностях системы обучения кадров, соответствующей насущным потребностям. Но существующая теория предполагает независимые способы реализации форм воздействия. Высокий уровень вовлечения представителей целевой аудитории является четким доказательством простого факта: социально-экономическое развитие предопределяет высокую востребованность модели развития! Идейные соображения высшего порядка, а также повышение уровня гражданского сознания не даёт нам иного выбора, кроме определения экспериментов, поражающих по своей масштабности и грандиозности.
-          </Typography> 
+            {data.description}
+          </Typography>
 
           <hr className={styles.divider} />
-      
-          <div className={styles.imageGrid}> 
-            <div className={styles.galleryTop}>
-              <img src={movementsection2} alt="img2" className={styles.image2} />
-              <img src={movementsection3} alt="img3" className={styles.image3} />
-              <img src={movementsection4} alt="img4" className={styles.image4} />
-            </div>
 
-           <div className={styles.galleryBottom}>
-            <img src={movementsection5} alt="img5" className={styles.image5} />
-            <img src={movementsection6} alt="img6" className={styles.image6} />
-           </div>  
+          <div className={styles.imageGrid}>
+            <div className={styles.galleryTop}>
+              {data.images.slice(0, 3).map((img, index) => (
+                <img key={index} src={img} alt={`img${index + 1}`} className={styles[`image${index + 2}`]} />
+              ))}
+            </div>
+            <div className={styles.galleryBottom}>
+              {data.images.slice(3, 5).map((img, index) => (
+                <img key={index} src={img} alt={`img${index + 5}`} className={styles[`image${index + 5}`]} />
+              ))}
+            </div>
           </div>
         </div>
       </MultiContainer>

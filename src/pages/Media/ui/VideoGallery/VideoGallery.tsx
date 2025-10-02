@@ -4,6 +4,7 @@ import { VideoCard } from '../VideoCard/VideoCard';
 import styles from './VideoGallery.module.scss';
 import vidioIMG from "@/shared/assets/images/vidioimg.png"
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const VideoData = [
   {
@@ -52,17 +53,18 @@ const VideoData = [
 
 export const VideoGallery: React.FC = () => {
   const navigate = useNavigate();
+  const {t , i18n} = useTranslation()
   return (
     <div className={styles.container}>
       <header className={styles.header}>
-        <h1 className={styles.title}>Видеогалерея</h1>
+        <h1 className={styles.title}>{t('media.VideoLibrary')}</h1>
         
         <button 
           className={styles.button}
           onClick={()=>navigate("/videoGallery")}
           aria-label="Посмотреть все видео"
         >
-          <span className={styles.buttonText}>Все Видео</span>
+          <span className={styles.buttonText}>{t('media.allVideo')}</span>
           <ArrowRightIcon className={styles.buttonIcon} />
         </button>
       </header>

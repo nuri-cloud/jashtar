@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { EyeIcon, EyeOffIcon, MailIcon } from "lucide-react";
 import styles from "./SignIn.module.scss";
 import authimage from "@/shared/assets/images/authImage.png";
+import { useLogeinStore } from "@/app/store/auth/signein";
+import { useNavigate } from "react-router-dom";
 
 interface FormData {
     email: string;
@@ -16,6 +18,9 @@ export const SignIn = () => {
         confirmPassword: "",
     });
 
+    const navigate = useNavigate();
+    const { setField, submit, loading, error, success } = useLogeinStore();
+
     const [visiblePasswords, setVisiblePasswords] = useState({
         password: false,
         confirmPassword: false,
@@ -23,14 +28,22 @@ export const SignIn = () => {
 
     const handleChange = (field: keyof FormData, value: string) => {
         setFormData((prev) => ({ ...prev, [field]: value }));
+
+        if (field === "email" || field === "password") {
+            setField(field, value);
+        }
     };
 
     const togglePasswordVisibility = (field: keyof FormData) => {
-        if(field === "password") setVisiblePasswords((prev) => ({ ...prev, password: !prev.password }));
-        if(field === "confirmPassword") setVisiblePasswords((prev) => ({ ...prev, confirmPassword: !prev.confirmPassword }));
+        if (field === "password") {
+            setVisiblePasswords((prev) => ({ ...prev, password: !prev.password }));
+        }
+        if (field === "confirmPassword") {
+            setVisiblePasswords((prev) => ({ ...prev, confirmPassword: !prev.confirmPassword }));
+        }
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         const errors: string[] = [];
 
@@ -49,7 +62,11 @@ export const SignIn = () => {
             return;
         }
 
-        
+        await submit();
+
+        if (success) {
+            navigate("/profile");
+        }
     };
 
     return (
@@ -99,12 +116,10 @@ export const SignIn = () => {
                             )}
                         </button>
                     </div>
-                    <div className={styles.helpText}>
-                        Забыли пароль?
-                    </div>
+                    <div className={styles.helpText}>Забыли пароль?</div>
                 </div>
 
-                {/* Повтор пароля
+                {/* Повтор пароля */}
                 <div className={`${styles.fieldContainer} ${styles.large}`}>
                     <label className={styles.label}>
                         Повторите пароль<span className={styles.required}>*</span>
@@ -131,12 +146,17 @@ export const SignIn = () => {
                             )}
                         </button>
                     </div>
-                </div> */}
+                </div>
 
                 {/* Кнопка */}
-                <button type="submit" className={styles.submitButton}>
-                    <span className={styles.buttonText}>Продолжить</span>
+                <button type="submit" className={styles.submitButton} disabled={loading}>
+                    <span className={styles.buttonText}>
+                        {loading ? "Входим..." : "Продолжить"}
+                    </span>
                 </button>
+
+                {error && <p style={{ color: "red" }}>{error}</p>}
+                {success && <p style={{ color: "green" }}>Успешный вход!</p>}
 
                 {/* Секция входа */}
                 <div className={styles.loginSection}>
@@ -144,18 +164,14 @@ export const SignIn = () => {
                     <button
                         type="button"
                         className={styles.loginLink}
-                        onClick={() => alert("Переход на страницу входа")}
+                        onClick={() => alert("Переход на страницу регистрации")}
                     >
                         Регистрация
                     </button>
                 </div>
             </form>
 
-            <img
-                className={styles.backgroundImage}
-                alt="Background"
-                src={authimage}
-            />
+            <img className={styles.backgroundImage} alt="Background" src={authimage} />
         </div>
     );
 };

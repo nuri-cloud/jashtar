@@ -1,127 +1,204 @@
     .detailview {
-        width: 1440px;
-        height: 1800px;
-        margin: 0 auto;
-        padding: 40px 60px;
+        padding: 0 20px;
         display: flex;
         flex-direction: column;
-        gap: 56px;
-
-        .text {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-
-            h2 {
-                font-size: 16px;
-                font-weight: 400;
-                color: rgba(17, 17, 17, 1);
-            }
-
-            p {
-                font-size: 16px;
-                font-weight: 400;
-                color: rgba(17, 17, 17, 1);
-            }
-
-            img {
-                width: 13px;
-                height: 13px;
-            }
-
-            h4 {
-                font-size: 16px;
-                color: rgba(46, 108, 244, 1);
-            }
-        }
+        gap: 40px;
 
         .view {
             display: flex;
-            gap: 50px;
+            gap: 40px;
+            justify-content: center;
+            align-items: flex-start;
+            flex-wrap: wrap; 
 
-            .gallery {
-                display: flex;
-                flex-direction: column;
-                gap: 20px;
-                width:648px;
-                height: 786px;
+            .div {
+                flex: 1 1 600px;
+                max-width: 650px;
 
-                img {
-                    width: 648px;
-                    height: 582px;
-                    border-radius: 20px;
-                }
-
-                .imgs {
+                .gallery {
                     display: flex;
+                    flex-direction: column;
                     gap: 20px;
 
                     img {
-                        width: 210px;
-                        height: 180px;
+                        width: 100%;
+                        height: auto;
+                        max-height: 550px;
                         border-radius: 20px;
+                        object-fit: cover;
                     }
+
+                    .imgs {
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 10px;
+                        justify-content: center;
+
+                        img {
+                            flex: 1 1 30%;
+                            max-width: 210px;
+                            height: auto;
+                            border-radius: 20px;
+                            object-fit: cover;
+                        }
+                    }
+                }
+
+                .price2 {
+                    display: none;
                 }
             }
 
             .name {
+                flex: 1 1 400px;
+                max-width: 600px;
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
+                text-align: left;
 
                 .hero {
                     display: flex;
-                    text-align: center;
                     flex-direction: column;
-                    gap: 50px;
+                    gap: 20px;
 
                     h1 {
                         font-weight: 600;
-                        font-size: 40px;
-                        color: rgba(17, 17, 17, 1);
+                        font-size: 2rem;
+                        color: #111;
                     }
 
                     h4 {
-                        font-size: 20px;
+                        font-size: 1rem;
                         font-weight: 400;
-                        color: rgba(17, 17, 17, 1);
+                        color: #111;
+                        line-height: 1.4;
                     }
                 }
 
-                .price{
+                .price {
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
+                    margin-top: 20px;
 
-                    h1{
-                        font-size: 32px;
+                    h1 {
+                        font-size: 1.5rem;
                         font-weight: 600;
-                        color:rgba(17, 17, 17, 1);
+                        color: #111;
                     }
 
-                    button{
-                        width: 185px;
-                        height: 71px;
+                    button {
+                        width: 180px;
+                        height: 60px;
                         border-radius: 10px;
-                        border: 2px solid rgba(17, 17, 17, 1);
-                        padding: 16px;
+                        border: 2px solid #111;
+                        background: #fff;
+                        padding: 10px;
 
-                         p{
-                        font-size: 32px;
-                        font-weight: 600;
-                        color:rgba(17, 17, 17, 1);
-                    }
-                        
+                        p {
+                            font-size: 1.2rem;
+                            font-weight: 600;
+                            color: #111;
+                        }
                     }
                 }
             }
         }
 
-        .h2{
-            font-size: 40px;
+        .h2 {
+            font-size: 2rem;
             font-weight: 600;
-            color: rgba(17, 17, 17, 1);
+            color: #111;
             text-align: center;
-            margin-top: 80px;
+            margin-top: 60px;
+        }
+    }
+
+    @media (max-width: 900px) {
+        .detailview {
+            gap: 30px;
+
+            .view {
+                flex-direction: column;
+                gap: 30px;
+
+                .div {
+                    .gallery {
+                        img {
+                            max-height: 400px;
+                        }
+
+                        .imgs img {
+                            max-width: 30%;
+                        }
+                    }
+
+                    .price2 {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        margin-top: 20px;
+
+                        h1 {
+                            font-size: 1.2rem;
+                        }
+
+                        button {
+                            width: 140px;
+                            height: 50px;
+
+                            p {
+                                font-size: 1rem;
+                            }
+                        }
+                    }
+                }
+
+                .name {
+                    text-align: center;
+                    align-items: center;
+
+                    .hero {
+                        gap: 15px;
+
+                        h1 {
+                            font-size: 1.5rem;
+                        }
+
+                        h4 {
+                            font-size: 0.9rem;
+                        }
+                    }
+
+                    .price {
+                        display: none; 
+                    }
+                }
+            }
+
+            .h2 {
+                font-size: 1.5rem;
+                margin-top: 40px;
+            }
+        }
+    }
+
+    @media (max-width: 600px) {
+        .detailview {
+            padding: 0 10px;
+
+            .view {
+                gap: 20px;
+
+                .div .gallery img {
+                    max-height: 300px;
+                }
+
+                .div .gallery .imgs img {
+                    flex: 1 1 45%;
+                    max-width: 100%;
+                }
+            }
         }
     }

@@ -1,17 +1,19 @@
 import axios from "axios";
 
+const language = localStorage.getItem("lang") || "ru";
+
 export const axiosInstance = axios.create({
-  baseURL: "http://38.180.136.75/api/",
+  baseURL: "https://grubworm-calm-vaguely.ngrok-free.app/api",
   headers: {
     "Content-Type": "application/json",
     Accept: "*/*",
+    "ngrok-skip-browser-warning": "true",
+    "Accept-Language": language,
   },
 });
 
-axiosInstance.interceptors.request.use((config) => {
-  return config;
-}, (error) => {
-  return Promise.reject(error);
-});
-
-
+// Функция для смены языка динамически
+export const setLanguage = (lang: "ky" | "ru" | "en") => {
+  localStorage.setItem("lang", lang); // сохраняем выбранный язык
+  axiosInstance.defaults.headers["Accept-Language"] = lang; // обновляем хедер
+};

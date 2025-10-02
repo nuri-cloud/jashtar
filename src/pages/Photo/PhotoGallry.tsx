@@ -1,8 +1,10 @@
-import { ArrowRightIcon, ChevronRight } from "lucide-react";
-import { useState } from "react";
-import styles from "./PhotoGallry.module.scss";
 import { AlbumCard } from "@/shared/ui/Media/MediaCard";
+import Navpanel from "@/widgets/Navpanel/Navpanel";
+import { ArrowRightIcon } from "lucide-react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import styles from "./PhotoGallry.module.scss";
+import { useTranslation } from "react-i18next";
 
 const albums = Array.from({ length: 42 }, (_, i) => ({
     id: i + 1,
@@ -19,28 +21,24 @@ export function PhotoGallry() {
     const totalPages = Math.ceil(albums.length / itemsPerPage);
     const startIndex = (currentPage - 1) * itemsPerPage;
     const currentAlbums = albums.slice(startIndex, startIndex + itemsPerPage);
-
+    const {t , i18n} = useTranslation()
     return (
         <div className={styles.container}>
             {/* Навигация */}
             <div className={styles.breadcrumbs}>
-                Главная
-                <ChevronRight />
-                Медиа
-                <ChevronRight />
-                <span>Фотогалерея</span>
+              <Navpanel text={t('PhotoGallery.home')} text2={t('PhotoGallery.media')} text3={t('PhotoGallery.PhotoGallery')} link="/" link2="/media"/>
             </div>
 
             {/* Заголовок */}
             <header className={styles.header}>
-                <h1 className={styles.title}>Фотогалерея</h1>
+                <h1 className={styles.title}>{t('PhotoGallery.PhotoGallery')}</h1>
                 <div className={styles.buttons}>
                     <button className={styles.button} aria-label="Посмотреть все фото">
-                        <span className={styles.buttonText}>Выбрать дату</span>
+                        <span className={styles.buttonText}>{t('PhotoGallery.selectDate')}</span>
                         <ArrowRightIcon className={styles.buttonIcon} />
                     </button>
                     <button className={styles.button} onClick={() => navigate("/media")}>
-                        <span className={styles.buttonText}>Вернуться назад</span>
+                        <span className={styles.buttonText}>{t('PhotoGallery.goBack')}</span>
                         <ArrowRightIcon className={styles.buttonIcon} />
                     </button>
                 </div>
