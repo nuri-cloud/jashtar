@@ -1,35 +1,23 @@
 import type { FC } from 'react';
 import styles from './Management.module.scss';
-import { MultiContainer, Typography } from '@/shared/ui';
 import { useTranslation } from 'react-i18next';
+import type { FC } from "react";
+import { useEffect } from "react";
+import { MultiContainer, Typography } from "@/shared/ui";
+import { useManagementStore } from "@/app/store/about-movement/managementPerson";
+import { useLanguageStore } from "@/app/store/languageStore";
 
-const person1 = 'https://picsum.photos/400/500';
-const person2 = 'https://picsum.photos/400/501';
-const person3 = 'https://picsum.photos/400/502';
-const person4 = 'https://picsum.photos/400/503';
+export const Management: FC = () => {
+  const { data, loading, error, fetchManagement } = useManagementStore();
+  const { currentLang } = useLanguageStore();
 
-const managementData = [
-  {
-    image: person1,
-    name: 'Фамилия Имя Отчество',
-    position: 'Должность',
-  },
-  {
-    image: person2,
-    name: 'Фамилия Имя Отчество',
-    position: 'Должность',
-  },
-  {
-    image: person3,
-    name: 'Фамилия Имя Отчество',
-    position: 'Должность',
-  },
-  {
-    image: person4,
-    name: 'Фамилия Имя Отчество',
-    position: 'Должность',
-  },
-];
+  useEffect(() => {
+    fetchManagement();
+  }, [fetchManagement, currentLang]);
+
+  if (loading) return <div className={styles.loading}>Загрузка руководства...</div>;
+  if (error) return <div className={styles.error}>Ошибка при загрузке данных: {error}</div>;
+  if (!data.length) return <div className={styles.empty}>Нет данных о руководстве</div>;
 
 export const Management: FC = () => {
   const {t, i18n} = useTranslation()
@@ -42,13 +30,13 @@ export const Management: FC = () => {
           </Typography>
 
           <div className={styles.cardWrapper}>
-            {managementData.map((person, index) => (
-              <div key={index} className={styles.personCard}>
-                <img src={person.image} alt={person.name} className={styles.personImage} />
+            {data.map((person) => (
+              <div key={person.id} className={styles.personCard}>
+                <img src={person.image} alt={person.full_name} className={styles.personImage} />
                 <div className={styles.personInfo}>
-                  <div className={styles.shadowOverlay}></div> {/* Кара тень үчүн */}
+                  <div className={styles.shadowOverlay}></div>
                   <Typography variant="bodyText" color="white" className={styles.personName}>
-                    {person.name}
+                    {person.full_name} {/* заменили name на full_name */}
                   </Typography>
                   <Typography variant="bodyText" color="white" className={styles.personPosition}>
                     "{person.position}"
