@@ -8,7 +8,7 @@ import { useProjectStore } from "@/app/store/project/project";
 
 export const Project: FC = () => {
   const { data, loading, error, fetchProjects } = useProjectStore();
-
+  const {t, i18n} = useTranslation()
   useEffect(() => {
     fetchProjects();
   }, [fetchProjects]);
@@ -17,16 +17,10 @@ export const Project: FC = () => {
   if (error) return <div className={styles.error}>Ошибка при загрузке данных: {error}</div>;
   if (!data.length) return <div className={styles.empty}>Проекты не найдены</div>;
 
-export const Project = () => {
-  const {t, i18n} = useTranslation()
   return (
     <div className={styles.projectSection}>
       <Navpanel text={t('projects.home')} link="/" text2={t('projects.projects')}/>
       <h2 className={styles.sectionTitle}>{t('projects.projects')}</h2>
-  return (
-    <div className={styles.projectSection}>
-      <Navpanel text="Главная" text2="Проекты" />
-      <h2 className={styles.sectionTitle}>Проекты</h2>
       <div className={styles.projectGrid}>
         {data.map((project) => (
           <div key={project.id} className={styles.projectCard}>

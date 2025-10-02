@@ -3,14 +3,13 @@ import { useEffect } from 'react';
 import styles from './OurMissionSection.module.scss';
 import { MultiContainer, Typography } from '@/shared/ui';
 import { useTranslation } from 'react-i18next';
-
-
-export const OurMissionSection: FC = () => {
-  const {t, i18n} = useTranslation()
 import { useAboutGoalStore } from '@/app/store/about-movement/ourmissionsection';
 import { useLanguageStore } from '@/app/store/languageStore';
 
-export const OurMissionSection: FC = () => {
+
+  
+  export const OurMissionSection: FC = () => {
+  const {t, i18n} = useTranslation()
   const { data, loading, error, fetchAboutGoal } = useAboutGoalStore();
   const { currentLang } = useLanguageStore();
 

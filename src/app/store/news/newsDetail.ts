@@ -11,11 +11,11 @@ interface NewsDetail {
 }
 
 interface NewsDetailState {
-  newsdetail: NewsDetail | null; // <-- объект, а не массив
+  newsdetail: NewsDetail | null; 
   loading: boolean;
   error: string | null;
   fetchNewsDetail: (id: number) => Promise<void>;
-  reset: () => void; // <-- для очистки
+  reset: () => void; 
 }
 
 export const NewsDetailStore = create<NewsDetailState>((set) => ({
@@ -27,12 +27,23 @@ export const NewsDetailStore = create<NewsDetailState>((set) => ({
     set({ loading: true, error: null });
     try {
       const response = await axiosInstance.get<NewsDetail>(`content/news/${id}/`);
-      console.log("API response:", response.data);
 
-      set({ newsdetail: response.data });
+      // оставляем apiData и transformedData, но без [0]
+      const apiData = response.data; 
+      const transformedData = {
+        id: apiData.id,
+        title: apiData.title,
+        description: apiData.description,
+        date: apiData.date,
+        image: apiData.image,
+      };
+
+      set({ newsdetail: transformedData });
+      console.log("Детали новости:", transformedData);
     } catch (err) {
       const error = err as AxiosError<{ message: string }>;
-      set({ error: error.response?.data?.message || "Something went wrong" });
+      set({ error: error.response?.data?.message || "Что-то пошло не так" });
+      console.error("Ошибка при загрузке детали новости:", error);
     } finally {
       set({ loading: false });
     }

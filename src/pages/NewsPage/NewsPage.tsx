@@ -5,17 +5,18 @@ import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 import { NewsDetailStore } from '@/app/store/news/newsDetail'
 import { useEffect } from 'react'
+import { useLanguageStore } from '@/app/store/languageStore'
 
 function NewsPage() {
   const {t , i18n} = useTranslation()
       const { id } = useParams(); // <-- id из URL
   const { newsdetail, fetchNewsDetail, loading, error } = NewsDetailStore();
-
+  const { currentLang } = useLanguageStore();
   useEffect(() => {
     if (id) {
       fetchNewsDetail(Number(id));
     }
-  }, [id]);
+  }, [id, currentLang]);
 
   if (loading) return <p>Загрузка...</p>;
   if (error) return <p>Ошибка: {error}</p>;

@@ -62,7 +62,7 @@ function NameOfTheEvent() {
 
         <div className={styles.details}>
           <h1 className={styles.detailsTitle}>{t('events.detailevent')}</h1>
-          <span className={styles.detail}><img src={img3} alt="" /> 20:30</span>
+          <span className={styles.detail}><img src={img3} alt="" /> {eventDetail.time}</span>
           <span className={styles.detail}><img src={img4} alt="" /> {eventDetail.date} </span>
           <span className={styles.detail}><img src={img5} alt="" /> {t('events.street')}, {t('events.house')}  </span>
         </div>

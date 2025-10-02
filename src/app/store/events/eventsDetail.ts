@@ -14,6 +14,8 @@ interface EventDetail {
   description: string;
   date: string;
   images: Image[]; // массив картинок
+  time: string,
+  place: string
 }
 
 interface EventDetailState {
