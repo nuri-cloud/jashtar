@@ -18,6 +18,8 @@ export const Profile = () => {
   const data = localStorage.getItem("user");
 
   const userData = data ? JSON.parse(data) : null;
+  console.log(userData);
+  
 const navigate = useNavigate();
   // Функция для рендера контента
   const renderContent = () => {
@@ -65,7 +67,7 @@ const navigate = useNavigate();
             </div>
 
             <div className={styles.userInfo}>
-              <h2 className={styles.userName}>{userData.full_name}</h2>
+              <h2 className={styles.userName}>{userData?.full_name || userData?.name || ""}</h2>
 
               <p className={styles.userEmail}>{userData.email}</p>
             </div>

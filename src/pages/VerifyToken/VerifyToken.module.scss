@@ -104,12 +104,6 @@
 .helpText {
     font-size: 12px;
     color: #666;
-    transition: all 0.3s ease-in-out;
-
-    &:hover{
-        cursor: pointer;
-        color: #2e6cf4;
-    }
 }
 
 .submitButton {

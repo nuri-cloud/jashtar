@@ -3,6 +3,7 @@ import axios from "axios";
 const language = localStorage.getItem("lang") || "ru";
 
 export const axiosInstance = axios.create({
+
   baseURL: "https://grubworm-calm-vaguely.ngrok-free.app/api",
   headers: {
     "Content-Type": "application/json",

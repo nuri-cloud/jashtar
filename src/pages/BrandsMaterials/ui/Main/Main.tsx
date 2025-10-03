@@ -2,6 +2,7 @@ import React from 'react'
 import styles from "./Main.module.scss"
 import Materials from '../Materials1/Materials'
 import NameMerch from '../NameMerch/NameMerch'
+// import Materials2 from '../Materials2/Materials2'
 import Navpanel from '@/widgets/Navpanel/Navpanel'
 import { useTranslation } from 'react-i18next'
 

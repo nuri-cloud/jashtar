@@ -11,6 +11,10 @@ import { MovementPages } from "@/pages/Movement/ui/MovementPages";
 import NameOfTheEvent from "@/pages/NameOfTheEvent/NameOfTheEvent";
 import News from "@/pages/News/News";
 import NewsPage from "@/pages/NewsPage/NewsPage";
+import { VerifyToken } from "@/pages/VerifyToken/VerifyToken";
+import { ForgotPassword } from "@/pages/ForgotPassword/ForgotPassword";
+import { VerifyCode } from "@/pages/VerifyCode/VerifyCode";
+import { NewPassword } from "@/pages/NewPassword/NewPaasord";
 import NotFound from "@/pages/NotFound/NotFound";
 import { Profile } from "@/pages/PersonalInformation/Profile";
 import { PhotoGallry } from "@/pages/Photo/PhotoGallry";
@@ -40,6 +44,14 @@ export default function Routing() {
     { link: "/detailview/:id", page: <DetailView />, id: 15 },
     { link: "/events", page: <Events />, id: 16 },
     { link: "/detailview", page: <DetailView />, id: 15 },
+    { link: "*", page: <NotFound />, id: 16 },
+    { link: "/eventsArchivePage", page: <EventsArchivePage />, id: 18 },
+    { link: "/news", page: <News />, id: 19 },
+    { link: "/newsheadline", page: <NewsPage />, id: 20 },
+    { link: "/verify-email", page: <VerifyToken />, id: 21 },
+    { link: "/forgot-password", page: <ForgotPassword />, id: 22 },
+    { link: "/verify-code", page: <VerifyCode />, id: 23 },
+    { link: "/new-password/:code", page: <NewPassword />, id: 24 },
     { link: "/eventsArchivePage", page: <EventsArchivePage />, id: 17 },
     { link: "/news", page: <News />, id: 18 },
     { link: "/news/:id", page: <NewsPage />, id: 19 },

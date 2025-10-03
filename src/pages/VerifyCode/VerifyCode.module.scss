@@ -16,16 +16,19 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     padding: 40px 80px;
     gap: 24px;
 
-    .fieldsContainer{
+    .fieldsContainer {
         display: flex;
         justify-content: space-between;
+
         input {
             width: 50%;
         }
-        .fieldContainer{
+
+        .fieldContainer {
             width: 49%;
         }
     }
@@ -82,7 +85,8 @@
 .inputWrapper:hover,
 .inputWrapper:focus-within {
     border-color: #2e6cf4;
-    svg{
+
+    svg {
         color: #2e6cf4;
         transition: all 0.3s ease;
     }
@@ -104,11 +108,27 @@
 .helpText {
     font-size: 12px;
     color: #666;
-    transition: all 0.3s ease-in-out;
+}
 
-    &:hover{
-        cursor: pointer;
-        color: #2e6cf4;
+.codeInputs{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.codeInput {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    text-align: center;
+    border: 2px solid #d1d1d1;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+
+    &:focus {
+        border-color: #2e6cf4;
+        box-shadow: 0 0 0 3px rgba(35, 175, 206, 0.2);
     }
 }
 
@@ -144,28 +164,29 @@
     margin-left: 5px;
     cursor: pointer;
 }
+
 /* Планшеты и небольшие ноутбуки */
 @media (min-width: 768px) {
     .formContainer {
         padding: 40px 60px;
     }
-    
-    
+
+
     .fieldsWrapper {
         grid-template-columns: 1fr 1fr;
         gap: 20px;
     }
-    
+
     .fieldContainer.large {
         grid-column: span 2;
     }
-    
+
     .fieldsContainer {
         flex-direction: row;
         justify-content: space-between;
         gap: 20px;
     }
-    
+
     .fieldsContainer .fieldContainer {
         width: 49%;
     }
@@ -176,14 +197,14 @@
     .container {
         flex-direction: row;
     }
-    
+
     .backgroundImage {
         display: block;
         width: 50%;
         height: 100%;
         object-fit: cover;
     }
-    
+
     .formContainer {
         width: 50%;
         padding: 40px 80px;
@@ -195,23 +216,26 @@
     .formContainer {
         padding: 40px 100px;
     }
-    
+
     .title {
         font-size: 32px;
     }
 }
+
 @media (max-width: 790px) {
-    .container{
+    .container {
         flex-direction: column-reverse;
         height: auto;
     }
-    .backgroundImage{
+
+    .backgroundImage {
         width: 100%;
     }
-    .formContainer{
+
+    .formContainer {
         width: 80%;
         margin: 0 auto;
         padding: 40px 0;
     }
-    
+
 }

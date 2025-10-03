@@ -3,6 +3,9 @@ import { axiosInstance } from "@/app/api/apiclient";
 import { create } from "zustand";
 
 interface RegisterData {
+  name: string;
+  second_name: string;
+  surname: string;
   full_name: string;
   email: string;
   password: string;
@@ -10,10 +13,11 @@ interface RegisterData {
 }
 
 interface UserData {
-  id?: number;
+  name: string;
+  second_name: string;
+  surname: string;
   full_name: string;
   email: string;
-  token?: string; // если приходит с бэка
 }
 
 interface AuthState {
@@ -22,34 +26,33 @@ interface AuthState {
   success: boolean;
   user: UserData | null;
   register: (data: RegisterData) => Promise<void>;
-  logout: () => void;
+  // logout: () => void;
 }
 
 export const useAuthStore = create<AuthState>((set) => {
-  // восстановление состояния из localStorage
-  const storedUser = localStorage.getItem("user");
-  const initialUser = storedUser ? JSON.parse(storedUser) : null;
-
   return {
     loading: false,
     error: null,
     success: false,
-    user: initialUser,
+    user: null,
 
     register: async (data) => {
       set({ loading: true, error: null, success: false });
       try {
-        const response = await axiosInstance.post("account/register/", data);
+        const response = await axiosInstance.post("/account/register/", data);
 
-        if (response.status >= 200 && response.status < 300) {
-          const userData = response.data;
+        console.log("Сырой ответ сервера:", response.data);
 
-          // сохраняем в localStorage
+        // если сервер возвращает { user: {...} }
+        const userData: UserData = response.data.user || response.data;
+
+        console.log("То, что сохраняем:", userData);
+
+        set({ success: true, user: userData });
+
+        if (typeof window !== "undefined") {
           localStorage.setItem("user", JSON.stringify(userData));
-
-          set({ success: true, user: userData });
-        } else {
-          throw new Error("Ошибка регистрации");
+          console.log("Теперь в localStorage:", localStorage.getItem("user"));
         }
       } catch (err: any) {
         const message =
@@ -58,14 +61,17 @@ export const useAuthStore = create<AuthState>((set) => {
           err.message ||
           "Неизвестная ошибка";
         set({ error: message });
+        throw err;
       } finally {
         set({ loading: false });
       }
-    },
+    }
 
-    logout: () => {
-      localStorage.removeItem("user");
-      set({ user: null, success: false });
-    },
+    // logout: () => {
+    //   if (typeof window !== "undefined") {
+    //     localStorage.removeItem("user");
+    //   }
+    //   set({ user: null, success: false });
+    // },
   };
 });

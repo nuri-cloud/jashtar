@@ -5,6 +5,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./PhotoGallry.module.scss";
 import { useTranslation } from "react-i18next";
+import { IoIosArrowForward, IoIosArrowBack  } from "react-icons/io";
+import { useImagesStore } from "@/app/store/Media/images";
+
 
 const albums = Array.from({ length: 42 }, (_, i) => ({
     id: i + 1,
@@ -22,6 +25,13 @@ export function PhotoGallry() {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const currentAlbums = albums.slice(startIndex, startIndex + itemsPerPage);
     const {t , i18n} = useTranslation()
+    const {loading, error, imagesCards, fetchImages} = useImagesStore()
+        if (loading) {
+        return <div className="loader"></div>;
+    }
+    if (error) {
+        return <p style={{ color: "red" }}>{error}</p>;
+    }
     return (
         <div className={styles.container}>
             {/* Навигация */}
@@ -64,7 +74,7 @@ export function PhotoGallry() {
                     onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
                     disabled={currentPage === 1}
                 >
-                    ← Назад
+                    <IoIosArrowBack />
                 </button>
 
                 <div className={styles.pageNumbers}>
@@ -85,7 +95,7 @@ export function PhotoGallry() {
                     onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
                     disabled={currentPage === totalPages}
                 >
-                    Вперёд →
+                    <IoIosArrowForward />
                 </button>
             </div>
         </div>
