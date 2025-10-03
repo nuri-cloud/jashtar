@@ -37,6 +37,8 @@ export default function Routing() {
     { link: "/login", page: <SignIn />, id: 12 },
     { link: "/profile", page: <Profile />, id: 13 },
     { link: "/main", page: <Main />, id: 14 },
+    { link: "/detailview/:id", page: <DetailView />, id: 15 },
+    { link: "/events", page: <Events />, id: 16 },
     { link: "/detailview", page: <DetailView />, id: 15 },
     { link: "/eventsArchivePage", page: <EventsArchivePage />, id: 17 },
     { link: "/news", page: <News />, id: 18 },
