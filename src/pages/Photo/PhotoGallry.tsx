@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "./PhotoGallry.module.scss";
 import { useTranslation } from "react-i18next";
 import { IoIosArrowForward, IoIosArrowBack  } from "react-icons/io";
+import { useImagesStore } from "@/app/store/Media/images";
 
 
 const albums = Array.from({ length: 42 }, (_, i) => ({
@@ -24,6 +25,13 @@ export function PhotoGallry() {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const currentAlbums = albums.slice(startIndex, startIndex + itemsPerPage);
     const {t , i18n} = useTranslation()
+    const {loading, error, imagesCards, fetchImages} = useImagesStore()
+        if (loading) {
+        return <div className="loader"></div>;
+    }
+    if (error) {
+        return <p style={{ color: "red" }}>{error}</p>;
+    }
     return (
         <div className={styles.container}>
             {/* Навигация */}

@@ -3,7 +3,7 @@ import { ImageIcon } from "lucide-react";
 import styles from "./AlbumCard.module.scss";
 
 interface AlbumCardProps {
-  title: string;
+  title: string | null;
   event: string;
   imageUrl: string;
   count: number;
