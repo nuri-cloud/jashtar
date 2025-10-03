@@ -28,7 +28,7 @@ export default function Routing() {
     { link: "/movementpages", page: <MovementPages />, id: 3 },
     { link: "/branchnamepages", page: <BranchNamePages />, id: 4 },
     { link: "/project", page: <Project />, id: 5 },
-    { link: "/project/projectnamepages", page: <ProjectNamePages />, id: 6 },
+    { link: "/project/:id", page: <ProjectNamePages />, id: 6 },
     { link: "/media", page: <MediaPage />, id: 7 },
     { link: "/photoGallery", page: <PhotoGallry />, id: 8 },
     { link: "/videoGallery", page: <Video />, id: 9 },
@@ -47,6 +47,8 @@ export default function Routing() {
      { link: "/events", page: <Events />, id: 17 }, 
     { link: "/eventsArchivePage", page: <EventsArchivePage />, id: 18 }, 
     { link: "/news", page: <News />, id: 19 }, 
+    { link: "nameoftheevent",page: <NameOfTheEvent />, id: 20 }, 
+    
     { link: "/events/:id",page: <NameOfTheEvent />, id: 20 }, 
     // { link: "/newsheadline", page: <ActivitiesPage />, id: 21 }, 
     // { link: "/brandmaterials", page: <Main />, id: 21 }, 
