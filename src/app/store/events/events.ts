@@ -5,11 +5,7 @@ import { AxiosError } from "axios";
 interface Images {
     id: number;
     event: number;
-<<<<<<< HEAD
-    image: string
-=======
     image: string;
->>>>>>> 228ccf60cb3dbe3e63ebe498b97e40db8fe5c880
 }
 
 export interface Events {

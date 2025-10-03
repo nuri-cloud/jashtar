@@ -27,10 +27,6 @@ export const BannerStore = create<BannerState>((set) => ({
     set({ loading: true, error: null });
     try {
       const response = await axiosInstance.get<Banner[]>(`home/banners/`);
-<<<<<<< HEAD
-      console.log("Banners API:", response.data);
-      set({ banners: response.data });
-=======
 
       const transformedData: Banner[] = response.data.map((item) => ({
         id: item.id,
@@ -42,7 +38,6 @@ export const BannerStore = create<BannerState>((set) => ({
       }));
 
       set({ banners: transformedData });
->>>>>>> 228ccf60cb3dbe3e63ebe498b97e40db8fe5c880
     } catch (err) {
       const error = err as AxiosError<{ message: string }>;
       set({

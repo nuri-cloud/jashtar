@@ -14,7 +14,7 @@ export const AlbumCard: React.FC<AlbumCardProps> = ({ title, event, imageUrl, co
   return (
     <article className={styles.card} onClick={onClick}>
       <div className={styles.imageWrapper}>
-        <img src={imageUrl} alt={title} className={styles.image} />
+        <img src={imageUrl} alt={title||""} className={styles.image} />
         <div className={styles.count}>
           <ImageIcon className={styles.icon} />
           <span>{count}</span>

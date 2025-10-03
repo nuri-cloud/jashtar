@@ -11,13 +11,10 @@ import { MovementPages } from "@/pages/Movement/ui/MovementPages";
 import NameOfTheEvent from "@/pages/NameOfTheEvent/NameOfTheEvent";
 import News from "@/pages/News/News";
 import NewsPage from "@/pages/NewsPage/NewsPage";
-<<<<<<< HEAD
 import { VerifyToken } from "@/pages/VerifyToken/VerifyToken";
 import { ForgotPassword } from "@/pages/ForgotPassword/ForgotPassword";
 import { VerifyCode } from "@/pages/VerifyCode/VerifyCode";
 import { NewPassword } from "@/pages/NewPassword/NewPaasord";
-=======
->>>>>>> 228ccf60cb3dbe3e63ebe498b97e40db8fe5c880
 import NotFound from "@/pages/NotFound/NotFound";
 import { Profile } from "@/pages/PersonalInformation/Profile";
 import { PhotoGallry } from "@/pages/Photo/PhotoGallry";
@@ -35,7 +32,7 @@ export default function Routing() {
     { link: "/movementpages", page: <MovementPages />, id: 3 },
     { link: "/branchnamepages", page: <BranchNamePages />, id: 4 },
     { link: "/project", page: <Project />, id: 5 },
-    { link: "/project/projectnamepages", page: <ProjectNamePages />, id: 6 },
+    { link: "/project/:id", page: <ProjectNamePages />, id: 6 },
     { link: "/media", page: <MediaPage />, id: 7 },
     { link: "/photoGallery", page: <PhotoGallry />, id: 8 },
     { link: "/videoGallery", page: <Video />, id: 9 },
@@ -62,6 +59,8 @@ export default function Routing() {
      { link: "/events", page: <Events />, id: 17 }, 
     { link: "/eventsArchivePage", page: <EventsArchivePage />, id: 18 }, 
     { link: "/news", page: <News />, id: 19 }, 
+    { link: "nameoftheevent",page: <NameOfTheEvent />, id: 20 }, 
+    
     { link: "/events/:id",page: <NameOfTheEvent />, id: 20 }, 
     // { link: "/newsheadline", page: <ActivitiesPage />, id: 21 }, 
     // { link: "/brandmaterials", page: <Main />, id: 21 }, 
