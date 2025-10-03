@@ -51,6 +51,9 @@
     @media (max-width: 480px) {
         display: flex;
         width: 100%;
+        img{
+          width: 100% !important;
+        }
     }
     img{
       object-fit: cover;
@@ -59,9 +62,13 @@
   display: flex;
   gap: 16px;
   width: 100%;
-
+   
   @media (max-width: 480px) {
-    width: 60%;
+    width: 100%;
+    img{
+      width: 100%;
+         object-fit: cover;
+    }
   }
 
   img {
@@ -123,9 +130,7 @@
     gap: 16px;
     img{
         border-radius: 20px;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position:center;
+        object-fit: cover;
     }
     img:nth-child(1){
         width: 422px;

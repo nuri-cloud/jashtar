@@ -121,6 +121,7 @@ export const SignIn = () => {
 
                 {/* Повтор пароля */}
                 {/* <div className={`${styles.fieldContainer} ${styles.large}`}>
+                <div className={`${styles.fieldContainer} ${styles.large}`}>
                     <label className={styles.label}>
                         Повторите пароль<span className={styles.required}>*</span>
                     </label>
@@ -147,6 +148,7 @@ export const SignIn = () => {
                         </button>
                     </div>
                 </div> */}
+                {/* </div> */}
 
                 {/* Кнопка */}
                 <button type="submit" className={styles.submitButton} disabled={loading}>

@@ -3,9 +3,8 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PhotoCard } from '../PhotoCard/PhotoCard';
 import styles from './PhotoGallery.module.scss';
-import { useImagesStore } from '@/app/store/Media/images';
-import { log } from 'console';
 import { useTranslation } from 'react-i18next';
+import { useImagesStore } from '@/app/store/Media/images';
 
 // Определение интерфейсов
 interface GalleryImage {
@@ -40,11 +39,13 @@ export const PhotoGallery: React.FC = () => {
   const { t, i18n } = useTranslation()
   console.log("Current language:", imagesCards);
   
+    // const navigate = useNavigate();
+    // const {t , i18n} = useTranslation()
   return (
     <div className={styles.container}>
       <header className={styles.header}>
         <h1 className={styles.title}>{t('media.PhotoGallery')}</h1>
-
+        
         <button onClick={() => navigate("/photoGallery")} className={styles.button}>
           <span className={styles.buttonText}>{t('media.allPhoto')}</span>
           <ArrowRightIcon className={styles.buttonIcon} />

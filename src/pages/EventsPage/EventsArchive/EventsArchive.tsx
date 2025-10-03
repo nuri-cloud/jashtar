@@ -11,13 +11,13 @@ function EventsArchive() {
     const usenavigate = useNavigate()
      const {t, i18n} = useTranslation()
    const { event, loading, error, fetchevents } = eventsStore();
- 
+   const PastEvents = event.filter(event => event.event_status === "past");
    useEffect(() => {
      fetchevents();
    }, []);
-  if (loading) {
-   return <p>Загрузка...</p>;
- }
+//   if (loading) {
+//    return <div className='loader'></div>;
+//  }
  if (error) {
    return <p style={{ color: "red" }}>{error}</p>;
  }
@@ -28,7 +28,7 @@ function EventsArchive() {
          <button onClick={() => usenavigate('/eventsArchivePage')}>{t('events.button')}</button>
         </div>
     <div className='EventsArchive'>
-      {event.slice(0 , 3).map((event) => (
+      {PastEvents.map((event) => (
         <Card onClick={() => usenavigate(`/events/${event.id}/`)} key={event.id} item={event} />
       ))}
     </div>

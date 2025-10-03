@@ -86,8 +86,8 @@ export const Register = () => {
             password: formData.password,
             password_confirmation: formData.confirmPassword,
         });
-        // localStorage.setItem("user", JSON.stringify(user));
-        console.log(user);
+
+
     };
 
 

@@ -4,7 +4,7 @@ import { axiosInstance } from "@/app/api/apiclient";
 interface User {
   refresh: string;
   access: string;
-  user:{
+  user: {
     id: number;
     email: string;
     full_name: string;
@@ -52,8 +52,11 @@ export const useLogeinStore = create<RegisterState>((set, get) => ({
 
     try {
       const { formData } = get();
+      await axiosInstance.post("account/login/", formData);
+      set({ success: true });
+      // const response = await axiosInstance.post("account/login/", formData);
 
-        await axiosInstance.post("account/login/", formData);
+      await axiosInstance.post("account/login/", formData);
       set({ success: true });
       const response = await axiosInstance.post("account/login/", formData);
       const userData: User = response.data.user;
