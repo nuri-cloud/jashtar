@@ -2,17 +2,11 @@
         width: 100%;
         max-width: 1440px;
         height: auto;
-        width: 1320px;
-        height: 1800px;
         margin: 0 auto;
         padding: 0px 20px;
         display: flex;
         flex-direction: column;
-        gap: 56px;
-        padding: 0 20px;
-        display: flex;
-        flex-direction: column;
-        gap: 40px;
+        gap: 16px;
 
         .view {
             display: flex;
@@ -48,7 +42,7 @@
 
                         img {
                             flex: 1 1 30%;
-                            max-width: 210px;
+                            max-width: 200px;
                             height: auto;
                             border-radius: 20px;
                             object-fit: cover;

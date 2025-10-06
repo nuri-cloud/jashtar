@@ -7,7 +7,7 @@ export interface Material {
     title: string;
     price: number;
     slug: string;
-    image: string;
+    file: string;
 }
 
 interface MaterialsState {
@@ -29,7 +29,7 @@ export const useMaterialsStore = create<MaterialsState>((set) => ({
             const mappedMaterials = response.data.map((item: any) => ({
                 id: item.id,
                 title: item.title,
-                image: item.file,
+                file: item.file,
                 price: item.price,
             }));
             set({ materials: mappedMaterials });
