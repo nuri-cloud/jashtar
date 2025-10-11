@@ -1,3 +1,4 @@
+
 .activityCard {
   display: flex;
   flex-direction: column;
@@ -11,30 +12,23 @@
   position: relative;
   overflow: hidden;
   height: 264px;
-  width: 100%;
+  margin: auto;
+  width: 1320px;
   box-sizing: border-box;
-  background: linear-gradient(to left, rgba(0, 0, 0, 0) 0%, var(--bg-color, #000) 100%), 
-              var(--background-image-url) no-repeat right bottom / auto 100%;
-  opacity: 1; 
-@media (max-width: 768px) {
-  padding: 45px 30px;
-}
-@media (max-width: 480px) {
-  padding: 65px 20px;
-}
-@media (max-width: 366px) {
-  padding: 45px 20px;
-  height: 290px;
-  
-}
+  background: linear-gradient(
+      to left,
+      rgba(0, 0, 0, 0) 0%,
+      var(--bg-color, #000) 100%
+    ),
+    var(--background-image-url) no-repeat right bottom / auto 100%;
+  opacity: 1;
+  transition: all 0.3s ease;
+
   &::before {
-    content: '';
+    content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: inherit; 
+    inset: 0;
+    background: inherit;
     opacity: 0.3;
     z-index: 0;
   }
@@ -48,10 +42,6 @@
     font-size: 40px;
     font-weight: 600;
     margin-bottom: 5px;
-    @media (max-width: 480px) {
-      font-size: 36px;
-      font-weight: 600;
-    }
   }
 
   .description {
@@ -60,33 +50,31 @@
     line-height: 1.5;
     font-weight: 500;
     margin-bottom: 20px;
-    @media (max-width: 480px) {
-      font-size: 16px;
-      font-weight: 400;
+  }
+
+  .buttons {
+    display: flex;
+    gap: 30px;
+    height: 44px;
+    align-items: center;
+    margin-top: 15px;
+
+    .icon {
+      width: 40px;
+      height: 40px;
+      background-color: white;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img{
+        width: 24px;
+        height: 24px;
+      }
     }
   }
-.buttons{
-  display: flex;
-  gap: 30px;
-  height: 44px;
-  align-items: center;
-  margin-top: 15px;
-  @media (max-width: 480px) {
-    flex-wrap: wrap;
-  }
-  span{
-    padding: 10px;
-    background-color: #fff;
-    border-radius: 50%;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    z-index: 12;
-    &:hover {
-      background-color: #f0f0f0;
-      transform: translateY(-2px);
-    }
-  }
-}
+
   .button {
     background-color: white;
     color: #333;
@@ -99,17 +87,102 @@
     gap: 10px;
     align-items: center;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
     font-size: 18px;
     font-weight: 400;
-    text-align: center;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-      .span{
-        background-color: transparent !important;
+  }
+  @media (max-width: 1024px) {
+    width: 95%;
+    padding: 45px 60px;
+    height: 250px;
+
+    .title {
+      font-size: 34px;
+    }
+
+    .description {
+      font-size: 20px;
+    }
+  }
+  @media (max-width: 768px) {
+    width: 100%;
+    height: auto;
+    padding: 40px 30px;
+    background: linear-gradient(
+        to top,
+        var(--bg-color, #000) 40%,
+        rgba(0, 0, 0, 0) 100%
+      ),
+      var(--background-image-url) no-repeat center / cover;
+    border-radius: 16px;
+
+    .title {
+      font-size: 30px;
+      font-weight: 600;
+    }
+
+    .description {
+      font-size: 18px;
+      font-weight: 400;
+      margin-bottom: 16px;
+    }
+
+    .buttons {
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: flex-start;
+    }
+  }
+  @media (max-width: 480px) {
+    padding: 30px 20px;
+    border-radius: 16px;
+    height: auto;
+    background: linear-gradient(
+        to top,
+        var(--bg-color, #000) 50%,
+        rgba(0, 0, 0, 0) 100%
+      ),
+      var(--background-image-url) no-repeat center / cover;
+
+    .title {
+      font-size: 26px;
+    }
+
+    .description {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+
+      .button {
+        justify-content: center;
+        font-size: 10px;
+        width: 102px;
+        height: 25px;
+        gap: 2.43px;
+        border-radius: 6px;
       }
-    &:hover {
-      background-color: #f0f0f0;
-      transform: translateY(-2px);
+        .icon {
+          width: 38px;
+          height: 38px;
+          background-color: white;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+         
+          img{
+            width: 20px;
+            height: 20px;
+          }
+        }
+      
     }
   }
 }

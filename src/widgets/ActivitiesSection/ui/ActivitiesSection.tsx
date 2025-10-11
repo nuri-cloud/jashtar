@@ -1,100 +1,146 @@
-import React from 'react';
-import ActivityCard from '../ui/ActivityCard/ActivityCard';
-import img from '../../../shared/assets/images/friends.png';
-import styles from './ActivitiesSection.module.scss'; 
-import { useTranslation } from 'react-i18next';
+// import React, { useState } from "react";
+// import ActivityCard from "../ui/ActivityCard/ActivityCard";
+// import DownCard from "./DownCard/DownCard";
+// import styles from "./ActivitiesSection.module.scss";
 
-function ActivitiesSection() {
-  const {t, i18n} = useTranslation()
-  const activitiesData = [
-    { title: "Волонтерство", description: "Поможем друг другу и дари добро", imageSrc: img, bgColor: "#5889F6" },
-    { title: "Волонтерство", description: "Поможем друг другу и дари добро", imageSrc: img, bgColor: "#57D175" },
-    { title: "Волонтерство", description: "Поможем друг другу и дари добро", imageSrc: img, bgColor: "#AC7F5E" },
-    { title: "Волонтерство", description: "Поможем друг другу и дари добро", imageSrc: img, bgColor: "#6155F5" },
-    { title: "Волонтерство", description: "Поможем друг другу и дари добро", imageSrc: img, bgColor: "#EC5E61" },
-    { title: "Волонтерство", description: "Поможем друг другу и дари добро", imageSrc: img, bgColor: "#E7BC5E" },
-  ];
-
-  return (
-    <section className={styles.activitiesSection}>
-      <h2 className={styles.sectionTitle}>{t('areaOfActivity.direction')}</h2>
-      <div className={styles.cardsContainer}>
-        {activitiesData.map((activity, index) => (
-          <ActivityCard
-            key={index}
-            title={activity.title}
-            description={activity.description}
-            imageSrc={activity.imageSrc}
-            bgColor={activity.bgColor}
-          />
-        ))}
-      </div>
-    </section>
-  );
-}
-
-export default ActivitiesSection;
-
-// import React, { useEffect, useState } from 'react';
-// import ActivityCard from '../ui/ActivityCard/ActivityCard';
-// import styles from './ActivitiesSection.module.scss';
-// import { useActivityStore } from '@/app/store/activity/activity';
-// import { AnimatePresence, motion } from 'framer-motion'; 
-// import { DownCard } from './DownCard/DownCard';
-
-// function ActivitiesSection() {
-//   const { activities, loading, error, fetchActivities } = useActivityStore();
-//   const [isShown, setIsShown] = useState<number>(-1);
-
-//   useEffect(() => {
-//     fetchActivities();
-//   }, [fetchActivities]);
-
-//   if (loading) {
-//     return <div className={styles.loading}>Загрузка данных...</div>;
-//   }
-
-//   if (error) {
-//     return <div className={styles.error}>Ошибка при загрузке: {error}</div>;
-//   }
-  
-//   return (
-//     <section className={styles.activitiesSection}>
-//       <h2 className={styles.sectionTitle}>Направление деятельности</h2>
-//       <div className={styles.cardsContainer}>
-//         {activities.map((activity, index) => (
-//           <React.Fragment key={activity.id}>
-//             <ActivityCard
-//               title={activity.title}
-//               description={activity.description}
-//               imageSrc={activity.image}
-//               bgColor={activity.color}
-//               onClick={() => setIsShown(index)}
-//             />
-
-//             <AnimatePresence>
-//               {isShown === index && (
-//                 <motion.div
-//                   key={`downcard-${index}`}
-//                   initial={{ opacity: 0, y: -30 }}
-//                   animate={{ opacity: 1, y: 0 }}
-//                   exit={{ opacity: 0, y: -30 }}
-//                   transition={{ duration: 0.5, ease: "easeInOut" }}
-//                 >
-//                   <DownCard
-//                     onClick={() => setIsShown(-1)}
-//                     bgColor={activity.color}
-//                     index={index}
-//                     show={isShown}
-//                   />
-//                 </motion.div>
-//               )}
-//             </AnimatePresence>
-//           </React.Fragment>
-//         ))}
-//       </div>
-//     </section>
-//   );
+// interface Activity {
+//   id?: number | string;
+//   title: string;
+//   short_description?: string;
+//   description?: string;
+//   image?: string;
+//   telegram_link?: string;
+//   instagram_link?: string;
 // }
 
+// interface ActivitiesSectionProps {
+//   activities: Activity[];
+// }
+
+// const ActivitiesSection: React.FC<ActivitiesSectionProps> = ({ activities }) => {
+//   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
+//   const colors = ["#5889F6", "#57D175", "#AC7F5E", "#6155F5", "#EC5E61", "#E7BC5E"];
+
+//   if (!activities || activities.length === 0) {
+//     return <p className={styles.empty}>Нет доступных активностей</p>;
+//   }
+
+//   return (
+//     <div className={styles.wrapper}>
+//       {activities.map((activity, index) => {
+//         const color = colors[index % colors.length];
+//         return (
+//           <div key={activity.id || index}>
+//             <ActivityCard
+//               title={activity.title}
+//               description={activity.short_description || "Описание скоро появится."}
+//               imageSrc={activity.image || "/images/default.jpg"}
+//               bgColor={color}
+//               telegram={activity.telegram_link}
+//               instagram={activity.instagram_link}
+//               onClick={() => setActiveIndex(activeIndex === index ? null : index)}
+//             />
+
+//             <DownCard
+//               bgColor={color}
+//               index={index}
+//               show={activeIndex}
+//               onClick={() => setActiveIndex(null)}
+//               title={activity.title}
+//               fullText={activity.description || "Описание временно отсутствует."}
+//               telegram={activity.telegram_link}
+//               instagram={activity.instagram_link}
+//             />
+//           </div>
+//         );
+//       })}
+//     </div>
+//   );
+// };
+
 // export default ActivitiesSection;
+
+import React, { useState } from "react";
+import ActivityCard from "./ActivityCard/ActivityCard"; // Предполагаемый путь
+import DownCard from "../ui/DownCard/DownCard"; // Предполагаемый путь
+import styles from "./ActivitiesSection.module.scss";
+
+interface Activity {
+  id?: number | string;
+  title: string;
+  short_description?: string;
+  description?: string;
+  image?: string;
+  telegram_link?: string;
+  instagram_link?: string;
+}
+
+interface ActivitiesSectionProps {
+  activities: Activity[];
+}
+
+const ActivitiesSection: React.FC<ActivitiesSectionProps> = ({
+  activities,
+}) => {
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
+  const colors = [
+    "#5889F6",
+    "#57D175",
+    "#AC7F5E",
+    "#6155F5",
+    "#EC5E61",
+    "#E7BC5E",
+  ];
+
+  if (!activities || activities.length === 0) {
+    return <p className={styles.empty}>Нет доступных активностей</p>;
+  }
+
+  return (
+    <div className="pageWrapper">
+      <div className={styles.wrapper}>
+        <h2 className="sectionTitle">Направление деятельности</h2>     {" "}
+        {activities.map((activity, index) => {
+          const color = colors[index % colors.length];
+          return (
+            <div key={activity.id || index}>
+               {" "}
+              <ActivityCard
+                title={activity.title}
+                description={
+                  activity.short_description || "Описание скоро появится."
+                }
+                imageSrc={activity.image || "/images/default.jpg"}
+                bgColor={color}
+                telegram={activity.telegram_link}
+                instagram={activity.instagram_link}
+                onClick={() =>
+                  setActiveIndex(activeIndex === index ? null : index)
+                }
+              />
+                         {" "}
+              <DownCard
+                bgColor={color}
+                index={index}
+                show={activeIndex}
+                onClick={() => setActiveIndex(null)}
+                title={activity.title}
+                fullText={
+                  activity.description || "Описание временно отсутствует."
+                }
+                telegram={activity.telegram_link}
+                instagram={activity.instagram_link}
+              />
+                       {" "}
+            </div>
+          );
+        })}
+           {" "}
+      </div>
+    </div>
+  );
+};
+
+export default ActivitiesSection;

@@ -1,65 +1,121 @@
+// src/app/store/project/project.ts
+
 import { create } from "zustand";
 import { axiosInstance } from "@/app/api/apiclient";
 
-// Тип для массива картинок, которые приходят от API
-interface ProjectImage {
-  id: number;
-  project: number;
-  image: string;
+// --- ИНТЕРФЕЙСЫ API: Как данные приходят с сервера ---
+interface ProjectImageApi {
+  id: number;
+  project: number;
+  image: string; // Поле в массиве 'images'
 }
 
-// Тип для объекта проекта, который приходит от API
-interface ProjectApi {
-  id: number;
-  title: string;
-  description: string;
-  images: ProjectImage[];
+interface ProjectListApi {
+    id: number;
+    title: string;
+    description: string;
+    image: string; // Главная картинка приходит здесь
 }
 
-// Упрощённый проект, который используем во фронте
+interface ProjectDetailApi {
+  id: number;
+  title: string;
+  description: string;
+  goals: string; 
+  tasks: string; 
+  images?: ProjectImageApi[]; // Доп. фото приходят здесь
+}
+
+// --- ИНТЕРФЕЙСЫ СТОРА: Как данные хранятся во фронтенде ---
 interface Project {
-  id: number;
-  title: string;
-  description: string;
-  image: string; // берём только первую картинку
+  id: number;
+  title: string;
+  description: string;
+  image: string; // Главная картинка
+  goals: string; 
+  tasks: string; 
+  photos: { url: string }[]; // Преобразованный массив для галереи
 }
 
 interface ProjectState {
-  data: Project[];
-  loading: boolean;
-  error: string | null;
-  fetchProjects: () => Promise<void>;
+  data: Project[];
+  loading: boolean;
+  error: string | null;
+  currentProject: Project | null; 
+  fetchProjects: () => Promise<void>;
+  fetchProjectById: (id: number) => Promise<void>;
 }
 
+// --- ФУНКЦИИ-ХЕЛПЕРЫ ---
+// Предполагаем, что медиа лежит по адресу без /api
+const mediaPrefix = axiosInstance.defaults.baseURL?.replace('/api', '') || '';
+
+const getFullImageUrl = (relativePath: string): string => {
+  if (!relativePath || relativePath.startsWith('http')) {
+    return relativePath; 
+  }
+  const normalizedPath = relativePath.startsWith('/') ? relativePath.substring(1) : relativePath;
+  return `${mediaPrefix}/${normalizedPath}`;
+};
+
+// --- СОЗДАНИЕ И ЭКСПОРТ СТОРА ---
 export const useProjectStore = create<ProjectState>((set) => ({
-  data: [],
-  loading: false,
-  error: null,
+  data: [], 
+  loading: false,
+  error: null,
+  currentProject: null,
 
-  fetchProjects: async () => {
-    set({ loading: true, error: null });
-    try {
-      // Типизируем ответ от API
-      const response = await axiosInstance.get<ProjectApi[]>("/content/projects/");
-      const apiData = response.data;
+  // 1. Загрузка списка проектов (для /project)
+  fetchProjects: async () => {
+    set({ data: [], loading: true, error: null }); 
+    try {
+      const response = await axiosInstance.get<ProjectListApi[]>("/content/projects/");
+      
+      const transformedData: Project[] = response.data.map((item) => ({
+        id: item.id,
+        title: item.title,
+        description: item.description,
+        image: getFullImageUrl(item.image), // Главное фото приходит здесь
+        goals: "", // Здесь этих полей нет
+        tasks: "", // Здесь этих полей нет
+        photos: [], // Здесь доп. фото нет
+      }));
 
-      // Трансформируем данные под удобный формат
-      const transformedData: Project[] = apiData.map((item) => ({
-        id: item.id,
-        title: item.title,
-        description: item.description,
-        image: item.images.length > 0 ? item.images[0].image : "",
-      }));
+      set({ data: transformedData, loading: false });
+    } catch (err: unknown) {
+      const errorMessage = err instanceof Error ? err.message : "Неизвестная ошибка при загрузке списка";
+      set({ data: [], loading: false, error: errorMessage });
+    }
+  },
 
-      set({ data: transformedData, loading: false });
-    } catch (err: unknown) {
-      if (err instanceof Error) {
-        console.error("Ошибка при загрузке проектов:", err.message);
-        set({ data: [], loading: false, error: err.message });
-      } else {
-        console.error("Неизвестная ошибка:", err);
-        set({ data: [], loading: false, error: "Неизвестная ошибка" });
-      }
-    }
-  },
+  // 2. Загрузка деталей проекта (для /project/:id)
+  fetchProjectById: async (id: number) => {
+    set({ currentProject: null, loading: true, error: null }); 
+    try {
+      const response = await axiosInstance.get<ProjectDetailApi>(`/content/projects/${id}/`);
+      const item = response.data;
+      
+      // Преобразуем массив 'images' в массив 'photos' с абсолютными URL
+      const rawImages = item.images || [];
+      const transformedPhotos = rawImages.map(p => ({ url: getFullImageUrl(p.image) }));
+      
+      // ✅ ФИКС: Главное фото = первое фото из массива 'images'
+      const mainImage = transformedPhotos[0] ? transformedPhotos[0].url : '';
+      
+      const transformedData: Project = {
+        id: item.id,
+        title: item.title,
+        description: item.description,
+        image: mainImage, // Главное фото
+        goals: item.goals, 
+        tasks: item.tasks, 
+        photos: transformedPhotos, // Весь массив фото для галереи
+      };
+
+      set({ currentProject: transformedData, loading: false });
+    } catch (err: unknown) {
+      const errorMessage = err instanceof Error ? err.message : "Неизвестная ошибка при загрузке деталей";
+      set({ currentProject: null, loading: false, error: errorMessage });
+    }
+  },
 }));
