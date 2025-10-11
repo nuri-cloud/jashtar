@@ -1,128 +1,137 @@
+
 .projectSection {
-    padding: 40px;
-    max-width: 1320px;
-    margin: 0 auto;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding-bottom: 80px;
+}
+
+.sectionTitle {
+  text-align: center;
+  margin-bottom: 40px;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 100%;
+}
+
+.projectGrid {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+
+.projectCard {
+  width: 424px;
+  height: 576px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.projectImage {
+  width: 100%;
+  height: 351px;
+  object-fit: cover;
+  display: block;
+}
+
+.projectContent {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.cardTitle {
+  color: #111111;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 100%;
+  text-align: center;
+  margin: 12px 12px;
+}
+
+.cardDescription {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.4;
+  max-height: calc(1.4em * 4);
+  color: #444;
+  margin-bottom: auto;
+}
+
+.learnMoreButton {
+  margin-top: 24px;
+  width: 100%;
+  height: 52px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 100%;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #0056b3;
   }
-  
+}
+@media (max-width: 1360px) {
+  .projectSection {
+    padding: 0 16px 80px 16px;
+  }
+}
+
+@media (max-width: 1024px) {
   .sectionTitle {
-    text-align: center;
-    margin-bottom: 40px;
-    font-weight: 600;
-    font-size: 40px;
-    line-height: 100%;
+    font-size: 32px;
   }
-  
-  .projectGrid {
-    display: flex;
-    gap: 24px;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  
+
   .projectCard {
-    width: 424px;
-    height: 576px;
-    border-radius: 8px;
-    overflow: hidden;
-    // background-color: #f9f9f9;
-    display: flex;
-    flex-direction: column;
+    width: calc(50% - 12px);
+    flex-basis: calc(50% - 12px);
+    height: auto;
+    min-height: 520px;
   }
-  
-  .projectImage {
+}
+
+@media (max-width: 768px) {
+  .sectionTitle {
+    font-size: 28px;
+    margin-bottom: 24px;
+  }
+
+  .projectGrid {
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+    padding: 0 16px;
+  }
+
+  .projectCard {
     width: 100%;
-    height: 351px;
-    object-fit: cover;
-    display: block;
+    max-width: 100%;
+    height: auto;
   }
-  
-  .cardContent {
-    padding: 12px;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-  }
-  
+
   .cardTitle {
-    color: #111111;
-    font-weight: 600;
-    font-size: 24px;
-    line-height: 100%;
-    text-align: center;
-  }
-  
-  .cardDescription {
-    color: #111111;
-    font-weight: 400;
     font-size: 20px;
-    line-height: 100%;
-    text-align: center;
-    margin: 12px 0 24px 0;
   }
-  
+
+  .cardDescription {
+    font-size: 16px;
+  }
+
   .learnMoreButton {
-    width: 100%;
-    height: 52px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 100%;
-    transition: background-color 0.3s ease;
-  
-    &:hover {
-      background-color: #0056b3;
-    }
+    font-size: 16px;
+    height: 48px;
   }
-  
-  // ✅ Адаптивдүү дизайн
-  
-  // Планшет (768px↓)
-  @media (max-width: 1024px) {
-    .sectionTitle {
-      font-size: 32px;
-    }
-  
-    .projectCard {
-      width: 48%;
-      height: auto;
-    }
-  }
-  
-  // Смартфон (480px↓)
-  @media (max-width: 768px) {
-    .sectionTitle {
-      font-size: 28px;
-      margin-bottom: 24px;
-    }
-  
-    .projectGrid {
-      flex-direction: column;
-      gap: 16px;
-      align-items: center;
-    }
-  
-    .projectCard {
-      width: 100%;
-      max-width: 100%;
-      height: auto;
-    }
-  
-    .cardTitle {
-      font-size: 20px;
-    }
-  
-    .cardDescription {
-      font-size: 16px;
-    }
-  
-    .learnMoreButton {
-      font-size: 16px;
-      height: 48px;
-    }
-  }
-  
+}

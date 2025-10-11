@@ -1,76 +1,78 @@
-// import React from 'react';
-// import clsx from 'clsx';
-// import styles from './ActivityCard.module.scss';
-// import img from '../../../../shared/assets/images/drop down.svg'
-// import img1 from '../../../../shared/assets/images/instagram-line.svg'
-// import img2 from '../../../../shared/assets/images/telegram-2-fill.svg'
-// interface ActivityCardProps {
-//   title: string;
-//   description: string;
-//   imageSrc: string; 
-//   bgColor: string;
-// }
 
-// const ActivityCard: React.FC<ActivityCardProps> = ({ title, description, imageSrc, bgColor }) => {
-//   const cardStyle = {
-//     '--background-image-url': `url(${imageSrc})`,
-//     boxSizing: 'border-box',
-//     background: `linear-gradient(to left, rgba(0, 0, 0, 0) 0%, ${bgColor} 43%), var(--background-image-url) no-repeat right bottom / auto 100%`,
-//   } as React.CSSProperties;
-    
-//   return (
-//     <div className={clsx(styles.activityCard)} style={cardStyle}>
-//       <div className={styles.content}>
-//         <h3 className={styles.title}>{title}</h3>
-//         <p className={styles.description}>{description}</p>
-//         <div className={styles.buttons}>
-//           <span><img src={img2} alt="" /></span>
-//           <span><img src={img1} alt="" /></span>
-//         <button className={styles.button}>Подробнее <img src={img} alt="" /></button>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
+import React from "react";
+import clsx from "clsx";
+import styles from "./ActivityCard.module.scss";
+import dropDownImg from "../../../../shared/assets/images/drop down.svg";
+import instagramImg from "../../../../shared/assets/images/instagram-line.svg";
+import telegramImg from "../../../../shared/assets/images/telegram-2-fill.svg";
 
-// export default ActivityCard;
-import React from 'react';
-import clsx from 'clsx';
-import styles from './ActivityCard.module.scss';
-import dropDownImg from '../../../../shared/assets/images/drop down.svg';
-import instagramImg from '../../../../shared/assets/images/instagram-line.svg';
-import telegramImg from '../../../../shared/assets/images/telegram-2-fill.svg';
-import img from '../../../../shared/assets/images/drop down.svg'
-import img1 from '../../../../shared/assets/images/instagram-line.svg'
-import img2 from '../../../../shared/assets/images/telegram-2-fill.svg'
 interface ActivityCardProps {
   title: string;
   description: string;
-  imageSrc: string; 
+  imageSrc: string;
   bgColor: string;
   onClick?: () => void;
+  telegram?: string;
+  instagram?: string;
 }
 
-const ActivityCard: React.FC<ActivityCardProps> = ({ title, description, imageSrc, bgColor, onClick }) => {
+const ActivityCard: React.FC<ActivityCardProps> = ({
+  title,
+  description,
+  imageSrc,
+  bgColor,
+  onClick,
+  telegram,
+  instagram,
+}) => {
   const cardStyle = {
-    '--background-image-url': `url(${imageSrc})`,
-    boxSizing: 'border-box',
-    background: `linear-gradient(to left, rgba(0, 0, 0, 0) 0%, ${bgColor} 43%), var(--background-image-url) no-repeat right bottom / auto 100%`,
+    backgroundImage: `linear-gradient(to right, ${bgColor} 40%, rgba(0, 0, 0, 0) 100%), url(${imageSrc})`,
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+    backgroundPosition: "right center",
   } as React.CSSProperties;
-    
+
   return (
-    <div className={clsx(styles.activityCard)} style={cardStyle}>
+    <>
+    <div className={clsx(styles.activityCard)} style=
+    {cardStyle}>
       <div className={styles.content}>
         <h3 className={styles.title}>{title}</h3>
         <p className={styles.description}>{description}</p>
+
         <div className={styles.buttons}>
-          <span><img src={img2} alt="" /></span>
-          <span><img src={img1} alt="" /></span>
-        <button onClick={onClick} className={styles.button}>Подробнее <img src={img} alt="" /></button>
+          {telegram && (
+            <a
+              href={telegram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.icon}
+            >
+              <img src={telegramImg} alt="Telegram" />
+            </a>
+          )}
+
+          {instagram && (
+            <a
+              href={instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.icon}
+            >
+              <img src={instagramImg} alt="Instagram" />
+            </a>
+          )}
+
+          <button onClick={onClick} className={styles.button}>
+            Подробнее
+            <img src={dropDownImg} alt="Подробнее" />
+          </button>
         </div>
       </div>
     </div>
+    </>
   );
 };
+
 
 export default ActivityCard;
