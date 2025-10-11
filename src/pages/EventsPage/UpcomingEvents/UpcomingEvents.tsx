@@ -26,14 +26,24 @@ const UpcomingEvents: React.FC = () => {
        fetchevents();
      }, []);
 
-  useEffect(() => {
-    if (swiperInstance && prevRef.current && nextRef.current) {
-      swiperInstance.params.navigation.prevEl = prevRef.current
-      swiperInstance.params.navigation.nextEl = nextRef.current
+useEffect(() => {
+  if (
+    swiperInstance &&
+    prevRef.current &&
+    nextRef.current &&
+    swiperInstance.params.navigation &&
+    swiperInstance.params.navigation !== true
+  ) {
+    const navigation = swiperInstance.params.navigation
+    if (typeof navigation !== 'boolean') {
+      navigation.prevEl = prevRef.current
+      navigation.nextEl = nextRef.current
       swiperInstance.navigation.init()
       swiperInstance.navigation.update()
     }
-  }, [swiperInstance])
+  }
+}, [swiperInstance])
+
  if (loading) {
   return <div className='loader'></div>;
 }

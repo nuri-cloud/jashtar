@@ -4,9 +4,9 @@ import styles from './PhotoCard.module.scss';
 
 interface PhotoCardProps {
   id: number;
-  date: string;
-  title: string;
-  imageUrl: string;
+  date?: string | null;
+  title?: string | null;
+  imageUrl?: string;
 }
 
 export const PhotoCard: React.FC<PhotoCardProps> = ({ date, title, imageUrl }) => {
@@ -26,7 +26,7 @@ export const PhotoCard: React.FC<PhotoCardProps> = ({ date, title, imageUrl }) =
           <time className={styles.date}>{date}</time>
         </div>
 
-        <h2 className={styles.title}>{title}</h2>
+        <h2 className={styles.title}>{title || "Без нозвания"}</h2>
       </div>
     </article>
   );

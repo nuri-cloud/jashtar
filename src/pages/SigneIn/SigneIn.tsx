@@ -63,9 +63,9 @@ export const SignIn = () => {
         }
 
         await submit();
-
+        navigate("/verify-email")
         if (success) {
-            navigate("/profile");
+            alert("email успешно подтвержден")
         }
     };
 
@@ -116,10 +116,11 @@ export const SignIn = () => {
                             )}
                         </button>
                     </div>
-                    <div className={styles.helpText}>Забыли пароль?</div>
+                    <div className={styles.helpText} onClick={()=>navigate("/forgot-password")}>Забыли пароль?</div>
                 </div>
 
                 {/* Повтор пароля */}
+                {/* <div className={`${styles.fieldContainer} ${styles.large}`}>
                 <div className={`${styles.fieldContainer} ${styles.large}`}>
                     <label className={styles.label}>
                         Повторите пароль<span className={styles.required}>*</span>
@@ -146,7 +147,8 @@ export const SignIn = () => {
                             )}
                         </button>
                     </div>
-                </div>
+                </div> */}
+                {/* </div> */}
 
                 {/* Кнопка */}
                 <button type="submit" className={styles.submitButton} disabled={loading}>
@@ -164,7 +166,7 @@ export const SignIn = () => {
                     <button
                         type="button"
                         className={styles.loginLink}
-                        onClick={() => alert("Переход на страницу регистрации")}
+                        onClick={() => navigate("/register")}
                     >
                         Регистрация
                     </button>

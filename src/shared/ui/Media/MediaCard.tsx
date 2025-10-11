@@ -3,7 +3,7 @@ import { ImageIcon } from "lucide-react";
 import styles from "./AlbumCard.module.scss";
 
 interface AlbumCardProps {
-  title: string;
+  title: string | null;
   event: string;
   imageUrl: string;
   count: number;
@@ -14,7 +14,7 @@ export const AlbumCard: React.FC<AlbumCardProps> = ({ title, event, imageUrl, co
   return (
     <article className={styles.card} onClick={onClick}>
       <div className={styles.imageWrapper}>
-        <img src={imageUrl} alt={title} className={styles.image} />
+        <img src={imageUrl} alt={title||""} className={styles.image} />
         <div className={styles.count}>
           <ImageIcon className={styles.icon} />
           <span>{count}</span>

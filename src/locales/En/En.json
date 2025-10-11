@@ -6,6 +6,7 @@
     "Events": "Events",
     "Projects": "Projects",
     "Media": "Media",
+    "presidentSale": "President’s Sale",
     "regionalOffice": "Regional Offices",
     "button": "Login"
   },
@@ -112,7 +113,16 @@
     "brandMaterials": "Brand materials",
     "SimilarProducts": "Similar products",
     "price": "Price"
-  }
-
+  },
+ "presidentSale": {
+  "home": "Home",
+  "presidentSale": "President’s Sale"
+},
+"presidentSaleDetail": {
+  "home": "Home",
+  "presidentSale": "President’s Sale",
+  "courses": "Courses",
+  "listCours": "Course List"
+}
 
 }

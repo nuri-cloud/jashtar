@@ -1,0 +1,50 @@
+.presidentSaleCard{
+    max-width: 424px;
+    height: auto;
+    padding: 10px;
+    background-color: #D9D9D9;
+    border-radius: 20px;
+    @media (max-width: 768px) {
+          border-radius: 14px;
+    }
+    @media (max-width: 480px) {
+          border-radius: 7.34px;
+         padding: 4px;
+    }
+    div{
+height: 195px;
+border-radius: 20px;
+overflow: hidden;
+ @media (max-width: 768px) {
+    height: 135px;
+       border-radius: 14px;
+ }
+ @media (max-width: 480px) {
+    height: 75px;
+       border-radius: 7.34px;
+ }
+        img{
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+    }
+    h3{
+        margin-top: 24px;
+font-weight: 400;
+font-size: 20px;
+line-height: 100%;
+ @media (max-width: 768px) {
+font-weight: 400;
+font-size: 16px;
+line-height: 100%;
+ }
+ @media (max-width: 480px) {
+font-weight: 400;
+font-size: 9.34px;
+line-height: 100%;
+margin-top: 15px;
+ }
+    }
+}

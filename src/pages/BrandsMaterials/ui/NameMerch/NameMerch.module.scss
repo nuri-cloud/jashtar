@@ -1,10 +1,12 @@
-.container {
+.container2 {
   display: flex;
+  flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
+  padding: 20px;
 
   .card {
-    width: 675px;
+    width: 575px;
     height: 523px;
     border: 1px solid #ddd;
     border-radius: 20px;
@@ -20,7 +22,7 @@
     }
 
     .image {
-      width: 613px;
+      width: 560px;
       height: 315px;
       border-radius: 20px;
     }
@@ -49,7 +51,7 @@
 }
 
 @media(max-width:1300px) {
-  .container {
+  .container2 {
     .card {
       width: 500px;
       height: 523px;
@@ -61,27 +63,14 @@
   }
 }
 
-@media(max-width:1000px) {
-  .container {
-    .card {
-      width: 400px;
-      height: 523px;
-
-      .image {
-        width: 380px;
-      }
-    }
-  }
-}
-
 @media(max-width:800px) {
-  .container {
+  .container2 {
     .card {
-      width: 300px;
-      height: 423px;
+      width: 230px;
+      height: auto;
 
       .image {
-        width: 280px;
+        width: 220px;
         height: 215px;
       }
     }
@@ -89,7 +78,7 @@
 }
 
 @media(max-width:600px) {
-  .container {
+  .container2 {
     flex-wrap: wrap;
 
     .card {
@@ -105,7 +94,7 @@
 }
 
 @media(max-width:500px) {
-  .container {
+  .container2 {
     flex-wrap: wrap;
 
     .card {
@@ -121,7 +110,7 @@
 }
 
 @media(max-width:400px) {
-  .container {
+  .container2 {
     flex-wrap: wrap;
 
     .card {
@@ -143,7 +132,7 @@
 }
 
 @media(max-width:300px) {
-  .container {
+  .container2 {
     flex-wrap: wrap;
 
     .card {
