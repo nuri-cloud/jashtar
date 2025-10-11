@@ -25,7 +25,8 @@ function Header() {
   { key: "Projects", path: "/project" },
   { key: "Media", path: "/media" },
   { key: "regionalOffice", path: "/branchnamepages" },
-];
+  { key: "presidentSale", path: "/presidentSale"}
+]; 
 
   return (
     <header className={`${styles.header} container`}>

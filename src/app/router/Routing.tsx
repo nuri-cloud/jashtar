@@ -24,6 +24,8 @@ import { Register } from "@/pages/Register/Register";
 import { SignIn } from "@/pages/SigneIn/SigneIn";
 import { Video } from "@/pages/Video/Video";
 import { Route, Routes } from "react-router-dom";
+import PresidentSale from "@/pages/PresidentSalePage/PresidentSale/PresidentSale";
+import DetailOfPresidentSale from "@/pages/PresidentSalePage/DetailOfPresidentSale/DetailOfPresidentSale";
 
 export default function Routing() {
   const PUBLIC_PAGES = [
@@ -60,8 +62,9 @@ export default function Routing() {
     { link: "/eventsArchivePage", page: <EventsArchivePage />, id: 18 }, 
     { link: "/news", page: <News />, id: 19 }, 
     { link: "nameoftheevent",page: <NameOfTheEvent />, id: 20 }, 
-    
     { link: "/events/:id",page: <NameOfTheEvent />, id: 20 }, 
+    { link: "/presidentSale", page: <PresidentSale/>,  id: 21},
+    { link: "/presidentSaleDetail", page: <DetailOfPresidentSale/>,  id: 21}
     // { link: "/newsheadline", page: <ActivitiesPage />, id: 21 }, 
     // { link: "/brandmaterials", page: <Main />, id: 21 }, 
     // { link: "/about-motion", page: <AboutUsPage />, id: 2 },

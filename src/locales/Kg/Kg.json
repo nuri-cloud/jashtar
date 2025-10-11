@@ -6,6 +6,7 @@
     "Events": "Иш-чаралар",
     "Projects": "Долбоорлор",
     "Media": "Медиа",
+    "presidentSale":"Президенттик сат",
     "regionalOffice": "Аймактык бөлүмдөр",
     "button": "Кирүү"
   },
@@ -112,7 +113,16 @@
     "brandMaterials": "Бренд материалдар",
     "SimilarProducts": "Окшош товарлар",
     "price": "Баасы"
-  }
-
+  },
+ "presidentSale": {
+     "home":"Башкы бет",
+   "presidentSale":"Президенттик сат"
+},
+"presidentSaleDetail": {
+  "home": "Башкы бет",
+  "presidentSale": "Президенттик сатуу",
+  "courses": "Курстар",
+  "listCours": "Курстардын тизмеси"
+}
 
 }

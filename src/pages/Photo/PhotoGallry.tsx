@@ -74,7 +74,7 @@ export function PhotoGallry() {
                     onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
                     disabled={currentPage === 1}
                 >
-                    <IoIosArrowBack />
+                    <IoIosArrowBack/>
                 </button>
 
                 <div className={styles.pageNumbers}>
