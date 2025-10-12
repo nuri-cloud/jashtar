@@ -26,6 +26,7 @@
       height: 315px;
       border-radius: 20px;
       cursor: pointer;
+      object-fit: cover;
     }
 
     .div {
@@ -47,103 +48,77 @@
       color: rgba(17, 17, 17, 1);
     }
   }
-
-
 }
 
-@media(max-width:1300px) {
-  .container2 {
-    .card {
-      width: 500px;
-      height: 523px;
+/* ------------------ Адаптив ------------------ */
+@media(max-width: 1300px) {
+  .container2 .card {
+    width: 400px;
+    height: auto;
 
-      .image {
-        width: 480px;
-      }
+    .image {
+      width: 380px;
+      height: 215px;
     }
   }
 }
 
-@media(max-width:800px) {
-  .container2 {
-    .card {
-      width: 230px;
-      height: auto;
+@media(max-width: 800px) {
+  .container2 .card {
+    width: 230px;
+    height: 300px;
 
-      .image {
-        width: 220px;
-        height: 215px;
-      }
+    .div {
+      gap: 20px;
     }
-  }
-}
 
-@media(max-width:600px) {
-  .container2 {
-    flex-wrap: wrap;
-
-    .card {
-      width: 475px;
-      height: 523px;
-
-      .image {
-        width: 413px;
-        height: 315px;
-      }
-    }
-  }
-}
-
-@media(max-width:500px) {
-  .container2 {
-    flex-wrap: wrap;
-
-    .card {
-      width: 375px;
-      height: 523px;
-
-      .image {
-        width: 360px;
-        height: 315px;
-      }
-    }
-  }
-}
-
-@media(max-width:400px) {
-  .container2 {
-    flex-wrap: wrap;
-
-    .card {
-      width: 275px;
-      height: 480px;
-
-      .image {
-        width: 260px;
-        height: 290px;
-      }
-
-      .name {
+    .name {
       font-size: 25px;
-      font-weight: 400;
-      color: rgba(17, 17, 17, 1);
     }
+
+    .image {
+      width: 220px;
+      height: 215px;
     }
   }
 }
 
-@media(max-width:300px) {
-  .container2 {
-    flex-wrap: wrap;
+@media(max-width: 500px) {
+  .container2 .card {
+    width: 375px;
+    height: auto;
 
-    .card {
-      width: 215px;
-      height: 400px;
+    .image {
+      width: 360px;
+      height: 315px;
+    }
+  }
+}
 
-      .image {
-        width: 200px;
-        height: 215px;
-      }
+@media(max-width: 400px) {
+  .container2 .card {
+    width: 275px;
+    height: auto;
+
+    .image {
+      width: 260px;
+      height: 290px;
+    }
+
+    .name {
+      font-size: 25px;
+    }
+  }
+}
+
+@media(max-width: 300px) {
+  .container2 .card {
+    width: 215px;
+    height: 400px;
+
+    .image {
+      width: 200px;
+      height: 215px;
     }
   }
 }

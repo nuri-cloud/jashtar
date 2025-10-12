@@ -40,13 +40,13 @@ const Materials: React.FC = () => {
 
   return (
     <div className="container">
-      <div className={styles.container1}>
+      <div className={styles.content}>
         <div className={styles.materialsContainer}>
           {materials.slice(startIndex, startIndex + visibleCount).map((item) => (
             <Link
               key={item.id}
               to={`/detailview/${item.id}`}
-              state={{ image: item.file }} // <-- сүрөттү өткөрүп берүү
+              state={{ image: item.file }} 
             >
               <div className={styles.materialCard}>
                 <img
