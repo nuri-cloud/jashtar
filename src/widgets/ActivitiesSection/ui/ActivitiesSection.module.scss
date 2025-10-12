@@ -1,23 +1,27 @@
-
-.activitiesSection {
-  background-color: #f7f7f7;
+.pageWrapper {
+ width: 1320px;
+ margin: auto;
 }
+
 
 .sectionTitle {
-  font-size: 32px;
-  font-weight: bold;
   text-align: center;
-  margin-bottom: 30px;
-  color: #333;
-}
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 120%;
+  color: #000;
+  margin: 30px 40px;
 
-.cardsContainer {
-  height: auto;
-  margin-bottom: 100px !important;
-  border-radius: 60px;
-  gap: 30px;
-  display: flex;
-  flex-direction: column;
-  max-width: 1319px;
-  margin: 0 auto; 
+  @media (max-width: 1024px) {
+    font-size: 32px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 28px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 24px;
+    margin-bottom: 25px;
+  }
 }

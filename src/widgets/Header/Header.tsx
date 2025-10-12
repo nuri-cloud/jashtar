@@ -17,23 +17,24 @@ function Header() {
   const changeLanguage = (lng: string) => i18n.changeLanguage(lng)
 
   const { currentLang, changeLang } = useLanguageStore();
- const links = [
-  { key: "home", path: "/" },
-  { key: "aboutTheMovement", path: "/movementpages" },
-  { key: "direction", path: "/activitiesPage" },
-  { key: "Events", path: "/events" },
-  { key: "Projects", path: "/project" },
-  { key: "Media", path: "/media" },
-  { key: "regionalOffice", path: "/branchnamepages" },
-];
-const token = localStorage.getItem("user");
-const handleLogeClick = () => {
-  if (token) {
-    navigate("/profile");
-  } else {
-    navigate("/login");
+  const links = [
+    { key: "home", path: "/" },
+    { key: "aboutTheMovement", path: "/movementpages" },
+    { key: "direction", path: "/activitiesPage" },
+    { key: "Events", path: "/events" },
+    { key: "Projects", path: "/project" },
+    { key: "Media", path: "/media" },
+    { key: "regionalOffice", path: "/branchnamepages" },
+    { key: "presidentSale", path: "/presidentSale" }
+  ];
+  const token = localStorage.getItem("user");
+  const handleLogeClick = () => {
+    if (token) {
+      navigate("/profile");
+    } else {
+      navigate("/login");
+    }
   }
-}
 
   return (
     <header className={`${styles.header} container`}>
@@ -45,29 +46,29 @@ const handleLogeClick = () => {
       <nav className={`${styles.nav} ${menuOpen ? styles.open : ""}`}>
         <ul>
           {links.map((item, index) => (
-           <li
-  key={index}
-  className={activeButton === index + 1 ? styles.active : ""}
-  onClick={() => setActiveButton(index + 1)}
->
-  <Link to={item.path}>{t(`header.${item.key}`)}</Link>
-</li>
+            <li
+              key={index}
+              className={activeButton === index + 1 ? styles.active : ""}
+              onClick={() => setActiveButton(index + 1)}
+            >
+              <Link to={item.path}>{t(`header.${item.key}`)}</Link>
+            </li>
           ))}
         </ul>
       </nav>
 
       <div className={styles.item}>
-    <select
-  value={currentLang}
-  onChange={(e) => {
-    changeLang(e.target.value as "ky" | "ru" | "en");
-    i18n.changeLanguage(e.target.value);
-  }}
->
-  <option value="ru">РУС</option>
-  <option value="ky">KGS</option>
-  <option value="en">ENG</option>
-</select>
+        <select
+          value={currentLang}
+          onChange={(e) => {
+            changeLang(e.target.value as "ky" | "ru" | "en");
+            i18n.changeLanguage(e.target.value);
+          }}
+        >
+          <option value="ru">РУС</option>
+          <option value="ky">KGS</option>
+          <option value="en">ENG</option>
+        </select>
 
         <button
           // className={activeButton === 8 ? styles.activeButton : ''}

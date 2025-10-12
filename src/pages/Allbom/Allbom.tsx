@@ -4,6 +4,7 @@ import { Pagination } from './ui/Pagination/Pagination';
 import styles from './Allbom.module.scss';
 import { ChevronRight } from 'lucide-react';
 
+
 interface GalleryItem {
     id: number;
     src: string;

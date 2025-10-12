@@ -6,6 +6,7 @@
     "Events": "Events",
     "Projects": "Projects",
     "Media": "Media",
+    "presidentSale": "President’s Sale",
     "regionalOffice": "Regional Offices",
     "button": "Login"
   },
@@ -237,5 +238,15 @@
     "alertSuccess": "Password successfully updated",
     "successMessage": "Password successfully updated!",
     "required": "*"
+  },
+  "presidentSale": {
+    "home": "Home",
+    "presidentSale": "President’s Sale"
+  },
+  "presidentSaleDetail": {
+    "home": "Home",
+    "presidentSale": "President’s Sale",
+    "courses": "Courses",
+    "listCours": "Course List"
   }
 }

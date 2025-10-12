@@ -6,6 +6,7 @@
     "Events": "Иш-чаралар",
     "Projects": "Долбоорлор",
     "Media": "Медиа",
+    "presidentSale":"Президенттик сат",
     "regionalOffice": "Аймактык бөлүмдөр",
     "button": "Кирүү"
   },
@@ -238,5 +239,16 @@
     "alertSuccess": "Пароль ийгиликтүү жаңыланды",
     "successMessage": "Пароль ийгиликтүү жаңыланды!",
     "required": "*"
-  }
+  },
+ "presidentSale": {
+     "home":"Башкы бет",
+   "presidentSale":"Президенттик сат"
+},
+"presidentSaleDetail": {
+  "home": "Башкы бет",
+  "presidentSale": "Президенттик сатуу",
+  "courses": "Курстар",
+  "listCours": "Курстардын тизмеси"
+}
+
 }

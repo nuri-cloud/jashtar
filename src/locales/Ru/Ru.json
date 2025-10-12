@@ -243,5 +243,16 @@
       "alertSuccess": "Пароль успешно обновлён",
       "successMessage": "Пароль успешно обновлён!",
       "required": "*"
+   },
+
+   "presidentSale": {
+      "home": "Главная",
+      "presidentSale": "Президентская распродажа"
+   },
+   "presidentSaleDetail": {
+      "home": "Главная",
+      "presidentSale": "Президентская распродажа",
+      "courses": "Курсы",
+      "listCours": "Список курсов"
    }
 }
