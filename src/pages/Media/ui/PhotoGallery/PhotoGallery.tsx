@@ -54,7 +54,7 @@ export const PhotoGallery: React.FC = () => {
 
       <main className={styles.gallery}>
         {loading ? (
-          <p>Загрузка...</p>
+          <div className="loader"></div>
         ) : error ? (
           <p className={styles.error}>Ошибка: {error}</p>
         ) : imagesCards.length === 0 ? (

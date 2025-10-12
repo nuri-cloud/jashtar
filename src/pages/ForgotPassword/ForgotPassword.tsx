@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { MailIcon } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import styles from "./ForgotPassword.module.scss";
 import authimage from "@/shared/assets/images/authImage.png";
 import { useForgotPasswordStore } from "@/app/store/auth/ForgotPassword";
@@ -10,10 +11,11 @@ interface FormData {
 }
 
 export const ForgotPassword = () => {
+    const { t } = useTranslation();
     const [formData, setFormData] = useState<FormData>({
         email: "",
     });
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const { loading, error, success, forgotPassword } = useForgotPasswordStore();
 
@@ -24,27 +26,28 @@ export const ForgotPassword = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!formData.email.includes("@")) {
-            alert("Некорректный email");
+            alert(t("forgotPassword.errorEmail"));
             return;
         }
 
         await forgotPassword({ email: formData.email });
     };
 
-    if(success) {
-        navigate("/verify-code")
+    if (success) {
+        navigate("/verify-code");
     }
+
     return (
         <div className={styles.container}>
             <form onSubmit={handleSubmit} className={styles.formContainer}>
-                <h1 className={styles.title}>Сброс пароля</h1>
+                <h1 className={styles.title}>{t("forgotPassword.title")}</h1>
                 <p className={styles.subtitle}>
-                    Введите ваш email, и мы отправим вам код для сброса пароля.
+                    {t("forgotPassword.subtitle")}
                 </p>
                 {/* Email */}
                 <div className={`${styles.fieldContainer} ${styles.large}`}>
                     <label className={styles.label}>
-                        Email<span className={styles.required}>*</span>
+                        {t("forgotPassword.emailLabel")}<span className={styles.required}>{t("forgotPassword.required")}</span>
                     </label>
                     <div className={styles.inputWrapper}>
                         <MailIcon className={styles.icon} />
@@ -52,7 +55,7 @@ export const ForgotPassword = () => {
                             type="email"
                             value={formData.email}
                             onChange={(e) => handleChange(e.target.value)}
-                            placeholder="example@mail.com"
+                            placeholder={t("forgotPassword.emailPlaceholder")}
                             className={styles.input}
                             disabled={loading}
                         />
@@ -62,14 +65,14 @@ export const ForgotPassword = () => {
                 {/* Кнопка */}
                 <button type="submit" className={styles.submitButton} disabled={loading}>
                     <span className={styles.buttonText}>
-                        {loading ? "Отправляем..." : "Отправить"}
+                        {loading ? t("forgotPassword.submitButtonLoading") : t("forgotPassword.submitButton")}
                     </span>
                 </button>
 
                 {error && <p style={{ color: "red" }}>{error}</p>}
                 {success && (
                     <p style={{ color: "green" }}>
-                        Письмо для сброса пароля отправлено на {formData.email}
+                        {t("forgotPassword.successMessage", { email: formData.email })}
                     </p>
                 )}
             </form>

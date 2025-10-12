@@ -4,7 +4,7 @@ import { setLanguage } from "../api/apiclient";
 import { useImagesStore } from "./Media/images";
 import { useVideoStore } from "./Media/video";
 import { useAboutMovementStore } from "./about-movement/aboutMovementStore";
-import { useAboutMovementStore2 } from "./aboutmovement/aboutmovement";
+// import { useAboutMovementStore2 } from "./aboutmovement/aboutmovement";
 import { NewsStore } from "./news/news";
 import { eventsStore } from "./events/events";
 import { BannerStore } from "./banner/banner";
@@ -27,8 +27,7 @@ export const useLanguageStore = create<LanguageState>((set) => ({
     // ✅ После смены языка обновляем все данные
     try {
       useAboutMovementStore.getState().fetchAboutMovement();
-      useAboutMovementStore2.getState().fetchAboutMovement();
-
+      // useAboutMovementStore2.getState().fetchAboutMovement();
       NewsStore.getState().fetchnews();
       eventsStore.getState().fetchevents();
       BannerStore.getState().fetchBanners();

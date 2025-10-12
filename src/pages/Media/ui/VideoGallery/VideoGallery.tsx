@@ -59,18 +59,18 @@ export const VideoGallery: React.FC = () => {
     fetchVideos();
   }, []);
   // console.log(videos);
-  
+
 
   const navigate = useNavigate();
-  const {t , i18n} = useTranslation()
+  const { t, i18n } = useTranslation()
   return (
     <div className={styles.container}>
       <header className={styles.header}>
         <h1 className={styles.title}>{t('media.VideoLibrary')}</h1>
-        
-        <button 
+
+        <button
           className={styles.button}
-          onClick={()=>navigate("/videoGallery")}
+          onClick={() => navigate("/videoGallery")}
           aria-label="Посмотреть все видео"
         >
           <span className={styles.buttonText}>{t('media.allVideo')}</span>
@@ -80,24 +80,21 @@ export const VideoGallery: React.FC = () => {
 
       <main className={styles.gallery}>
         {
-          loading && <p>Загрузка...</p>
-        }
-        {
-          error && <p>Произошла ошибка</p>
-        }
-        {videos.length < 0 ? <p>
-          {videos.length} видео
-        </p>:
-        videos.map((video) => (
-          <VideoCard
-            key={video.id}
-            id={video.id}
-            // date={video.date}
-            title={video.title}
-            videoUrl={video.video_url}
-            // thumbnailUrl={video.thumbnailUrl}
-          />
-        ))
+          loading ? <div className="loader"></div> :
+            error ? <p>Произошла ошибка{error}</p> :
+              videos.length < 0 ? <p>
+                {videos.length} видео
+              </p> :
+                videos.map((video) => (
+                  <VideoCard
+                    key={video.id}
+                    id={video.id}
+                    // date={video.date}
+                    title={video.title}
+                    videoUrl={video.video_url}
+                  // thumbnailUrl={video.thumbnailUrl}
+                  />
+                ))
         }
       </main>
     </div>

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import styles from "./DetailView.module.scss";
 import Materials from "../Materials1/Materials";
 import { useDetailStore } from "@/app/store/detail/detailStore";
@@ -8,6 +8,8 @@ import { useTranslation } from "react-i18next";
 
 function DetailView() {
   const { id } = useParams<{ id: string }>();
+  const location = useLocation();
+  const { image: imageFromState } = location.state || {};
   const { selectedMaterial, fetchMaterialById, loading, error } = useDetailStore();
   const { t } = useTranslation();
 
@@ -18,6 +20,8 @@ function DetailView() {
   if (loading) return <p>Loading...</p>;
   if (error) return <p style={{ color: "red" }}>{error}</p>;
   if (!selectedMaterial) return <p>No material found</p>;
+
+  const displayImage = imageFromState || selectedMaterial.file;
 
   return (
     <div className="container">
@@ -35,12 +39,12 @@ function DetailView() {
         <div className={styles.view}>
           <div className={styles.div}>
             <div className={styles.gallery}>
-              <img src={selectedMaterial.image} alt={selectedMaterial.title} />
+              <img src={displayImage} alt={selectedMaterial.title} />
 
               <div className={styles.imgs}>
-                <img src={selectedMaterial.image} alt={selectedMaterial.title} />
-                <img src={selectedMaterial.image} alt={selectedMaterial.title} />
-                <img src={selectedMaterial.image} alt={selectedMaterial.title} />
+                <img src={displayImage} alt={selectedMaterial.title} />
+                <img src={displayImage} alt={selectedMaterial.title} />
+                <img src={displayImage} alt={selectedMaterial.title} />
               </div>
             </div>
             <div className={styles.price2}>
@@ -67,7 +71,7 @@ function DetailView() {
         </div>
 
         <h2 className={styles.h2}>{t("brandMaterials.SimilarProducts")}</h2>
-        <Materials />
+        <Materials/>
       </div>
     </div>
   );

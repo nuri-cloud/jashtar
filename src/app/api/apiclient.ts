@@ -13,6 +13,7 @@ export const axiosInstance = axios.create({
   },
 });
 
+
 // Функция для смены языка динамически
 export const setLanguage = (lang: "ky" | "ru" | "en") => {
   localStorage.setItem("lang", lang); // сохраняем выбранный язык

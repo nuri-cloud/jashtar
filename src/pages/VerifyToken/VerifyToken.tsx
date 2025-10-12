@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import styles from "./VerifyToken.module.scss";
 import { useNavigate } from "react-router-dom";
 import { EyeIcon, EyeOffIcon, MailIcon } from "lucide-react";
@@ -11,6 +12,7 @@ interface FormData {
 }
 
 export function VerifyToken() {
+    const { t } = useTranslation();
     const [formData, setFormData] = useState<FormData>({
         uid: "",
         token: "",
@@ -35,36 +37,36 @@ export function VerifyToken() {
         const errors: string[] = [];
 
         if (formData.token.length < 6) {
-            errors.push("Код должен содержать минимум 6 символов");
+            errors.push(t("verifyToken.errorToken"));
         }
 
         if (errors.length > 0) {
-            alert("Ошибки в форме:\n" + errors.join("\n"));
+            alert(t("verifyToken.errorAlert") + "\n" + errors.join("\n"));
             return;
         }
 
         await verify({
-            uid: Number(formData.uid), // ⚠️ если сервер ждёт число, иначе оставь строкой
+            uid: Number(formData.uid),
             token: formData.token,
         });
     };
 
     if (success) {
-        navigate("/profile");
+        navigate("/login");
     }
 
     return (
         <div className={styles.container}>
             <form onSubmit={handleSubmit} className={styles.formContainer}>
-                <h1 className={styles.title}>Добро пожаловать!</h1>
+                <h1 className={styles.title}>{t("verifyToken.title")}</h1>
                 <p className={styles.subtitle}>
-                    Код подтверждения и ваш UID были отправлены на ваш email.
+                    {t("verifyToken.subtitle")}
                 </p>
 
                 {/* uid */}
                 <div className={`${styles.fieldContainer} ${styles.large}`}>
                     <label className={styles.label}>
-                        UID<span className={styles.required}>*</span>
+                        {t("verifyToken.uidLabel")}<span className={styles.required}>{t("verifyToken.required")}</span>
                     </label>
                     <div className={styles.inputWrapper}>
                         <MailIcon className={styles.icon} />
@@ -72,7 +74,7 @@ export function VerifyToken() {
                             type="text"
                             value={formData.uid}
                             onChange={(e) => handleChange("uid", e.target.value)}
-                            placeholder="Введите ваш uid"
+                            placeholder={t("verifyToken.uidPlaceholder")}
                             className={styles.input}
                         />
                     </div>
@@ -81,14 +83,14 @@ export function VerifyToken() {
                 {/* Код */}
                 <div className={`${styles.fieldContainer} ${styles.large}`}>
                     <label className={styles.label}>
-                        Код подтверждения<span className={styles.required}>*</span>
+                        {t("verifyToken.tokenLabel")}<span className={styles.required}>{t("verifyToken.required")}</span>
                     </label>
                     <div className={styles.inputWrapper}>
                         <input
                             type={visibletokens.token ? "text" : "password"}
                             value={formData.token}
                             onChange={(e) => handleChange("token", e.target.value)}
-                            placeholder="Введите код"
+                            placeholder={t("verifyToken.tokenPlaceholder")}
                             className={styles.input}
                         />
                         <button
@@ -108,22 +110,22 @@ export function VerifyToken() {
                 {/* Кнопка */}
                 <button type="submit" className={styles.submitButton} disabled={loading}>
                     <span className={styles.buttonText}>
-                        {loading ? "Проверяем..." : "Продолжить"}
+                        {loading ? t("verifyToken.submitButtonLoading") : t("verifyToken.submitButton")}
                     </span>
                 </button>
 
                 {error && <p style={{ color: "red" }}>{error}</p>}
-                {success && <p style={{ color: "green" }}>Успешная верификация!</p>}
+                {success && <p style={{ color: "green" }}>{t("verifyToken.successMessage")}</p>}
 
                 {/* Секция входа */}
                 <div className={styles.loginSection}>
-                    <span className={styles.loginText}>Нет аккаунта?</span>
+                    <span className={styles.loginText}>{t("verifyToken.noAccount")}</span>
                     <button
                         type="button"
                         className={styles.loginLink}
-                        onClick={() => alert("Переход на страницу регистрации")}
+                        onClick={() => { navigate("/register"); }}  
                     >
-                        Регистрация
+                        {t("verifyToken.register")}
                     </button>
                 </div>
             </form>
