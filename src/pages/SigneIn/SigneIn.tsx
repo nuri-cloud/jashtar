@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { EyeIcon, EyeOffIcon, MailIcon } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import styles from "./SignIn.module.scss";
 import authimage from "@/shared/assets/images/authImage.png";
-import { useLogeinStore } from "@/app/store/auth/signein";
+import { useLoginStore } from "@/app/store/auth/signein";
 import { useNavigate } from "react-router-dom";
 
 interface FormData {
@@ -12,6 +13,7 @@ interface FormData {
 }
 
 export const SignIn = () => {
+    const { t } = useTranslation();
     const [formData, setFormData] = useState<FormData>({
         email: "",
         password: "",
@@ -19,7 +21,7 @@ export const SignIn = () => {
     });
 
     const navigate = useNavigate();
-    const { setField, submit, loading, error, success } = useLogeinStore();
+    const { setField, submit, loading, error, success } = useLoginStore();
 
     const [visiblePasswords, setVisiblePasswords] = useState({
         password: false,
@@ -48,36 +50,38 @@ export const SignIn = () => {
         const errors: string[] = [];
 
         if (!formData.email.includes("@")) {
-            errors.push("Некорректный email");
+            errors.push(t("signIn.errorEmail"));
         }
         if (formData.password.length < 8) {
-            errors.push("Пароль должен содержать минимум 8 символов");
-        }
-        if (formData.password !== formData.confirmPassword) {
-            errors.push("Пароли не совпадают");
+            errors.push(t("signIn.errorPassword"));
         }
 
         if (errors.length > 0) {
-            alert("Ошибки в форме:\n" + errors.join("\n"));
+            alert(t("signIn.errorAlert") + "\n" + errors.join("\n"));
             return;
         }
 
         await submit();
+        if (success) {
+            alert(t("signIn.successAlert"));
+        }
+    };
 
+    useEffect(() => {
         if (success) {
             navigate("/profile");
         }
-    };
+    }, [success]);
 
     return (
         <div className={styles.container}>
             <form onSubmit={handleSubmit} className={styles.formContainer}>
-                <h1 className={styles.title}>Добро пожаловать!</h1>
+                <h1 className={styles.title}>{t("signIn.title")}</h1>
 
                 {/* Email */}
                 <div className={`${styles.fieldContainer} ${styles.large}`}>
                     <label className={styles.label}>
-                        Email<span className={styles.required}>*</span>
+                        {t("signIn.emailLabel")}<span className={styles.required}>{t("signIn.required")}</span>
                     </label>
                     <div className={styles.inputWrapper}>
                         <MailIcon className={styles.icon} />
@@ -85,7 +89,7 @@ export const SignIn = () => {
                             type="email"
                             value={formData.email}
                             onChange={(e) => handleChange("email", e.target.value)}
-                            placeholder="example@mail.com"
+                            placeholder={t("signIn.emailPlaceholder")}
                             className={styles.input}
                         />
                     </div>
@@ -94,14 +98,14 @@ export const SignIn = () => {
                 {/* Пароль */}
                 <div className={`${styles.fieldContainer} ${styles.large}`}>
                     <label className={styles.label}>
-                        Пароль<span className={styles.required}>*</span>
+                        {t("signIn.passwordLabel")}<span className={styles.required}>{t("signIn.required")}</span>
                     </label>
                     <div className={styles.inputWrapper}>
                         <input
                             type={visiblePasswords.password ? "text" : "password"}
                             value={formData.password}
                             onChange={(e) => handleChange("password", e.target.value)}
-                            placeholder="Введите пароль"
+                            placeholder={t("signIn.passwordPlaceholder")}
                             className={styles.input}
                         />
                         <button
@@ -116,57 +120,30 @@ export const SignIn = () => {
                             )}
                         </button>
                     </div>
-                    <div className={styles.helpText}>Забыли пароль?</div>
-                </div>
-
-                {/* Повтор пароля */}
-                <div className={`${styles.fieldContainer} ${styles.large}`}>
-                    <label className={styles.label}>
-                        Повторите пароль<span className={styles.required}>*</span>
-                    </label>
-                    <div className={styles.inputWrapper}>
-                        <input
-                            type={visiblePasswords.confirmPassword ? "text" : "password"}
-                            value={formData.confirmPassword}
-                            onChange={(e) =>
-                                handleChange("confirmPassword", e.target.value)
-                            }
-                            placeholder="Повторите пароль"
-                            className={styles.input}
-                        />
-                        <button
-                            type="button"
-                            onClick={() => togglePasswordVisibility("confirmPassword")}
-                            className={styles.passwordToggle}
-                        >
-                            {visiblePasswords.confirmPassword ? (
-                                <EyeIcon className={styles.icon} />
-                            ) : (
-                                <EyeOffIcon className={styles.icon} />
-                            )}
-                        </button>
+                    <div className={styles.helpText} onClick={() => navigate("/forgot-password")}>
+                        {t("signIn.forgotPassword")}
                     </div>
                 </div>
 
                 {/* Кнопка */}
                 <button type="submit" className={styles.submitButton} disabled={loading}>
                     <span className={styles.buttonText}>
-                        {loading ? "Входим..." : "Продолжить"}
+                        {loading ? t("signIn.submitButtonLoading") : t("signIn.submitButton")}
                     </span>
                 </button>
 
                 {error && <p style={{ color: "red" }}>{error}</p>}
-                {success && <p style={{ color: "green" }}>Успешный вход!</p>}
+                {success && <p style={{ color: "green" }}>{t("signIn.successMessage")}</p>}
 
                 {/* Секция входа */}
                 <div className={styles.loginSection}>
-                    <span className={styles.loginText}>Нет аккаунта?</span>
+                    <span className={styles.loginText}>{t("signIn.noAccount")}</span>
                     <button
                         type="button"
                         className={styles.loginLink}
-                        onClick={() => alert("Переход на страницу регистрации")}
+                        onClick={() => navigate("/register")}
                     >
-                        Регистрация
+                        {t("signIn.register")}
                     </button>
                 </div>
             </form>

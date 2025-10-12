@@ -1,50 +1,33 @@
+import { useTranslation } from 'react-i18next';
 import styles from './Education.module.scss';
 
-export function Education() {
-    const downloads = Array(3).fill({
-        title: 'Документ “Название”',
-    });
-
-    const trainings = Array(3).fill({
-        title: 'Тренинг “Название”',
-        image: 'https://via.placeholder.com/150',
-    });
+export function Education({ item }: any) {
+    const { t } = useTranslation()
 
     return (
         <section className={styles.section}>
-            <h2 className={styles.sectionTitle}>Доступные проекты</h2>
+            <h2 className={styles.sectionTitle}>{t('profile.materials')}</h2>
             <div className={styles.projectsGrid}>
-                {downloads.map((doc, index) => (
-                    <div key={index} className={styles.projectCard}>
-                        <p className={styles.projectTitle}>{doc.title}</p>
-                        <button className={styles.downloadButton}>
-                            Скачать
+               {
+                item?.education_materials?.length > 0
+                ? item.education_materials.map((material: any, index: number) => (
+                    <div
+                        key={index}
+                        className={`${styles.projectCard}`}
+                        style={{ '--index': index } as React.CSSProperties}
+                    >
+                        <h3 className={styles.projectTitle}>
+                            {material.title}
+                        </h3>
+                        <button className={styles.downloadButton} onClick={() => window.open(material.attachment, '_blank')}>
+                            {t('profile.download')}
                         </button>
                     </div>
-                ))}
+                ))
+                : null
+               }
             </div>
-            <div className={styles.projectsGrid}>
-                {trainings.map((item, index) => (
-                    <div key={index} className={styles.trainingCard}>
-                        <img
-                            src={item.image}
-                            alt={item.title}
-                            className={styles.trainingImage}
-                        />
-                        <p className={styles.trainingTitle}>{item.title}</p>
-                    </div>
-                ))}
-            </div>
-            <div className={styles.projectsGrid}>
-                {downloads.map((doc, index) => (
-                    <div key={index} className={styles.projectCard}>
-                        <p className={styles.projectTitle}>{doc.title}</p>
-                        <button className={styles.downloadButton}>
-                            Скачать
-                        </button>
-                    </div>
-                ))}
-            </div>
+            
         </section>
     );
 }

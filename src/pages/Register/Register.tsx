@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { EyeIcon, EyeOffIcon, MailIcon, UserIcon } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import styles from "./Register.module.scss";
 import authimage from "@/shared/assets/images/authImage.png";
 import { useNavigate } from "react-router-dom";
@@ -15,6 +16,7 @@ interface FormData {
 }
 
 export const Register = () => {
+    const { t } = useTranslation();
     const [formData, setFormData] = useState<FormData>({
         lastName: "",
         firstName: "",
@@ -25,7 +27,7 @@ export const Register = () => {
     });
 
     const navigate = useNavigate();
-    const { register, loading, error, success } = useAuthStore();
+    const { register, loading, error, success, user } = useAuthStore();
 
     const [visiblePasswords, setVisiblePasswords] = useState({
         password: false,
@@ -51,26 +53,26 @@ export const Register = () => {
         const errors: string[] = [];
 
         if (formData.lastName.length < 3) {
-            errors.push("Фамилия должна содержать минимум 3 символа");
+            errors.push(t("register.errorLastName"));
         }
         if (!formData.firstName.trim()) {
-            errors.push("Имя обязательно для заполнения");
+            errors.push(t("register.errorFirstName"));
         }
         if (!formData.middleName.trim()) {
-            errors.push("Отчество обязательно для заполнения");
+            errors.push(t("register.errorMiddleName"));
         }
         if (!formData.email.includes("@")) {
-            errors.push("Некорректный email");
+            errors.push(t("register.errorEmail"));
         }
         if (formData.password.length < 8) {
-            errors.push("Пароль должен содержать минимум 8 символов");
+            errors.push(t("register.errorPassword"));
         }
         if (formData.password !== formData.confirmPassword) {
-            errors.push("Пароли не совпадают");
+            errors.push(t("register.errorPasswordMismatch"));
         }
 
         if (errors.length > 0) {
-            alert("Ошибки в форме:\n" + errors.join("\n"));
+            alert(t("register.errorAlert") + "\n" + errors.join("\n"));
             return;
         }
 
@@ -78,26 +80,31 @@ export const Register = () => {
         const full_name = `${formData.lastName} ${formData.firstName} ${formData.middleName}`;
 
         await register({
+            surname: formData.lastName,
+            second_name: formData.lastName,
+            name: formData.firstName,
             full_name,
             email: formData.email,
             password: formData.password,
             password_confirmation: formData.confirmPassword,
         });
-
-        if (success) {
-            navigate("/profile");
-        }
     };
+
+    useEffect(() => {
+        if (success) {
+            navigate("/verify-email");
+        }
+    }, [success, navigate]);
 
     return (
         <div className={styles.container}>
             <form onSubmit={handleSubmit} className={styles.formContainer}>
-                <h1 className={styles.title}>Добро пожаловать!</h1>
+                <h1 className={styles.title}>{t("register.title")}</h1>
                 <div className={styles.fieldsContainer}>
                     {/* Фамилия */}
                     <div className={`${styles.fieldContainer} ${styles.small}`}>
                         <label className={styles.label}>
-                            Фамилия<span className={styles.required}>*</span>
+                            {t("register.lastNameLabel")}<span className={styles.required}>{t("register.required")}</span>
                         </label>
                         <div className={styles.inputWrapper}>
                             <UserIcon className={styles.icon} />
@@ -105,19 +112,19 @@ export const Register = () => {
                                 type="text"
                                 value={formData.lastName}
                                 onChange={(e) => handleChange("lastName", e.target.value)}
-                                placeholder="Введите фамилию"
+                                placeholder={t("register.lastNamePlaceholder")}
                                 className={styles.input}
                             />
                         </div>
                         <div className={styles.helpText}>
-                            Минимум 3 символа, только кириллица.
+                            {t("register.lastNameHint")}
                         </div>
                     </div>
 
                     {/* Имя */}
                     <div className={`${styles.fieldContainer} ${styles.small}`}>
                         <label className={styles.label}>
-                            Имя<span className={styles.required}>*</span>
+                            {t("register.firstNameLabel")}<span className={styles.required}>{t("register.required")}</span>
                         </label>
                         <div className={styles.inputWrapper}>
                             <UserIcon className={styles.icon} />
@@ -125,7 +132,7 @@ export const Register = () => {
                                 type="text"
                                 value={formData.firstName}
                                 onChange={(e) => handleChange("firstName", e.target.value)}
-                                placeholder="Введите имя"
+                                placeholder={t("register.firstNamePlaceholder")}
                                 className={styles.input}
                             />
                         </div>
@@ -135,7 +142,7 @@ export const Register = () => {
                 {/* Отчество */}
                 <div className={`${styles.fieldContainer} ${styles.large}`}>
                     <label className={styles.label}>
-                        Отчество<span className={styles.required}>*</span>
+                        {t("register.middleNameLabel")}<span className={styles.required}>{t("register.required")}</span>
                     </label>
                     <div className={styles.inputWrapper}>
                         <UserIcon className={styles.icon} />
@@ -143,7 +150,7 @@ export const Register = () => {
                             type="text"
                             value={formData.middleName}
                             onChange={(e) => handleChange("middleName", e.target.value)}
-                            placeholder="Введите отчество"
+                            placeholder={t("register.middleNamePlaceholder")}
                             className={styles.input}
                         />
                     </div>
@@ -152,7 +159,7 @@ export const Register = () => {
                 {/* Email */}
                 <div className={`${styles.fieldContainer} ${styles.large}`}>
                     <label className={styles.label}>
-                        Email<span className={styles.required}>*</span>
+                        {t("register.emailLabel")}<span className={styles.required}>{t("register.required")}</span>
                     </label>
                     <div className={styles.inputWrapper}>
                         <MailIcon className={styles.icon} />
@@ -160,7 +167,7 @@ export const Register = () => {
                             type="email"
                             value={formData.email}
                             onChange={(e) => handleChange("email", e.target.value)}
-                            placeholder="example@mail.com"
+                            placeholder={t("register.emailPlaceholder")}
                             className={styles.input}
                         />
                     </div>
@@ -170,14 +177,14 @@ export const Register = () => {
                     {/* Пароль */}
                     <div className={`${styles.fieldContainer} ${styles.small}`}>
                         <label className={styles.label}>
-                            Пароль<span className={styles.required}>*</span>
+                            {t("register.passwordLabel")}<span className={styles.required}>{t("register.required")}</span>
                         </label>
                         <div className={styles.inputWrapper}>
                             <input
                                 type={visiblePasswords.password ? "text" : "password"}
                                 value={formData.password}
                                 onChange={(e) => handleChange("password", e.target.value)}
-                                placeholder="Введите пароль"
+                                placeholder={t("register.passwordPlaceholder")}
                                 className={styles.input}
                             />
                             <button
@@ -193,21 +200,21 @@ export const Register = () => {
                             </button>
                         </div>
                         <div className={styles.helpText}>
-                            Пароль должен содержать минимум 8 символов, хотя бы одну цифру и одну заглавную букву.
+                            {t("register.passwordHint")}
                         </div>
                     </div>
 
                     {/* Повтор пароля */}
                     <div className={`${styles.fieldContainer} ${styles.medium}`}>
                         <label className={styles.label}>
-                            Повторите пароль<span className={styles.required}>*</span>
+                            {t("register.confirmPasswordLabel")}<span className={styles.required}>{t("register.required")}</span>
                         </label>
                         <div className={styles.inputWrapper}>
                             <input
                                 type={visiblePasswords.confirmPassword ? "text" : "password"}
                                 value={formData.confirmPassword}
                                 onChange={(e) => handleChange("confirmPassword", e.target.value)}
-                                placeholder="Повторите пароль"
+                                placeholder={t("register.confirmPasswordPlaceholder")}
                                 className={styles.input}
                             />
                             <button
@@ -227,7 +234,7 @@ export const Register = () => {
 
                 {/* Кнопка */}
                 <button type="submit" className={styles.submitButton} disabled={loading}>
-                    {loading ? "Загрузка..." : "Продолжить"}
+                    {loading ? t("register.submitButtonLoading") : t("register.submitButton")}
                 </button>
 
                 {/* Ошибки */}
@@ -235,13 +242,13 @@ export const Register = () => {
 
                 {/* Секция входа */}
                 <div className={styles.loginSection}>
-                    <span className={styles.loginText}>Уже есть аккаунт?</span>
+                    <span className={styles.loginText}>{t("register.haveAccount")}</span>
                     <button
                         type="button"
                         className={styles.loginLink}
                         onClick={() => navigate("/login")}
                     >
-                        Войти
+                        {t("register.signIn")}
                     </button>
                 </div>
             </form>
@@ -250,4 +257,3 @@ export const Register = () => {
         </div>
     );
 };
-

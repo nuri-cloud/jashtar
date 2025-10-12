@@ -13,7 +13,7 @@ interface AboutMovementState {
   fetchAboutMovement: () => Promise<void>;
 }
 
-export const useAboutMovementStore = create<AboutMovementState>((set) => ({
+export const useAboutMovementStore2 = create<AboutMovementState>((set) => ({
   data: null,
   loading: false,
   error: null,

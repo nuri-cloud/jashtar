@@ -2,9 +2,13 @@ import { create } from "zustand";
 import { axiosInstance } from "@/app/api/apiclient";
 
 interface User {
-  id: number;
-  full_name: string;
-  email: string;
+  refresh: string;
+  access: string;
+  user: {
+    id: number;
+    email: string;
+    full_name: string;
+  };
 }
 
 interface RegisterData {
@@ -14,7 +18,6 @@ interface RegisterData {
 
 interface RegisterState {
   formData: RegisterData;
-
   user: User | null;
   setField: (field: keyof RegisterData, value: string) => void;
   submit: () => Promise<void>;
@@ -24,12 +27,11 @@ interface RegisterState {
   logout: () => void;
 }
 
-export const useLogeinStore = create<RegisterState>((set, get) => ({
+export const useLoginStore = create<RegisterState>((set, get) => ({
   formData: {
     email: "",
     password: "",
   },
-  data: null,
   user: JSON.parse(localStorage.getItem("user") || "null"),
   loading: false,
   error: null,
@@ -48,23 +50,23 @@ export const useLogeinStore = create<RegisterState>((set, get) => ({
 
     try {
       const { formData } = get();
-        await axiosInstance.post("account/login/", formData);
-      set({ success: true });
       const response = await axiosInstance.post("account/login/", formData);
 
-      const userData: User = response.data.user;
+      const userData: User = response.data; // правильное извлечение
       set({ user: userData, success: true });
+
       localStorage.setItem("user", JSON.stringify(userData));
+      localStorage.setItem("access", userData.access); // полезно для axios headers
     } catch (err: any) {
-      set({ error: err.response?.data?.message || "Something went wrong" });
+      set({ error: err.response.data || "Something went wrong" });
     } finally {
       set({ loading: false });
     }
   },
 
-  logout:
- () => {
+  logout: () => {
     set({ user: null, success: false });
     localStorage.removeItem("user");
+    localStorage.removeItem("access");
   },
 }));

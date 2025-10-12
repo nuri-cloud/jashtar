@@ -11,46 +11,41 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next'
 import { eventsStore } from '@/app/store/events/events'
 import { useNavigate } from 'react-router-dom'
-// interface Event {
-//   id: number
-//   img: string
-//   title: string
-//   description: string
-//   link: string
-// }
+
 
 const UpcomingEvents: React.FC = () => {
   const prevRef = useRef<HTMLButtonElement>(null)
   const nextRef = useRef<HTMLButtonElement>(null)
   const [swiperInstance, setSwiperInstance] = useState<SwiperClass | null>(null)
+  const {t, i18n} = useTranslation()
+  const navigate = useNavigate()
+   const { event, loading, error, fetchevents } = eventsStore();
+   const upcomingEvents = event.filter(event => event.event_status === "upcoming");
 
-  // const Events: Event[] = [
-  //   { id: 1, img, title: 'Событие 1', description: 'Описание 1', link: '/nameoftheevent' },
-  //   { id: 2, img, title: 'Событие 2', description: 'Описание 2', link: '/nameoftheevent'  },
-  //   { id: 3, img, title: 'Событие 3', description: 'Описание 3', link: '/nameoftheevent'  },
-  //   { id: 4, img, title: 'Событие 4', description: 'Описание 4', link: '/nameoftheevent'  },
-  //   { id: 5, img, title: 'Событие 5', description: 'Описание 5', link: '/nameoftheevent'  },
-  //   { id: 6, img, title: 'Событие 6', description: 'Описание 6', link: '/nameoftheevent'  },
-  // ]
+     useEffect(() => {
+       fetchevents();
+     }, []);
 
-  // Когда рефы появятся, подставляем их в Swiper
-  useEffect(() => {
-    if (swiperInstance && prevRef.current && nextRef.current) {
-      swiperInstance.params.navigation.prevEl = prevRef.current
-      swiperInstance.params.navigation.nextEl = nextRef.current
+useEffect(() => {
+  if (
+    swiperInstance &&
+    prevRef.current &&
+    nextRef.current &&
+    swiperInstance.params.navigation &&
+    swiperInstance.params.navigation !== true
+  ) {
+    const navigation = swiperInstance.params.navigation
+    if (typeof navigation !== 'boolean') {
+      navigation.prevEl = prevRef.current
+      navigation.nextEl = nextRef.current
       swiperInstance.navigation.init()
       swiperInstance.navigation.update()
     }
-  }, [swiperInstance])
- const {t, i18n} = useTranslation()
- const navigate = useNavigate()
-  const { event, loading, error, fetchevents } = eventsStore();
+  }
+}, [swiperInstance])
 
-  useEffect(() => {
-    fetchevents();
-  }, []);
  if (loading) {
-  return <p>Загрузка...</p>;
+  return <div className='loader'></div>;
 }
 if (error) {
   return <p style={{ color: "red" }}>{error}</p>;
@@ -73,7 +68,7 @@ if (error) {
             769: { slidesPerView: 3.1 },
           }}
         >
-          {event.map((event) => (
+          {upcomingEvents.map((event) => (
             <SwiperSlide key={event.id} className={styles.slide}>
               <Card onClick={() => navigate(`/events/${event.id}`)}  item={event}/>
             </SwiperSlide>

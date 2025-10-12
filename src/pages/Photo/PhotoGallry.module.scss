@@ -1,4 +1,4 @@
-.container {
+.albumPage {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
@@ -86,8 +86,9 @@
         }
 
         .buttonIcon {
+            transition: all 0.3s ease;
             color: var(--main-white);
-            transform: translateX(4px);
+            transform: translateX(4px) rotate(180deg) ;
         }
     }
 
@@ -109,11 +110,12 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
-    justify-content: center;
+    // justify-content: center;
     margin-top: 30px;
+    // padding: 2rem;
+    place-items: center;
     @media (max-width: 700px) {
-        display: flex;
-        flex-wrap: wrap;
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 .buttons{
@@ -136,13 +138,17 @@
 }
 
 .pageButton {
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0.5rem;
     background: var(--main-white);
     border: 1px solid var(--dark-blue-0);
-    border-radius: 8px;
+    border-radius: 50%;
     cursor: pointer;
     font-size: 0.95rem;
     transition: all 0.3s ease;
+    color: var(--dark-blue-0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     &:disabled {
         opacity: 0.5;
@@ -169,6 +175,7 @@
     cursor: pointer;
     transition: all 0.3s ease;
     font-size: 0.9rem;
+    color: var(--dark-blue-0);
 
     &:hover {
         background: var(--dark-blue-0);

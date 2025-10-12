@@ -3,6 +3,7 @@ import axios from "axios";
 const language = localStorage.getItem("lang") || "ru";
 
 export const axiosInstance = axios.create({
+
   baseURL: "https://grubworm-calm-vaguely.ngrok-free.app/api",
   headers: {
     "Content-Type": "application/json",
@@ -11,6 +12,7 @@ export const axiosInstance = axios.create({
     "Accept-Language": language,
   },
 });
+
 
 // Функция для смены языка динамически
 export const setLanguage = (lang: "ky" | "ru" | "en") => {

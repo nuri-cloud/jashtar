@@ -35,9 +35,17 @@ export const EventDetailStore = create<EventDetailState>((set) => ({
     set({ loading: true, error: null });
     try {
       const response = await axiosInstance.get<EventDetail>(`content/events/${id}/`);
-      console.log("API response:", response.data);
-
-      set({ eventDetail: response.data });
+      const apiData = response.data; 
+    const transformedData: EventDetail = {
+    id: apiData.id,
+    title: apiData.title,
+    description: apiData.description,
+    date: apiData.date,
+    time: apiData.time || "",  
+    place: apiData.place || "",
+    images: apiData.images,  
+};
+set({ eventDetail: transformedData });
     } catch (err) {
       const error = err as AxiosError<{ message: string }>;
       set({ error: error.response?.data?.message || "Something went wrong" });

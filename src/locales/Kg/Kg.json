@@ -6,6 +6,7 @@
     "Events": "Иш-чаралар",
     "Projects": "Долбоорлор",
     "Media": "Медиа",
+    "presidentSale":"Президенттик сат",
     "regionalOffice": "Аймактык бөлүмдөр",
     "button": "Кирүү"
   },
@@ -26,24 +27,24 @@
     "address": "Дарек",
     "streetAndHouse": "Көчө , Үй"
   },
-    "landing": {
+  "landing": {
     "aboutTheMovement": "Кыймыл тууралуу",
     "upcomingEvents": "Алдыдагы иш-чаралар",
     "news": "Жаңылыктар",
     "brandMaterials": "Бренд материалдар",
     "button": "Толук маалымат",
-     "direction": "Ишмердүүлүк багыты"
+    "direction": "Ишмердүүлүк багыты"
   },
   "aboutTheMovement": {
-  "about": "Кыймыл жөнүндө",
-  "goals": "Максаттар жана миссия",
-  "laws": "Мыйзамдык негиз",
-  "management": "Жетекчилик"
-},
-"areaOfActivity": {
-  "home": "Башкы бет",
-  "direction": "Ишмердүүлүк багыты"
-},
+    "about": "Кыймыл жөнүндө",
+    "goals": "Максаттар жана миссия",
+    "laws": "Мыйзамдык негиз",
+    "management": "Жетекчилик"
+  },
+  "areaOfActivity": {
+    "home": "Башкы бет",
+    "direction": "Ишмердүүлүк багыты"
+  },
   "events": {
     "home": "Башкы бет",
     "events": "Иш-чаралар",
@@ -81,7 +82,9 @@
     "media": "Медиа",
     "PhotoGallery": "Фотогалерея",
     "selectDate": "Датаны тандаңыз",
-    "goBack": "Артка кайтуу"
+    "goBack": "Артка кайтуу",
+    "ourAllAlbums": "Биздин альбомдор",
+    "noTitle": "Аты жок"
   },
   "nameAlbom": {
     "home": "Башкы бет",
@@ -95,7 +98,8 @@
     "VideoLibrary": "Видеотека",
     "PhotoGallery": "Фотогалерея",
     "selectDate": "Датаны тандаңыз",
-    "goBack": "Артка кайтуу"
+    "goBack": "Артка кайтуу",
+    "noTitle": "Аты жок"
   },
   "regionalOffice": {
     "home": "Башкы бет",
@@ -112,7 +116,139 @@
     "brandMaterials": "Бренд материалдар",
     "SimilarProducts": "Окшош товарлар",
     "price": "Баасы"
-  }
-
+  },
+  "ky": {
+    "personalCabinet": "Жеке Кабинет",
+    "projects": "Долго",
+    "editProfile": "Түзөтүү",
+    "materials": "Окуу Материалдары",
+    "telegramChannel": "Telegram Каналы",
+    "yourApplications": "Сиздин Арызыңыз",
+    "openedProjects": "Жеткиликтүү Долгодор",
+    "dawnload": "Чүктөп алуу",
+    "saveChanges": "Өзгөртүүлөрдү Сохранить",
+    "changesSaved": "Өзгөртүүлөр Сохранено!",
+    "logout": "Чыгуу",
+    "editProfilePage": {
+      "title": "Профилди Түзөтүү",
+      "subtitle": "Өзүңүздүн контакт маалыматыңызды жаңыртыңыз",
+      "telegramLabel": "Telegram Каналы",
+      "telegramPlaceholder": "https://t.me/your_channel",
+      "telegramHint": "Telegram каналыңыздын ссылкасын киргизиңиз",
+      "googleFormLabel": "Google Форма",
+      "googleFormPlaceholder": "https://forms.gle/...",
+      "googleFormHint": "Сиздин Google форманын ссылкасы",
+      "buttonSave": "Өзгөртүүлөрдү Сохранить",
+      "buttonLoading": "Сохраняется...",
+      "successMessage": "Маалымат ийгиликтүү сохранено!"
+    }
+  },
+  "signIn": {
+    "title": "Кош келдиңиз!",
+    "emailLabel": "Электрондук Чекот",
+    "emailPlaceholder": "example@mail.com",
+    "passwordLabel": "Пароль",
+    "passwordPlaceholder": "Пароль киргизиңиз",
+    "forgotPassword": "Пароль унутудунузбу?",
+    "submitButtonLoading": "Кирүүдө...",
+    "submitButton": "Улантуу",
+    "errorEmail": "Туура эмес электрондук чекот",
+    "errorPassword": "Пароль минимум 8 символдон турушу керек",
+    "errorAlert": "Формада каталар:",
+    "successAlert": "Электрондук чекот ийгиликтүү текшерилди",
+    "successMessage": "Ийгиликтүү кириш!",
+    "noAccount": "Аккаунт жокпу?",
+    "register": "Каттоо",
+    "required": "*"
+  },
+  "register": {
+    "title": "Кош келдиңиз!",
+    "lastNameLabel": "Фамилия",
+    "lastNamePlaceholder": "Фамилияны киргизиңиз",
+    "lastNameHint": "Минимум 3 символ, кириллица гана.",
+    "firstNameLabel": "Ат",
+    "firstNamePlaceholder": "Атты киргизиңиз",
+    "middleNameLabel": "Атасынын аты",
+    "middleNamePlaceholder": "Атасынын атын киргизиңиз",
+    "emailLabel": "Электрондук Чекот",
+    "emailPlaceholder": "example@mail.com",
+    "passwordLabel": "Пароль",
+    "passwordPlaceholder": "Парольду киргизиңиз",
+    "passwordHint": "Пароль минимум 8 символдон, жок дегенде бир цифра жана бир чоң тамгадан турушу керек.",
+    "confirmPasswordLabel": "Парольду кайталаңыз",
+    "confirmPasswordPlaceholder": "Парольду кайталаңыз",
+    "submitButtonLoading": "Жүктөлүүдө...",
+    "submitButton": "Улантуу",
+    "errorLastName": "Фамилия минимум 3 символдон турушу керек",
+    "errorFirstName": "Ат толтуруу керек",
+    "errorMiddleName": "Атасынын аты толтуруу керек",
+    "errorEmail": "Туура эмес электрондук чекот",
+    "errorPassword": "Пароль минимум 8 символдон турушу керек",
+    "errorPasswordMismatch": "Парольдар дал келбеди",
+    "errorAlert": "Формада каталар:",
+    "haveAccount": "Аккаунт барбы?",
+    "signIn": "Кириш",
+    "required": "*"
+  },
+  "forgotPassword": {
+    "title": "Парольду Сброс Кылуу",
+    "subtitle": "Өзүңүздүн электрондук чектөөңүзүн киргизиңиз жана биз парольду сброс кылуу үчүн код жөнөтөбүз.",
+    "emailLabel": "Электрондук Чекот",
+    "emailPlaceholder": "example@mail.com",
+    "submitButton": "Жөнөтүү",
+    "submitButtonLoading": "Жөнөтүлүүдө...",
+    "errorEmail": "Туура эмес электрондук чекот",
+    "successMessage": "Парольду сброс кылуу письмосу {{email}} адресине жөнөтүлдү",
+    "required": "*"
+  },
+  "verifyToken": {
+    "title": "Кош келдиңиз!",
+    "subtitle": "Текшерүү коду жана сиздин UID сиздин электрондук чектөө адресине жөнөтүлдү.",
+    "uidLabel": "UID",
+    "uidPlaceholder": "Сиздин uid киргизиңиз",
+    "tokenLabel": "Текшерүү Коду",
+    "tokenPlaceholder": "Кодду киргизиңиз",
+    "submitButton": "Улантуу",
+    "submitButtonLoading": "Текшерүүдө...",
+    "errorToken": "Код минимум 6 символдон турушу керек",
+    "errorAlert": "Формада каталар:",
+    "successMessage": "Ийгиликтүү текшерүүлөр!",
+    "noAccount": "Аккаунт жокпу?",
+    "register": "Каттоо",
+    "alertRegister": "Каттоо бетине өтүүдө",
+    "required": "*"
+  },
+  "verifyCode": {
+    "title": "Текшерүү кодун киргизиңиз",
+    "subtitle": "Код сиздин электрондук чектөө адресине жөнөтүлдү.",
+    "submitButton": "Улантуу",
+    "submitButtonLoading": "Текшерүүдө...",
+    "errorCodeLength": "Код {{length}} цифрадан турушу керек",
+    "successMessage": "Ийгиликтүү текшерүүлөр!"
+  },
+  "newPassword": {
+    "title": "Парольду Сброс Кылуу",
+    "subtitle": "Жаңы парольду киргизиңиз",
+    "passwordLabel": "Жаңы Пароль",
+    "passwordPlaceholder": "Жаңы парольду киргизиңиз",
+    "submitButton": "Улантуу",
+    "submitButtonLoading": "Сохраняется...",
+    "errorPassword": "Пароль минимум 8 символдон турушу керек",
+    "errorToken": "Токен табылган жок. Электрондук чекот аркылуу кайра аракет кылыңыз.",
+    "errorAlert": "Формада каталар:",
+    "alertSuccess": "Пароль ийгиликтүү жаңыланды",
+    "successMessage": "Пароль ийгиликтүү жаңыланды!",
+    "required": "*"
+  },
+ "presidentSale": {
+     "home":"Башкы бет",
+   "presidentSale":"Президенттик сат"
+},
+"presidentSaleDetail": {
+  "home": "Башкы бет",
+  "presidentSale": "Президенттик сатуу",
+  "courses": "Курстар",
+  "listCours": "Курстардын тизмеси"
+}
 
 }

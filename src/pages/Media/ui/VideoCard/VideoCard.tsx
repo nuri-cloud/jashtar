@@ -3,12 +3,13 @@ import { CalendarIcon } from "lucide-react";
 import Plyr from "plyr-react";
 import "plyr-react/plyr.css";
 import styles from "./VideoCard.module.scss";
+// import { log } from "console";
 
 interface VideoCardProps {
   id: number;
-  date: string;
+  date?: string;
   title: string;
-  thumbnailUrl: string;
+  thumbnailUrl?: string;
   videoUrl: string;
 }
 
@@ -18,6 +19,8 @@ export const VideoCard: React.FC<VideoCardProps> = ({
   thumbnailUrl,
   videoUrl,
 }) => {
+  // console.log(videoUrl);
+
   return (
     <article className={styles.card}>
       <div className={styles.videoWrapper}>
@@ -27,7 +30,9 @@ export const VideoCard: React.FC<VideoCardProps> = ({
             sources: [
               {
                 src: videoUrl,
-                provider: "html5",
+                provider: videoUrl.includes("youtube.com") || videoUrl.includes("youtu.be")
+                  ? "youtube"
+                  : "html5",
               },
             ],
             poster: thumbnailUrl,
@@ -39,8 +44,6 @@ export const VideoCard: React.FC<VideoCardProps> = ({
               "progress",
               "current-time",
               "mute",
-              "volume",
-              "settings",
               "fullscreen",
             ],
             ratio: "16:9",
