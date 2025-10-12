@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./PhotoGallry.module.scss";
 import { useTranslation } from "react-i18next";
-import { IoIosArrowForward, IoIosArrowBack  } from "react-icons/io";
+// import { IoIosArrowForward, IoIosArrowBack  } from "react-icons/io";
 import { useImagesStore } from "@/app/store/Media/images";
 
 
@@ -95,7 +95,7 @@ export function PhotoGallry() {
                     onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
                     disabled={currentPage === totalPages}
                 >
-                    <IoIosArrowForward />
+                    {/* <IoIosArrowForward /> */}
                 </button>
             </div>
         </div>
