@@ -6,6 +6,7 @@
     "Events": "Мероприятия",
     "Projects": "Проекты",
     "Media": "Медиа",
+    "presidentSale": "Президентская распродажа",
     "regionalOffice": "Рег.отделения",
     "button": "Войти"
   },
@@ -118,6 +119,15 @@
     "brandMaterials":"Бренд материалы",
     "SimilarProducts": "Похожие товары",
     "price": "Цена"
+},
+"presidentSale": {
+  "home": "Главная",
+  "presidentSale": "Президентская распродажа"
+},
+"presidentSaleDetail": {
+  "home": "Главная",
+  "presidentSale": "Президентская распродажа",
+  "courses": "Курсы",
+  "listCours": "Список курсов"
 }
-
 }

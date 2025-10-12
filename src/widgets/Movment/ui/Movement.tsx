@@ -1,7 +1,7 @@
 import { MultiContainer, Typography } from "@/shared/ui";
 import style from "./Movement.module.scss";
 import { useTranslation } from "react-i18next";
-import { useAboutMovementStore2 } from "@/app/store/aboutMovement/aboutMovement";
+import { useAboutMovementStore2 } from "@/app/store/aboutmovement/aboutmovement";
 import { useEffect } from "react";
 import { useAdvantagesStore } from "@/app/store/advantages/advantages";
 

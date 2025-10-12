@@ -1,15 +1,18 @@
-import ActivitiesSection from "@/widgets/ActivitiesSection/ui/ActivitiesSection"
-import Navpanel from "@/widgets/Navpanel/Navpanel"
-import { useTranslation } from "react-i18next"
+import React, { useEffect } from "react";
+import { useActivityStore} from '@/app/store/activitiesSection/activityStore'
+import ActivitiesSection from "@/widgets/ActivitiesSection/ui/ActivitiesSection";
 
-function ActivitiesPage() {
-  const {t, i18n} = useTranslation()
-  return (
-    <div>
-      <Navpanel text={t('header.home')} text2={t('landing.direction')} link="/"/>
-      <ActivitiesSection />
-    </div>
-  )
-}
+const ActivitiesPage: React.FC = () => {
+  const { data, loading, error, fetchActivities } = useActivityStore();
 
-export default ActivitiesPage
+  useEffect(() => {
+    fetchActivities();
+  }, [fetchActivities]);
+
+  if (loading) return <p>Загрузка...</p>;
+  if (error) return <p>Ошибка: {error}</p>;
+
+  return <ActivitiesSection activities={data} />;
+};
+
+export default ActivitiesPage;

@@ -1,71 +1,106 @@
 
 .projectBlock {
-    width: 100%;
-    max-width: 1320px;
-    margin: 0 auto;
-    background-color: #ffffff;
-    padding: 20px;
-    box-sizing: border-box;
-  
-    .projectHeader {
-      text-align: center;
-      margin: 33px 0 24px 0;
-      font-weight: 600;
-      font-size: 40px;
-      line-height: 100%;
-    }
-  
-    .projectContent {
-      font-weight: 400;
-      font-size: 20px;
-      line-height: 120%;
-      text-align: center;
-    }
-  
-    img {
-      width: 100%;
-      height: 590px;
-      object-fit: cover;
-      border-radius: 20px;
-      margin-top: 16px;
-    }
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+}
+.projectHeader,
+.projectContent {
+  width: 100%;
+}
+.projectHeader > * {
+  margin: 0;
+}
+.projectContent > * {
+  margin: 0;
+}
+.projectHeader {
+  text-align: center;
+  margin-bottom: 16px;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 120%;
+}
+.projectContent {
+  text-align: center;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 150%;
+  margin: 20px;
+}
+.imageWrap {
+  width: 100%;
+  display: block;
+}
+.image {
+  width: 100%;
+  height: 590px;
+  object-fit: cover;
+  border-radius: 16px;
+  display: block;
+  margin: 0;
+}
+@media (max-width: 1024px) {
+  .projectBlock {
+    width: 95%;
+    padding: 0 24px;
   }
-  
-  @media (max-width: 1024px) {
-    .projectBlock {
-      padding: 16px;
-  
-      .projectHeader {
-        font-size: 32px;
-        margin: 24px 0 16px 0;
-      }
-  
-      .projectContent {
-        font-size: 18px;
-      }
-  
-      img {
-        height: 400px;
-      }
-    }
+
+  .projectHeader {
+    font-size: 32px;
+    margin-bottom: 10px;
   }
-  
-  @media (max-width: 768px) {
-    .projectBlock {
-      padding: 12px;
-  
-      .projectHeader {
-        font-size: 16px;
-        margin: 20px 0 12px 0;
-      }
-  
-      .projectContent {
-        font-size: 16px;
-      }
-  
-      img {
-        height: 250px;
-      }
-    }
+
+  .projectContent {
+    font-size: 18px;
+    margin: 16px 0;
   }
-  
+
+  .image {
+    height: 420px;
+  }
+}
+
+@media (max-width: 768px) {
+  .projectBlock {
+    width: 95%;
+    padding: 0 16px;
+  }
+
+  .projectHeader {
+    font-size: 26px;
+    margin-bottom: 8px;
+  }
+
+  .projectContent {
+    font-size: 16px;
+    margin: 12px 0;
+  }
+
+  .image {
+    height: 300px;
+    border-radius: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .projectBlock {
+    width: 95%;
+    padding: 0 12px;
+  }
+
+  .projectHeader {
+    font-size: 22px;
+  }
+
+  .projectContent {
+    text-align: left;
+    font-size: 14px;
+    margin: 10px 0;
+  }
+
+  .image {
+    height: 220px;
+    border-radius: 8px;
+  }
+} 

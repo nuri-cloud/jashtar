@@ -1,34 +1,57 @@
+
 import { MultiContainer } from "@/shared/ui";
+import type { FC } from "react";
 import styles from "./PhotoSection.module.scss";
 
-export function PhotoSection() {
-  return (
-    <MultiContainer className={styles.photoGallery}>
-      <div className={styles.gallery}>
-        <img
-          src="https://thumbs.dreamstime.com/b/%D1%80%D1%83%D0%BA%D0%BE%D0%BF%D0%BE%D0%B6%D0%B0%D1%82%D0%B8%D0%B5-%D0%B4%D0%B5%D0%BB%D0%B0-%D0%BC%D0%BD%D0%BE%D0%B3%D0%BE%D0%BD%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D0%B5-%D0%B7%D0%B0%D0%BD%D1%8F%D1%82%D1%8B%D0%B5-%D0%BB%D1%8E%D0%B4%D0%B8-%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D1%8E%D1%82-%D0%B2-%D0%BE%D1%84%D0%B8%D1%81%D0%B5-101648951.jpg"
-          alt="Team working"
-          className={styles.photo1}
-        />
-
-        <div className={styles.photoRow}>
-          <img
-            src="https://img.freepik.com/premium-photo/young-people-work-office_97712-551.jpg"
-            alt="Team collaboration 1"
-            className={styles.photo2}
-          />
-          <img
-            src="https://img.freepik.com/free-photo/business-people-working-office_1098-17045.jpg"
-            alt="Meeting room"
-            className={styles.photo2}
-          />
-        </div>
-        <img
-          src="https://img.freepik.com/premium-photo/young-people-work-office_97712-551.jpg"
-          alt="Team collaboration 2"
-          className={styles.photo3}
-        />
-      </div>
-    </MultiContainer>
-  );
+interface PhotoSectionProps {
+   photos: { url: string }[];
 }
+
+export const PhotoSection: FC<PhotoSectionProps> = ({ photos }) => {
+  
+  if (!photos || photos.length === 0) {
+    return null; 
+  }
+
+  const [photo1, photo2, photo3, photo4] = photos;
+
+  return (
+    <MultiContainer className={styles.photoGallery}>
+      <div className={styles.gallery}>
+        
+        {photo1 && (
+          <img
+            src={photo1.url}
+            alt={"Фото проекта 1"}
+            className={styles.photo1}
+          />
+        )}
+
+        <div className={styles.photoRow}>
+          {photo2 && (
+            <img
+              src={photo2.url}
+              alt={"Фото проекта 2"}
+              className={styles.photo2}
+            />
+          )}
+          {photo3 && (
+            <img
+              src={photo3.url}
+              alt={"Фото проекта 3"}
+              className={styles.photo2}
+            />
+          )}
+        </div>
+        
+        {photo4 && (
+          <img
+            src={photo4.url}
+            alt={"Фото проекта 4"}
+            className={styles.photo3}
+          />
+        )}
+      </div>
+    </MultiContainer>
+  );
+};

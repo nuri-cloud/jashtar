@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useDepartmentStore } from "@/app/store/department/department";
 import location from "@/shared/assets/images/locastion.svg";
 import styles from "./BranchName.module.scss";
 import Slider, { CustomArrowProps } from "react-slick";
@@ -5,8 +7,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import right from "@/shared/assets/icons/arrow-right.svg";
 import left from "@/shared/assets/icons/arrow-left.svg";
+import { useTranslation } from "react-i18next";
 
-// Стрелка "вперёд"
 function SampleNextArrow({ onClick }: CustomArrowProps) {
   return (
     <button
@@ -18,7 +20,6 @@ function SampleNextArrow({ onClick }: CustomArrowProps) {
   );
 }
 
-// Стрелка "назад"
 function SamplePrevArrow({ onClick }: CustomArrowProps) {
   return (
     <button
@@ -30,14 +31,15 @@ function SamplePrevArrow({ onClick }: CustomArrowProps) {
   );
 }
 
-// Тип для участника
-interface Person {
-  name: string;
-  role: string;
-  img: string;
-}
+export const BranchName = () => {
+  const { departments, loading, error, fetchDepartments } = useDepartmentStore();
+  const { i18n } = useTranslation();
 
-export function BranchName() {
+  useEffect(() => {
+    fetchDepartments();
+  }, [i18n.language, fetchDepartments]);
+  
+
   const sliderSettings = {
     dots: false,
     infinite: true,
@@ -64,62 +66,41 @@ export function BranchName() {
     ],
   };
 
-  return (
-    <section className={styles.branch}>
-      <div className={styles.header}>
-        <h2 className={styles.title}>Название отделения</h2>
-        <p className={styles.subtitle}>
-          Однозначно, интерактивные прототипы формируют глобальную экономическую
-          сеть и при этом — заблокированы в рамках своих собственных
-          рациональных ограничений. Значимость этих проблем настолько очевидна.
-        </p>
-        <div className={styles.location}>
-          <img src={location} alt="Location Icon" />
-          <span>Город, Улица, Дом</span>
-        </div>
-      </div>
+  if (loading) return <p>Загрузка отделений...</p>;
+  if (error) return <p>Ошибка: {error}</p>;
 
-      <Slider {...sliderSettings} className={styles.slider}>
-        {people.map((person, i) => (
-          <div key={i} className={styles.cardWrapper}>
-            <div className={styles.card}>
-              <img
-                src={person.img}
-                alt={person.name}
-                className={styles.photo}
-              />
-              <div className={styles.info}>
-                <h4>{person.name}</h4>
-                <p>{person.role}</p>
-              </div>
+  return (
+    <div className={styles.branchesContainer}>
+      {departments.map((department) => (
+        <section key={department.id} className={styles.branch}>
+          <div className={styles.header}>
+            <h2 className={styles.title}>{department.title}</h2>
+            <p className={styles.subtitle}>{department.description}</p>
+            <div className={styles.location}>
+              <img src={location} alt="Location Icon" />
+              <span>{department.address}</span>
             </div>
           </div>
-        ))}
-      </Slider>
-    </section>
-  );
-}
 
-// Массив участников
-const people: Person[] = [
-  {
-    name: "Фамилия Имя Отчество",
-    role: "Должность",
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvFmRqNor_kpqxTegpEBOVGb32Ogw9QUzUGQ&s",
-  },
-  {
-    name: "Фамилия Имя Отчество",
-    role: "Должность",
-    img: "https://i.pinimg.com/236x/a7/c4/65/a7c46576be1f0e66edb4a9cdf46b9a6c.jpg",
-  },
-  {
-    name: "Фамилия Имя Отчество",
-    role: "Должность",
-    img: "https://i.pinimg.com/236x/7b/44/90/7b44903de8051361d8d03f6e82e2e7ae.jpg",
-  },
-  {
-    name: "Фамилия Имя Отчество",
-    role: "Должность",
-    img: "https://i.pinimg.com/736x/c7/43/2b/c7432be44f54aef54c137722fa2b197e.jpg",
-  },
-];
+          <Slider {...sliderSettings} className={styles.slider}>
+            {department.employees.map((emp) => (
+              <div key={emp.id} className={styles.cardWrapper}>
+                <div className={styles.card}>
+                  <img
+                    src={emp.image || ""}
+                    alt={emp.name}
+                    className={styles.photo}
+                  />
+                  <div className={styles.info}>
+                    <h4>{emp.name}</h4>
+                    <p>{emp.position}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </Slider>
+        </section>
+      ))}
+    </div>
+  );
+};
