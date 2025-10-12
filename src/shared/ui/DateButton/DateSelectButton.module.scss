@@ -1,0 +1,122 @@
+.wrapper {
+  position: relative;
+  display: inline-block;
+  height: 110%;
+
+  &:hover {
+    .datePicker {
+     opacity: 1;
+     transform: translateY(-8px);
+     pointer-events: auto;
+   }
+   .button {
+     background: var(--dark-blue-0);
+     transform: translateY(-2px);
+     box-shadow: 0 4px 12px rgba(46, 108, 244, 0.3);
+
+     .buttonText {
+       color: var(--main-white);
+     }
+
+     .buttonIcon {
+       transition: all 0.3s ease-in-out;
+       color: var(--main-white);
+       transform: translateX(4px) rotate(90deg);
+     }
+   }
+  }
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--main-white);
+  border: 1px solid var(--dark-blue-0);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-height: 48px;
+  color: var(--dark-blue-0)();
+
+  &:hover {
+    background: var(--dark-blue-0);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(46, 108, 244, 0.3);
+
+    .buttonText {
+      color: var(--main-white);
+    }
+
+    .buttonIcon {
+      transition: all 0.3s ease-in-out;
+      color: var(--main-white);
+      transform: translateX(4px) rotate(90deg);
+    }
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+  }
+}
+
+.datePicker:hover.button {
+  background: var(--dark-blue-0);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(46, 108, 244, 0.3);
+
+  .buttonText {
+    color: var(--main-white);
+  }
+
+  .buttonIcon {
+    transition: all 0.3s ease-in-out;
+    color: var(--main-white);
+    transform: translateX(4px) rotate(90deg);
+  }
+}
+
+
+.buttonText {
+  white-space: nowrap;
+}
+
+.buttonIcon {
+  width: 18px;
+  height: 18px;
+}
+
+.datePicker {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+  transition: all 0.25s ease;
+  z-index: 5;
+}
+
+.input {
+  border: 1px solid #ccc;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+  transition: border 0.2s ease;
+
+  &:focus {
+    border-color: #2e6cf4;
+  }
+}

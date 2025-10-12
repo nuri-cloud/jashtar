@@ -111,7 +111,8 @@
 .gallery {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
+  gap: 2rem 1.5rem;
+  place-items: center;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;

@@ -1,123 +1,247 @@
 {
-  "header": {
-    "home": "Главная",
-    "aboutTheMovement": "О движении",
-    "direction": "Направление",
-    "Events": "Мероприятия",
-    "Projects": "Проекты",
-    "Media": "Медиа",
-    "regionalOffice": "Рег.отделения",
-    "button": "Войти"
-  },
-  "footer": {
-    "logo": "Молодежное движение Кыргызстана",
-    "aboutTheMovement": "О движении",
-    "direction": "Направление",
-    "Events": "Мероприятия",
-    "Projects": "Проекты",
-    "Media": "Медиа",
-    "regionalOffice": "Региональные отделения",
-    "news": "Новости",
-    "brandMaterials": "Бренд материалы",
-    "media": "Медиа",
-    "ourSocialNetwork": "Наши соцсети:",
-    "Instagram": "Instagram",
-    "Facebook": "Facebook",
-    "YouTube": "YouTube",
-    "contact": "Контакты:",
-    "WhatsApp": "WhatsApp:",
-    "Telegram": "Telegram:",
-    "gmail": "Электронная почта:",
-    "gmailAddress": "bsainaev@gmail.com",
-    "address": "Адресс",
-    "streetAndHouse": "Улица , Дом"
-  },
- "landing": {
-  "aboutTheMovement": "О движении",
-  "upcomingEvents": "Предстоящие мероприятия",
-  "news": "Новости",
-  "brandMaterials": "Бренд материалы",
-  "button": "Подробнее",
-  "direction": "Направление деятельности" 
-},
-"aboutTheMovement": {
-  "about": "О движении",
-  "goals": "Цели и миссии",
-  "laws": "Законодательная база",
-  "management": "Руководство"
-},
-"areaOfActivity": {
-  "home": "Главная",
-  "direction": "Направление деятельности"
-},
-"events": {
-  "home": "Главная",
-  "events": "Мероприятия",
-  "upcomingEvents": "Предстоящие мероприятия",
-  "eventArchive": "Архив мероприятий",
-  "button": "Подробнее",
-  "detailevent": "Детали мероприятия",
-  "street": "Улица",
-  "house": "Дом"
-},
- "eventArchive": {
-  "home": "Главная",
-  "events": "Мероприятия",
-  "eventArchive": "Архив мероприятий"
- },
- "projects": {
-    "home": "Главная",
-    "projects": "Проекты"
- },
- "projectName": {
-    "home": "Главная",
-    "projects":"Проекты",
-    "projectName": "Проект “Название”"
- },
- "media":{
-    "home": "Главная",
-    "media":"Медиа",
-    "PhotoGallery": "Фотогалерея",
-    "allPhoto": "Все фото",
-    "VideoLibrary": "Видеотека",
-    "allVideo": "Все видео"
- },
- "PhotoGallery":{
-    "home": "Главная",
-    "media":"Медиа",
-    "PhotoGallery": "Фотогалерея",
-    "selectDate": "Выбрать дату",
-    "goBack": "Вернуться назад"
- },
- "nameAlbom": {
-     "home": "Главная",
-    "media":"Медиа",
-    "PhotoGallery": "Фотогалерея",
-    "nameAlbom": "Альбом “Название”"
- },
- "VideoLibrary": {
-    "home": "Главная",
-    "media":"Медиа",
-    "VideoLibrary": "Видеотека",
-    "PhotoGallery": "Фотогалерея",
-    "selectDate": "Выбрать дату",
-    "goBack": "Вернуться назад"
- },
- "regionalOffice": {
-     "home": "Главная",
-     "regionalOffice":"Региональное отделение"
- },
- "news": {
-    "home": "Главная",
-    "news": "Новости",
-    "otherNews": "Другие новости",
-    "button": "Подробнее"
- },
-"brandMaterials": {
-    "home":"Главная",
-    "brandMaterials":"Бренд материалы",
-    "SimilarProducts": "Похожие товары",
-    "price": "Цена"
-}
-
+   "header": {
+      "home": "Главная",
+      "aboutTheMovement": "О движении",
+      "direction": "Направление",
+      "Events": "Мероприятия",
+      "Projects": "Проекты",
+      "Media": "Медиа",
+      "regionalOffice": "Рег.отделения",
+      "button": "Войти"
+   },
+   "footer": {
+      "logo": "Молодежное движение Кыргызстана",
+      "aboutTheMovement": "О движении",
+      "direction": "Направление",
+      "Events": "Мероприятия",
+      "Projects": "Проекты",
+      "Media": "Медиа",
+      "regionalOffice": "Региональные отделения",
+      "news": "Новости",
+      "brandMaterials": "Бренд материалы",
+      "media": "Медиа",
+      "ourSocialNetwork": "Наши соцсети:",
+      "Instagram": "Instagram",
+      "Facebook": "Facebook",
+      "YouTube": "YouTube",
+      "contact": "Контакты:",
+      "WhatsApp": "WhatsApp:",
+      "Telegram": "Telegram:",
+      "gmail": "Электронная почта:",
+      "gmailAddress": "bsainaev@gmail.com",
+      "address": "Адресс",
+      "streetAndHouse": "Улица , Дом"
+   },
+   "landing": {
+      "aboutTheMovement": "О движении",
+      "upcomingEvents": "Предстоящие мероприятия",
+      "news": "Новости",
+      "brandMaterials": "Бренд материалы",
+      "button": "Подробнее",
+      "direction": "Направление деятельности"
+   },
+   "aboutTheMovement": {
+      "about": "О движении",
+      "goals": "Цели и миссии",
+      "laws": "Законодательная база",
+      "management": "Руководство"
+   },
+   "areaOfActivity": {
+      "home": "Главная",
+      "direction": "Направление деятельности"
+   },
+   "events": {
+      "home": "Главная",
+      "events": "Мероприятия",
+      "upcomingEvents": "Предстоящие мероприятия",
+      "eventArchive": "Архив мероприятий",
+      "button": "Подробнее",
+      "detailevent": "Детали мероприятия",
+      "street": "Улица",
+      "house": "Дом"
+   },
+   "eventArchive": {
+      "home": "Главная",
+      "events": "Мероприятия",
+      "eventArchive": "Архив мероприятий"
+   },
+   "projects": {
+      "home": "Главная",
+      "projects": "Проекты"
+   },
+   "projectName": {
+      "home": "Главная",
+      "projects": "Проекты",
+      "projectName": "Проект “Название”"
+   },
+   "media": {
+      "home": "Главная",
+      "media": "Медиа",
+      "PhotoGallery": "Фотогалерея",
+      "allPhoto": "Все фото",
+      "VideoLibrary": "Видеотека",
+      "allVideo": "Все видео"
+   },
+   "PhotoGallery": {
+      "home": "Главная",
+      "media": "Медиа",
+      "PhotoGallery": "Фотогалерея",
+      "selectDate": "Выбрать дату",
+      "goBack": "Вернуться назад",
+      "ourAllAlbums": "Наши альбомы",
+      "noTitle": "Без названия"
+   },
+   "nameAlbom": {
+      "home": "Главная",
+      "media": "Медиа",
+      "PhotoGallery": "Фотогалерея",
+      "nameAlbom": "Альбом “Название”"
+   },
+   "VideoLibrary": {
+      "home": "Главная",
+      "media": "Медиа",
+      "VideoLibrary": "Видеотека",
+      "PhotoGallery": "Фотогалерея",
+      "selectDate": "Выбрать дату",
+      "goBack": "Вернуться назад"
+   },
+   "regionalOffice": {
+      "home": "Главная",
+      "regionalOffice": "Региональное отделение"
+   },
+   "news": {
+      "home": "Главная",
+      "news": "Новости",
+      "otherNews": "Другие новости",
+      "button": "Подробнее"
+   },
+   "brandMaterials": {
+      "home": "Главная",
+      "brandMaterials": "Бренд материалы",
+      "SimilarProducts": "Похожие товары",
+      "price": "Цена"
+   },
+   "profile": {
+      "personalCabinet": "Личный кабинет",
+      "projects": "Проекты",
+      "editProfile": " Редактировать",
+      "materials": "Обучающие материалы",
+      "telegramChannel": "Телеграм канал",
+      "yourApplications": "Вашы зоявки",
+      "openedProjects": " Доступные проекты",
+      "dawnload": "Скачать",
+      "saveChanges": "Сохранить изменения",
+      "changesSaved": "Изменения сохранены!",
+      "logout": "Выйти",
+      "editProfilePage": {
+         "title": "Редактировать",
+         "subtitle": "Обновите свои контактные данные",
+         "telegramLabel": "Telegram канал",
+         "telegramPlaceholder": "https://t.me/your_channel",
+         "telegramHint": "Введите ссылку на ваш Telegram канал",
+         "googleFormLabel": "Google форма",
+         "googleFormPlaceholder": "https://forms.gle/...",
+         "googleFormHint": "Ссылка на вашу Google форму",
+         "buttonSave": "Сохранить изменения",
+         "buttonLoading": "Сохранение...",
+         "successMessage": "Данные успешно сохранены!"
+      }
+   },
+   "signIn": {
+      "title": "Добро пожаловать!",
+      "emailLabel": "Email",
+      "emailPlaceholder": "example@mail.com",
+      "passwordLabel": "Пароль",
+      "passwordPlaceholder": "Введите пароль",
+      "forgotPassword": "Забыли пароль?",
+      "submitButtonLoading": "Входим...",
+      "submitButton": "Продолжить",
+      "errorEmail": "Некорректный email",
+      "errorPassword": "Пароль должен содержать минимум 8 символов",
+      "errorAlert": "Ошибки в форме:",
+      "successAlert": "email успешно подтвержден",
+      "successMessage": "Успешный вход!",
+      "noAccount": "Нет аккаунта?",
+      "register": "Регистрация",
+      "required": "*"
+   },
+   "register": {
+      "title": "Добро пожаловать!",
+      "lastNameLabel": "Фамилия",
+      "lastNamePlaceholder": "Введите фамилию",
+      "lastNameHint": "Минимум 3 символа, только кириллица.",
+      "firstNameLabel": "Имя",
+      "firstNamePlaceholder": "Введите имя",
+      "middleNameLabel": "Отчество",
+      "middleNamePlaceholder": "Введите отчество",
+      "emailLabel": "Email",
+      "emailPlaceholder": "example@mail.com",
+      "passwordLabel": "Пароль",
+      "passwordPlaceholder": "Введите пароль",
+      "passwordHint": "Пароль должен содержать минимум 8 символов, хотя бы одну цифру и одну заглавную букву.",
+      "confirmPasswordLabel": "Повторите пароль",
+      "confirmPasswordPlaceholder": "Повторите пароль",
+      "submitButtonLoading": "Загрузка...",
+      "submitButton": "Продолжить",
+      "errorLastName": "Фамилия должна содержать минимум 3 символа",
+      "errorFirstName": "Имя обязательно для заполнения",
+      "errorMiddleName": "Отчество обязательно для заполнения",
+      "errorEmail": "Некорректный email",
+      "errorPassword": "Пароль должен содержать минимум 8 символов",
+      "errorPasswordMismatch": "Пароли не совпадают",
+      "errorAlert": "Ошибки в форме:",
+      "haveAccount": "Уже есть аккаунт?",
+      "signIn": "Войти",
+      "required": "*"
+   },
+   "forgotPassword": {
+      "title": "Сброс пароля",
+      "subtitle": "Введите ваш email, и мы отправим вам код для сброса пароля.",
+      "emailLabel": "Email",
+      "emailPlaceholder": "example@mail.com",
+      "submitButton": "Отправить",
+      "submitButtonLoading": "Отправляем...",
+      "errorEmail": "Некорректный email",
+      "successMessage": "Письмо для сброса пароля отправлено на {{email}}",
+      "required": "*"
+   },
+   "verifyToken": {
+      "title": "Добро пожаловать!",
+      "subtitle": "Код подтверждения и ваш UID были отправлены на ваш email.",
+      "uidLabel": "UID",
+      "uidPlaceholder": "Введите ваш uid",
+      "tokenLabel": "Код подтверждения",
+      "tokenPlaceholder": "Введите код",
+      "submitButton": "Продолжить",
+      "submitButtonLoading": "Проверяем...",
+      "errorToken": "Код должен содержать минимум 6 символов",
+      "errorAlert": "Ошибки в форме:",
+      "successMessage": "Успешная верификация!",
+      "noAccount": "Нет аккаунта?",
+      "register": "Регистрация",
+      "alertRegister": "Переход на страницу регистрации",
+      "required": "*"
+   },
+   "verifyCode": {
+      "title": "Введите код подтверждения",
+      "subtitle": "Код был отправлен на ваш email.",
+      "submitButton": "Продолжить",
+      "submitButtonLoading": "Проверяем...",
+      "errorCodeLength": "Код должен содержать {{length}} цифры",
+      "successMessage": "Успешная верификация!"
+   },
+   "newPassword": {
+      "title": "Сброс пароля",
+      "subtitle": "Введите новый пароль",
+      "passwordLabel": "Новый пароль",
+      "passwordPlaceholder": "Введите новый пароль",
+      "submitButton": "Продолжить",
+      "submitButtonLoading": "Сохраняем...",
+      "errorPassword": "Пароль должен содержать минимум 8 символов",
+      "errorToken": "Токен не найден. Попробуйте снова через email.",
+      "errorAlert": "Ошибки в форме:",
+      "alertSuccess": "Пароль успешно обновлён",
+      "successMessage": "Пароль успешно обновлён!",
+      "required": "*"
+   }
 }

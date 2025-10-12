@@ -3,6 +3,7 @@
     width: 100%;
     height: 100vh;
     background: #fff;
+    justify-content: space-between;
 }
 
 .backgroundImage {
@@ -230,6 +231,8 @@
 
     .backgroundImage {
         width: 100%;
+        height: 300px;
+        object-fit: cover;
     }
 
     .formContainer {

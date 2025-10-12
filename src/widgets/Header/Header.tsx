@@ -26,6 +26,14 @@ function Header() {
   { key: "Media", path: "/media" },
   { key: "regionalOffice", path: "/branchnamepages" },
 ];
+const token = localStorage.getItem("user");
+const handleLogeClick = () => {
+  if (token) {
+    navigate("/profile");
+  } else {
+    navigate("/login");
+  }
+}
 
   return (
     <header className={`${styles.header} container`}>
@@ -70,7 +78,7 @@ function Header() {
           className={activeButton === 8 ? styles.activeButton : ""}
           onClick={() => {
             setActiveButton(8);
-            navigate("/register");
+            handleLogeClick();
           }}
         >
           {t('header.button')}

@@ -37,7 +37,7 @@ $gray-medium: #a0a0a0;
 
 .projectsGrid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr)!important;
+    grid-template-columns: repeat(3, 1fr);
     gap: 24px;
     width: 100%;
 
