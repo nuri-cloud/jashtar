@@ -7,7 +7,15 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { useTranslation } from "react-i18next";
 import { ArrowRightIcon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+
 import { DateSelectButton } from "@/shared/ui/DateButton/DateButton";
+
+import styles from "./PhotoGallry.module.scss";
+import { useTranslation } from "react-i18next";
+// import { IoIosArrowForward, IoIosArrowBack  } from "react-icons/io";
+import { useImagesStore } from "@/app/store/Media/images";
+
+
 
 
 export const PhotoGallry = () => {
@@ -85,7 +93,7 @@ export const PhotoGallry = () => {
                     onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
                     disabled={currentPage === totalPages}
                 >
-                    <IoIosArrowForward />
+                    {/* <IoIosArrowForward /> */}
                 </button>
             </div>
         </div>
