@@ -75,6 +75,7 @@ export default function Routing() {
       {PUBLIC_PAGES.map((p) => (
         <Route path={p.link} element={p.page} key={p.id} />
       ))}
+      
     </Routes>
   );
 }

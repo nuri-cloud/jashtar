@@ -1,77 +1,76 @@
+"use client";
+import React, { useEffect, useState } from "react";
+import styles from "./PhotoGallry.module.scss";
 import { AlbumCard } from "@/shared/ui/Media/MediaCard";
-import Navpanel from "@/widgets/Navpanel/Navpanel";
+import { useImagesStore } from "@/app/store/Media/images";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { useTranslation } from "react-i18next";
 import { ArrowRightIcon } from "lucide-react";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
+import { DateSelectButton } from "@/shared/ui/DateButton/DateButton";
+
 import styles from "./PhotoGallry.module.scss";
 import { useTranslation } from "react-i18next";
 // import { IoIosArrowForward, IoIosArrowBack  } from "react-icons/io";
 import { useImagesStore } from "@/app/store/Media/images";
 
 
-const albums = Array.from({ length: 42 }, (_, i) => ({
-    id: i + 1,
-    title: `Альбом ${i + 1}`,
-    event: `Событие ${Math.ceil((i + 1) / 3)}`,
-    imageUrl: `https://picsum.photos/seed/${i + 1}/400/300`,
-    count: Math.floor(Math.random() * 50) + 1,
-}));
 
-export function PhotoGallry() {
-    const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 9;
+
+export const PhotoGallry = () => {
     const navigate = useNavigate();
-    const totalPages = Math.ceil(albums.length / itemsPerPage);
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const currentAlbums = albums.slice(startIndex, startIndex + itemsPerPage);
-    const {t , i18n} = useTranslation()
-    const {loading, error, imagesCards, fetchImages} = useImagesStore()
-        if (loading) {
-        return <div className="loader"></div>;
-    }
-    if (error) {
-        return <p style={{ color: "red" }}>{error}</p>;
-    }
-    return (
-        <div className={styles.container}>
-            {/* Навигация */}
-            <div className={styles.breadcrumbs}>
-              <Navpanel text={t('PhotoGallery.home')} text2={t('PhotoGallery.media')} text3={t('PhotoGallery.PhotoGallery')} link="/" link2="/media"/>
-            </div>
+    const { t } = useTranslation();
+    const { imagesCards, fetchImages, loading, error } = useImagesStore();
+    const [currentPage, setCurrentPage] = useState(1);
+    const albumsPerPage = 6;
 
-            {/* Заголовок */}
-            <header className={styles.header}>
-                <h1 className={styles.title}>{t('PhotoGallery.PhotoGallery')}</h1>
+    useEffect(() => {
+        fetchImages();
+    }, [fetchImages]);
+
+    // считаем страницы
+    const totalPages = Math.ceil(imagesCards.length / albumsPerPage);
+
+    // вычисляем диапазон карточек для текущей страницы
+    const startIndex = (currentPage - 1) * albumsPerPage;
+    const currentAlbums = imagesCards.slice(startIndex, startIndex + albumsPerPage);
+
+    return (
+        <div className={styles.albumPage}>
+            <div className={styles.header}>
+                <h1 className={styles.title}>{t('media.PhotoGallery')}</h1>
                 <div className={styles.buttons}>
-                    <button className={styles.button} aria-label="Посмотреть все фото">
-                        <span className={styles.buttonText}>{t('PhotoGallery.selectDate')}</span>
-                        <ArrowRightIcon className={styles.buttonIcon} />
-                    </button>
+                    <DateSelectButton text={t('VideoLibrary.selectDate')} />
                     <button className={styles.button} onClick={() => navigate("/media")}>
-                        <span className={styles.buttonText}>{t('PhotoGallery.goBack')}</span>
+                        <span className={styles.buttonText}>{t('VideoLibrary.goBack')}</span>
                         <ArrowRightIcon className={styles.buttonIcon} />
                     </button>
                 </div>
-            </header>
-
-            {/* Галерея */}
+            </div>
             <div className={styles.gallery}>
-                {currentAlbums.map((album) => (
-                    <AlbumCard
-                        key={album.id}
-                        title={album.title}
-                        event={album.event}
-                        imageUrl={album.imageUrl}
-                        count={album.count}
-                    />
-                ))}
+                {
+                    loading ? <div className="loader"></div> :
+                        error ? <p>Произошла ошибка{error}</p> :
+                            imagesCards.length < 0 ? <p>
+                                {imagesCards.length} фото
+                            </p> :
+                                currentAlbums.map((album) => (
+                                    <AlbumCard
+                                        key={album.id}
+                                        id={album.id}
+                                        date={album.date}
+                                        title={album.title}
+                                        imageUrl={album.image}
+                                    />
+                                ))}
             </div>
 
-            {/* Пагинация */}
+            {/* пагинация */}
             <div className={styles.pagination}>
                 <button
                     className={styles.pageButton}
-                    onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+                    onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
                     disabled={currentPage === 1}
                 >
                     <IoIosArrowBack/>
@@ -81,8 +80,7 @@ export function PhotoGallry() {
                     {Array.from({ length: totalPages }, (_, i) => (
                         <button
                             key={i + 1}
-                            className={`${styles.pageNumber} ${currentPage === i + 1 ? styles.active : ""
-                                }`}
+                            className={`${styles.pageNumber} ${currentPage === i + 1 ? styles.active : ""}`}
                             onClick={() => setCurrentPage(i + 1)}
                         >
                             {i + 1}
@@ -92,7 +90,7 @@ export function PhotoGallry() {
 
                 <button
                     className={styles.pageButton}
-                    onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
+                    onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
                     disabled={currentPage === totalPages}
                 >
                     {/* <IoIosArrowForward /> */}
@@ -100,4 +98,5 @@ export function PhotoGallry() {
             </div>
         </div>
     );
-}
+};
+

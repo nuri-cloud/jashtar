@@ -17,12 +17,56 @@
     }
 }
 
+.wrapper {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+
+    .datePicker {
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 0;
+        background: #fff;
+        border-radius: 10px;
+        padding: 10px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        animation: fadeIn 0.25s ease forwards;
+        z-index: 10;
+    }
+
+    .input {
+        border: 1px solid #ccc;
+        padding: 6px 10px;
+        border-radius: 6px;
+        font-size: 14px;
+        outline: none;
+        transition: border 0.2s ease;
+    }
+
+    .input:focus {
+        border-color: #2e6cf4;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-6px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
 .breadcrumbs {
 
     span {
         cursor: pointer;
         color: var(--dark-blue-0);
     }
+
     @media (max-width: 968px) {
         font-size: 0.875rem;
     }
@@ -43,6 +87,11 @@
         gap: 1rem;
         align-items: flex-start;
     }
+
+    @media (max-width: 400px) {
+        flex-direction: column;
+    }
+
 }
 
 .title {
@@ -86,7 +135,8 @@
 
         .buttonIcon {
             color: var(--main-white);
-            transform: translateX(4px);
+            transform: translateX(4px) rotate(180deg);
+
         }
     }
 
@@ -106,16 +156,27 @@
     gap: 1.5rem;
     justify-content: center;
     margin-top: 30px;
+
     @media (max-width: 700px) {
-        display: flex;
-        flex-wrap: wrap;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    @media (max-width: 460px) {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
     }
 }
-.buttons{
+
+.buttons {
     display: flex;
     gap: 1rem;
     justify-content: center;
+
     // margin-top: 2rem
+    @media (max-width:400px) {
+        flex-direction: column;
+    }
 }
 
 .pagination {

@@ -110,15 +110,14 @@
 
 .gallery {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
     justify-content: center;
 
-    @media (max-width: 1288px) {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1rem;
+    @media (max-width: 988px) {
+        grid-template-columns: repeat(2, 1fr);
     }
-
-    
+    @media (max-width:460px) {
+        grid-template-columns: repeat(1, 1fr);
+    }
 }

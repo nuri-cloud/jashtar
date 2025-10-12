@@ -1,6 +1,7 @@
 import React from 'react';
 import { CalendarIcon } from 'lucide-react';
 import styles from './PhotoCard.module.scss';
+import { useTranslation } from 'react-i18next';
 
 interface PhotoCardProps {
   id: number;
@@ -10,6 +11,7 @@ interface PhotoCardProps {
 }
 
 export const PhotoCard: React.FC<PhotoCardProps> = ({ date, title, imageUrl }) => {
+  const { t } = useTranslation();
   return (
     <article className={styles.card}>
       <div className='relative'>
@@ -26,7 +28,7 @@ export const PhotoCard: React.FC<PhotoCardProps> = ({ date, title, imageUrl }) =
           <time className={styles.date}>{date}</time>
         </div>
 
-        <h2 className={styles.title}>{title || "Без нозвания"}</h2>
+        <h2 className={styles.title}>{title || t('PhotoGallery.noTitle')}</h2>
       </div>
     </article>
   );

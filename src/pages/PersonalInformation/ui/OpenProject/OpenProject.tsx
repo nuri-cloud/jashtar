@@ -1,38 +1,32 @@
+import { log } from 'console';
 import styles from './OpenProject.module.scss';
-export function OpenProject() {
-    const availableProjects = Array(6).fill({
-        title: 'Название проекта "Название"',
-    });
-    const renderProjectCard = (
-        project: { title: string },
-        type: 'available' | 'completed',
-        index: number
-    ) => {
-        const cardTypeClass = type === 'available' ? styles.availableProject : styles.completedProject;
-
-        return (
-            <div
-                key={index}
-                className={`${styles.projectCard} ${cardTypeClass}`}
-                style={{ '--index': index } as React.CSSProperties}
-                onClick={() => console.log(`Clicked ${type} project ${index}`)}
-            >
-                <h3 className={styles.projectTitle}>
-                    {project.title}
-                </h3>
-            </div>
-        );
-    };
+import { useTranslation } from 'react-i18next';
+export function OpenProject({ projects }: any) {
+    const { t } = useTranslation()
     return (
-        <section className={styles.section}>
+        <section className={styles.section}>   
             <h2 className={styles.sectionTitle}>
-                Доступные проекты
+                {t('profile.openedProjects')}
             </h2>
 
             <div className={styles.projectsGrid}>
-                {availableProjects.map((project, index) =>
-                    renderProjectCard(project, 'available', index)
-                )}
+                {
+                    projects?.projects?.length > 0
+                        ? projects.projects.map((project: any, index: number) => (
+                            <div
+                                key={index}
+                                className={`${styles.projectCard}`}
+                                style={{ '--index': index } as React.CSSProperties}
+                            >
+                                <h3 className={styles.projectTitle}>
+                                    {project.title}
+                                </h3>
+                            </div>
+                        ))
+                        : null
+
+                }
+
             </div>
         </section>
     );

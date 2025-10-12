@@ -1,10 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import styles from "./VerifyCode.module.scss";
 import { useNavigate } from "react-router-dom";
 import { useForgotPasswordStore } from "@/app/store/auth/ForgotPassword";
 import authimage from "@/shared/assets/images/authImage.png";
 
 export function VerifyCode() {
+    const { t } = useTranslation();
     const CODE_LENGTH = 4;
     const [code, setCode] = useState<string[]>(Array(CODE_LENGTH).fill(""));
     const inputsRef = useRef<(HTMLInputElement | null)[]>([]);
@@ -35,7 +37,7 @@ export function VerifyCode() {
         const token = code.join("");
 
         if (token.length !== CODE_LENGTH) {
-            alert(`Код должен содержать ${CODE_LENGTH} цифры`);
+            alert(t("verifyCode.errorCodeLength", { length: CODE_LENGTH }));
             return;
         }
 
@@ -43,7 +45,6 @@ export function VerifyCode() {
         await verifyToken({ token });
     };
 
-    // ✅ Перенесли навигацию в useEffect
     useEffect(() => {
         if (success && codeToken) {
             useForgotPasswordStore.getState().logout();
@@ -54,9 +55,9 @@ export function VerifyCode() {
     return (
         <div className={styles.container}>
             <form onSubmit={handleSubmit} className={styles.formContainer}>
-                <h1 className={styles.title}>Введите код подтверждения</h1>
+                <h1 className={styles.title}>{t("verifyCode.title")}</h1>
                 <p className={styles.subtitle}>
-                    Код был отправлен на ваш email.
+                    {t("verifyCode.subtitle")}
                 </p>
 
                 <div className={styles.codeInputs}>
@@ -75,11 +76,11 @@ export function VerifyCode() {
                 </div>
 
                 <button type="submit" className={styles.submitButton} disabled={loading}>
-                    {loading ? "Проверяем..." : "Продолжить"}
+                    {loading ? t("verifyCode.submitButtonLoading") : t("verifyCode.submitButton")}
                 </button>
 
                 {error && <p style={{ color: "red" }}>{error}</p>}
-                {success && <p style={{ color: "green" }}>Успешная верификация!</p>}
+                {success && <p style={{ color: "green" }}>{t("verifyCode.successMessage")}</p>}
             </form>
             <img src={authimage} alt="Auth" />
         </div>

@@ -1,38 +1,48 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./Profile.module.scss";
 import { OpenProject } from "./ui/OpenProject/OpenProject";
 import { FinishedProject } from "./ui/FinishedProject/FinishedProject";
 import { Education } from "./ui/Education/Education";
 import logo from "@/shared/assets/icons/logo.svg"
 import { useNavigate } from "react-router-dom";
+import { useProfileStore } from "@/app/store/Profile/Profile";
+import { EditProfile } from "./ui/EditProfile/EditProfile";
+import { useTranslation } from "react-i18next";
 
 export const Profile = () => {
+  const { t } = useTranslation()
   const navigationItems = [
-    "Редактировать",
-    "Проекты",
-    "Обучающие материалы",
-    "Telegram-канал",
-    "Ваши заявки",
+    `${t('profile.editProfile')}`,
+    `${t('profile.projects')}`,
+    `${t('profile.materials')}`,
+    `${t('profile.telegramChannel')}`,
+    `${t('profile.yourApplications')}`,
   ];
   const [activeItem, setActiveItem] = React.useState(1);
+  const { profile, fetchProfile, loading, error } = useProfileStore();
   const data = localStorage.getItem("user");
-
   const userData = data ? JSON.parse(data) : null;
   console.log(userData);
-  
-const navigate = useNavigate();
+
+  useEffect(() => {
+    fetchProfile()
+  }, [fetchProfile])
+
+  const navigate = useNavigate();
   // Функция для рендера контента
   const renderContent = () => {
     switch (activeItem) {
       case 1:
         return (
           <>
-            <OpenProject />
-            <FinishedProject />
+            <OpenProject projects={profile} />
+            {/* <FinishedProject /> */}
           </>
         );
       case 2:
-        return <Education />;
+        return <Education item={profile} />;
+      case 0:
+        return <EditProfile onCallBack={() => fetchProfile()} />
       default:
         return <p>Выберите раздел</p>;
     }
@@ -41,12 +51,12 @@ const navigate = useNavigate();
   return (
     <div className={styles.container}>
       <header className={styles.header}>
-        <img className={styles.logo} alt="Logo" src={logo} />
+        <img title={t("header.home")} onClick={() => navigate("/")} className={styles.logo} alt="Logo" src={logo} />
 
-        <h1 className={styles.title}>Личный кабинет</h1>
+        <h1 className={styles.title}>{t('profile.personalCabinet')}</h1>
 
-        <button onClick={() => navigate("/")} className={styles.logoutButton}>
-          <span>Выйти</span>
+        <button onClick={() => { navigate("/"); localStorage.removeItem("user"); localStorage.removeItem("access"); }} className={styles.logoutButton}>
+          <span>{t('profile.logout')}</span>
           <svg
             className={styles.logoutIcon}
             viewBox="0 0 24 24"
@@ -67,18 +77,17 @@ const navigate = useNavigate();
             </div>
 
             <div className={styles.userInfo}>
-              <h2 className={styles.userName}>{userData?.full_name || userData?.name || ""}</h2>
+              <h2 className={styles.userName}>{userData?.full_name || userData?.name || userData.user.full_name}</h2>
 
-              <p className={styles.userEmail}>{userData.email}</p>
+              <p className={styles.userEmail}>{userData.email || userData.user.email}</p>
             </div>
             <nav className={styles.navigation}>
               {navigationItems.map((item, index) => (
                 <button
                   key={index}
-                  className={`${styles.navItem} ${
-                    index === activeItem ? styles.active : ""
-                  }`}
-                  onClick={() => setActiveItem(index)}
+                  className={`${styles.navItem} ${index === activeItem ? styles.active : ""
+                    }`}
+                  onClick={() => { item === t("profile.telegramChannel") ? window.open(profile?.telegram_channel, "_blank") : item === t("profile.yourApplications") ? window.open(profile?.google_form_link, "_blank") : setActiveItem(index) }}
                 >
                   {item}
                 </button>

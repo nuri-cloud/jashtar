@@ -1,71 +1,80 @@
 import { ArrowRightIcon, ChevronRight } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./VideoGallry.module.scss";
 import { AlbumCard } from "@/shared/ui/Media/MediaCard";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Navpanel from "@/widgets/Navpanel/Navpanel";
-
-const albums = Array.from({ length: 42 }, (_, i) => ({
-    id: i + 1,
-    title: `Альбом ${i + 1}`,
-    event: `Событие ${Math.ceil((i + 1) / 3)}`,
-    imageUrl: `https://picsum.photos/seed/${i + 1}/400/300`,
-    count: Math.floor(Math.random() * 50) + 1,
-}));
+import { VideoCard } from "../Media/ui/VideoCard/VideoCard";
+import { useVideoStore } from "@/app/store/Media/video";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { DateSelectButton } from "@/shared/ui/DateButton/DateButton";
 
 export function Video() {
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 9;
     const navigate = useNavigate();
-    const totalPages = Math.ceil(albums.length / itemsPerPage);
+    const { t, i18n } = useTranslation()
+    const { loading, error, fetchVideos, videos } = useVideoStore();
+
+    useEffect(() => {
+        fetchVideos();
+    }, []);
+
+    // Вычисляем пагинацию на основе videos
+    const totalPages = Math.ceil((videos?.length || 0) / itemsPerPage);
     const startIndex = (currentPage - 1) * itemsPerPage;
-    const currentAlbums = albums.slice(startIndex, startIndex + itemsPerPage);
-    const {t , i18n} = useTranslation()
+    const currentVideos = videos?.slice(startIndex, startIndex + itemsPerPage) || [];
+
+    // Если текущая страница больше доступных страниц, сбрасываем на первую
+    useEffect(() => {
+        if (currentPage > totalPages && totalPages > 0) {
+            setCurrentPage(1);
+        }
+    }, [totalPages, currentPage]);
+    const [isHovered, setIsHovered] = useState(false);
     return (
         <div className={styles.container}>
             {/* Навигация */}
             <div className={styles.breadcrumbs}>
-                <Navpanel text={t('VideoLibrary.home')} link="/" text2={'VideoLibrary.media'} link2="/media" text3={t('VideoLibrary.VideoLibrary')}/>
+                <Navpanel text={t('VideoLibrary.home')} link="/" text2={t('VideoLibrary.media')} link2="/media" text3={t('VideoLibrary.VideoLibrary')} />
             </div>
 
             {/* Заголовок */}
-            <header className={styles.header}>
+            <div className={styles.header}>
                 <h1 className={styles.title}>{t('VideoLibrary.VideoLibrary')}</h1>
                 <div className={styles.buttons}>
-                    <button className={styles.button} aria-label="Посмотреть все фото">
-                        <span className={styles.buttonText}>{t('VideoLibrary.selectDate')}</span>
-                        <ArrowRightIcon className={styles.buttonIcon} />
-                    </button>
-                    <button  className={styles.button} onClick={()=>navigate("/media")}>
+                    <DateSelectButton text={t('VideoLibrary.selectDate')} />
+                    <button className={styles.button} onClick={() => navigate("/media")}>
                         <span className={styles.buttonText}>{t('VideoLibrary.goBack')}</span>
                         <ArrowRightIcon className={styles.buttonIcon} />
                     </button>
                 </div>
-            </header>
+            </div>
 
             {/* Галерея */}
             <div className={styles.gallery}>
-                {currentAlbums.map((album) => (
-                    <AlbumCard
-                        key={album.id}
-                        title={album.title}
-                        event={album.event}
-                        imageUrl={album.imageUrl}
-                        count={album.count}
-                        onClick={() => navigate(`/allbom`)}
+                {loading && <div className="loader" />}
+                {error && <p className={styles.error}>Ошибка: {error}</p>}
+                {!loading && !error && currentVideos?.map((video) => (
+                    <VideoCard
+                        key={video.id}
+                        id={video.id}
+                        title={video.title}
+                        videoUrl={video.video_url}
                     />
                 ))}
             </div>
 
             {/* Пагинация */}
+
             <div className={styles.pagination}>
                 <button
                     className={styles.pageButton}
-                    onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+                    onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
                     disabled={currentPage === 1}
                 >
-                    ← Назад
+                    <IoIosArrowBack />
                 </button>
 
                 <div className={styles.pageNumbers}>
@@ -83,12 +92,13 @@ export function Video() {
 
                 <button
                     className={styles.pageButton}
-                    onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
+                    onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
                     disabled={currentPage === totalPages}
                 >
-                    Вперёд →
+                    <IoIosArrowForward />
                 </button>
             </div>
+
         </div>
     );
 }

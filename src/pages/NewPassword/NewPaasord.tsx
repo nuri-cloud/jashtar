@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import styles from "./NewPassword.module.scss";
 import { useNavigate, useParams } from "react-router-dom";
 import { EyeIcon, EyeOffIcon, MailIcon } from "lucide-react";
@@ -11,10 +12,11 @@ interface FormData {
 }
 
 export function NewPassword() {
-    const { code } = useParams(); // токен из URL
+    const { t } = useTranslation();
+    const { code } = useParams();
     const [formData, setFormData] = useState<FormData>({
         password: "",
-        token: code || "", // сразу подставляем токен из params
+        token: code || "",
     });
     const navigate = useNavigate();
     const [visiblePassword, setVisiblePassword] = useState(false);
@@ -34,19 +36,18 @@ export function NewPassword() {
         const errors: string[] = [];
 
         if (formData.password.length < 8) {
-            errors.push("Пароль должен содержать минимум 8 символов");
+            errors.push(t("newPassword.errorPassword"));
         }
 
         if (!formData.token) {
-            errors.push("Токен не найден. Попробуйте снова через email.");
+            errors.push(t("newPassword.errorToken"));
         }
 
         if (errors.length > 0) {
-            alert("Ошибки в форме:\n" + errors.join("\n"));
+            alert(t("newPassword.errorAlert") + "\n" + errors.join("\n"));
             return;
         }
 
-        // Отправка токена и нового пароля на API
         await setNewPassword({
             token: formData.token,
             password: formData.password,
@@ -55,31 +56,31 @@ export function NewPassword() {
 
     useEffect(() => {
         if (success) {
-            navigate("/profile");
+            navigate("/login");
             useForgotPasswordStore.getState().logout();
-            alert("Пароль успешно обнавлен")
+            alert(t("newPassword.alertSuccess"));
         }
-    }, [success, navigate]);
+    }, [success, navigate, t]);
 
     return (
         <div className={styles.container}>
             <form onSubmit={handleSubmit} className={styles.formContainer}>
-                <h1 className={styles.title}>Сброс пароля</h1>
+                <h1 className={styles.title}>{t("newPassword.title")}</h1>
                 <p className={styles.subtitle}>
-                    Введите новый пароль
+                    {t("newPassword.subtitle")}
                 </p>
 
                 {/* Новый пароль */}
                 <div className={`${styles.fieldContainer} ${styles.large}`}>
                     <label className={styles.label}>
-                        Новый пароль<span className={styles.required}>*</span>
+                        {t("newPassword.passwordLabel")}<span className={styles.required}>{t("newPassword.required")}</span>
                     </label>
                     <div className={styles.inputWrapper}>
                         <input
                             type={visiblePassword ? "text" : "password"}
                             value={formData.password}
                             onChange={(e) => handleChange(e.target.value)}
-                            placeholder="Введите новый пароль"
+                            placeholder={t("newPassword.passwordPlaceholder")}
                             className={styles.input}
                         />
                         <button
@@ -99,12 +100,12 @@ export function NewPassword() {
                 {/* Кнопка */}
                 <button type="submit" className={styles.submitButton} disabled={loading}>
                     <span className={styles.buttonText}>
-                        {loading ? "Сохраняем..." : "Продолжить"}
+                        {loading ? t("newPassword.submitButtonLoading") : t("newPassword.submitButton")}
                     </span>
                 </button>
 
                 {error && <p style={{ color: "red" }}>{error}</p>}
-                {success && <p style={{ color: "green" }}>Пароль успешно обновлён!</p>}
+                {success && <p style={{ color: "green" }}>{t("newPassword.successMessage")}</p>}
             </form>
 
             <img className={styles.backgroundImage} alt="Background" src={authimage} />

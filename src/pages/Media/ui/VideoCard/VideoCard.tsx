@@ -3,7 +3,7 @@ import { CalendarIcon } from "lucide-react";
 import Plyr from "plyr-react";
 import "plyr-react/plyr.css";
 import styles from "./VideoCard.module.scss";
-import { log } from "console";
+// import { log } from "console";
 
 interface VideoCardProps {
   id: number;
@@ -19,7 +19,7 @@ export const VideoCard: React.FC<VideoCardProps> = ({
   thumbnailUrl,
   videoUrl,
 }) => {
-  console.log(videoUrl);
+  // console.log(videoUrl);
 
   return (
     <article className={styles.card}>
@@ -44,8 +44,6 @@ export const VideoCard: React.FC<VideoCardProps> = ({
               "progress",
               "current-time",
               "mute",
-              "volume",
-              "settings",
               "fullscreen",
             ],
             ratio: "16:9",
