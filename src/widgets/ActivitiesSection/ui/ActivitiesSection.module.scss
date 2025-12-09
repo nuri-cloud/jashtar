@@ -1,27 +1,31 @@
-.pageWrapper {
- width: 1320px;
- margin: auto;
-}
 
 
 .sectionTitle {
+  width: 100%;
   text-align: center;
   font-size: 40px;
   font-weight: 700;
   line-height: 120%;
   color: #000;
-  margin: 30px 40px;
+  margin-top: 50px;
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   @media (max-width: 1024px) {
     font-size: 32px;
+    margin-top: 40px;
   }
 
   @media (max-width: 768px) {
     font-size: 28px;
+    margin-top: 30px;
   }
 
   @media (max-width: 480px) {
     font-size: 24px;
+    margin-top: 25px;
     margin-bottom: 25px;
   }
 }
